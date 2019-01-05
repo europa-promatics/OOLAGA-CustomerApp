@@ -1,0 +1,51 @@
+<ion-header >
+  <ion-navbar color="maincolor">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title style="text-align: center;">
+      Notifications
+    </ion-title>
+    <ion-buttons end>
+      <button color="light" ion-button icon-only (click)="deleteAll()" style="min-width: 44px;">
+       <!--  <ion-icon name="ios-trash"></ion-icon>  -->
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+	<ion-refresher pullMax="200" pullMin="150" (ionRefresh)="refreshNotification($event)">
+        <ion-refresher-content
+          pullingIcon="arrow-dropdown"
+          refreshingSpinner="ios"
+          refreshingText="Refreshing...">
+        </ion-refresher-content>
+    </ion-refresher>
+	<div *ngIf="!noti" padding style="text-align: center;color:#999;margin-top: calc(50% - 50px);">
+      <div style="width: 80%;margin-left: 10%;">
+      	<p style="font-size: 22px; ">Vous n'avez aucune notification</p>
+      </div>
+    </div>
+    <div *ngIf="noti">
+    	<ion-list no-lines style="background: transparent;">
+          <ion-item-sliding *ngFor="let m of data;let l = last;let i = index " #item style="background: transparent;padding: 7px 15px 7px;">
+            <ion-item (click)="openNotification(m)" style="margin:0;background-color: #fff;position: relative; width: 100%;padding: 5px 10px;box-shadow: 0 1px 3px #555;border-radius: 5px;">
+                <ion-label no-margin style="white-space: unset;font-size: 1.4rem;">{{m.message}}<br />
+                <ion-label no-margin style="white-space: unset;font-size: 1.2rem;width: 50%;float: left;">{{date(m.created_at.split(' ')[0])}}</ion-label>
+                <ion-label no-margin style="white-space: unset;font-size: 1.2rem;width: 50%;float: left;">{{time(m.created_at.split(' ')[1])}}</ion-label>
+                </ion-label>
+            </ion-item>
+            <ion-item-options side="left">
+                <button ion-button (click)="delete(i,item)" style="background-color: transparent;color:red;margin-left: 10px">
+                    <ion-icon name="ios-trash-outline"></ion-icon>
+                    Supprimer
+                </button>
+            </ion-item-options>
+
+            <ion-item-options side="right">
+            </ion-item-options>
+            <div *ngIf="l" style="margin-bottom: 10px;width: 100%;height: 10px;"></div>
+          </ion-item-sliding>
+        </ion-list>
+    </div>
+</ion-content>

@@ -1,0 +1,826 @@
+<ion-header>
+  <ion-navbar color="maincolor">
+    <ion-title *ngIf="page=='auction'" style="text-align: center">Récapitulatif</ion-title>
+    <ion-title *ngIf="page=='active'" style="margin-left:10px;text-align: center">Récapitulatif</ion-title>
+    <ion-buttons end>
+      <button *ngIf="page=='auction'" ion-button icon-only (click)="withdrawAuction(data.oolaga_id)" style="min-width: 44px;text-transform: none;color:white">
+        <ion-icon name="ios-trash-outline" ></ion-icon>  
+      </button>
+      <button *ngIf="page=='active' && data.track_status=='pending'" (click)="cancelOolaga()" ion-button icon-only style="margin-right: 10px;min-width: 44px;text-transform: none;color:white">
+       Résilier
+      </button>
+      <button *ngIf="page=='active' && data.track_status!='pending'" ion-button icon-only style="margin-right: 10px;min-width: 44px;text-transform: none;color:white">
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content *ngIf="page=='active' && !fromService" style="text-align:left;background-color: #f7f7f7;color:#1B4079" padding>
+  <div *ngIf="data && data.service_id != 7">
+    <div style="float: left;width: 100%;">
+      <ion-label style="float:left;height:20px;width:50%;margin:0;color:#727272;font-size: 1.5rem;">
+        <span *ngIf="data.track_status=='pending'">À partir de</span>
+        <span *ngIf="data.track_status!='pending'">Statut</span>
+      </ion-label>
+    </div>
+    <div style="position:relative;background-color:#f7f7f7;height: 45px;border: 1px solid rgba(0,0,0,0.1);float: left;width: 100%;">
+        <div style="background: #fff;width: 100%;height: 100%;float: left;padding: 13px 18px;">
+          <ion-label style="font-weight: 600;width: 100%;color:#000000;margin:0;text-align: center;">
+            <span *ngIf="data.track_status=='pending'">{{(data?.date+'|'+data?.first_time) | startingTime}}</span>
+            <span *ngIf="data.track_status!='pending'">
+              <!-- {{data.track_status}} -->STARTED
+            </span>
+          </ion-label>
+        </div>
+    </div>
+    <div style="height: 15px;width: 100%;float: left;"></div>
+    <div style="float: left;width: 100%;">
+      <ion-label style="float:left;height:20px;width:50%;margin:0;color:#727272;font-size: 1.5rem;">
+        Catégorie
+      </ion-label>
+      <ion-label style="float:right;text-align: right;height:20px;width:50%;margin:0;color:#727272;font-size: 1.5rem;">
+        <span style="color: #1B4079;">Prix <span style="color: black;">{{data?.cost}}</span></span>
+      </ion-label>
+    </div>
+    <div style="position:relative;background-color:#f7f7f7;height: 45px;border: 1px solid rgba(0,0,0,0.1);float: left;width: 100%;">
+        <div style="width: 18%;height: 100%;float: left;text-align: center;" >
+          <div style="font-weight: 600;height:100%;position: relative;margin:0 auto;display: flex;background-color: #fff;border-right: 1px solid rgba(0,0,0,0.1)">
+            <img src="http://18.188.229.2/oolaga/public/frontend/img/services/{{data?.service_image}}" style="align-self: center;height:80%;margin:0 auto;">
+          </div>
+        </div>
+        <div style="background: #f7f7f7;width: 82%;height: 100%;float: right;padding: 13px 18px;">
+          <ion-label style="font-weight: 600;width: 100%;color:#000000;margin:0;">
+            <span>
+              {{data?.service}}
+            </span>
+          </ion-label>
+        </div>
+    </div>
+    <div style="height: 15px;width: 100%;float: left;"></div>
+
+    <ion-label style="float:left;height:auto;width:50%;margin:0;color:#727272;font-size: 1.5rem;">Adresses</ion-label>
+    <div style="position:relative;background-color:#f7f7f7;width:100%;border: 1px solid rgba(0,0,0,0.1);float: left;padding: 5px;">
+      <div style="width: 100%;float: left;">
+        <p no-margin style="color: #999999;float: left;">Adresse(s) de collection</p>
+        <div style="float:left;width: 100%;padding-left: 15px" *ngFor="let location of locations ; let a = last ; let i = index ">
+          <ion-label *ngIf!="a" no-margin style="float:left;width:100%;white-space:unset;color: #000000;font-weight: bold;font-size: 1.2rem;" >
+            <span *ngIf="locations.length>2">{{i+1}}. </span>{{location.location_name}}
+          </ion-label>
+          <table style="margin-left:10px;font-size: 1rem;color: #555" >
+                <tr *ngIf!="a && location.unit_nu">
+                  <th style="text-align: left;vertical-align: top;">Complément d'adresse</th>
+                  <td style="padding: 0 5px;vertical-align: top;">:</td>
+                  <td style="vertical-align: top;">{{location.unit_nu}}</td>
+                </tr>
+                <tr *ngIf!="a && location.inhome=='1'">
+                  <th style="text-align: left;vertical-align: top;">Etage</th>
+                  <td style="padding: 0 5px;vertical-align: top;">:</td>
+                  <td style="vertical-align: top;">{{location.stairs}}</td>
+                </tr>
+                <tr *ngIf!="a && location.parking_info">
+                  <th style="text-align: left;vertical-align: top;">Information additionnelle</th>
+                  <td style="padding: 0 5px;vertical-align: top;">:</td>
+                  <td style="vertical-align: top;" [innerHTML]="location.parking_info|infoFilter"></td>
+                </tr>
+          </table>
+          <!-- <ion-label *ngIf!="a && location.unit_nu" style="float:left;width:100%;white-space: unset;color:#555555;font-size: 0.9rem;padding-left: 10px" no-margin><span style="font-weight: bold">Complément d'adresse:</span> {{location.unit_nu}}</ion-label>
+          <ion-label *ngIf!="a && location.stairs!='0' && location.elevator=='0' && location.inhome=='1'" style="float:left;width:100%;white-space: unset;color:#555555;font-size: 0.9rem;padding-left: 10px" no-margin><span style="font-weight: bold">Stairs:</span> {{location.stairs}}</ion-label>
+          <ion-label *ngIf!="a && location.parking_info" style="float:left;width:100%;white-space: unset;color:#555555;font-size: 0.9rem;padding-left: 10px" no-margin><span style="font-weight: bold">Information additionnelle:</span> {{location.parking_info}}</ion-label> -->
+
+          <div *ngIf!="a && location.curbside=='1'" style="width: 100%;float: left;">
+            <ion-label no-margin style="color: #A3A6A9;font-size: 1rem;padding-left: 12px;">Collection au "Pas-de-porte"</ion-label>
+          </div>
+		  
+          <div *ngIf!="a && location.inhome=='1' && location.elevator!='1'" style="width: 100%;float: left;">
+            <ion-label no-margin style="color: #A3A6A9;font-size: 1rem;padding-left: 12px;">Collection à l’intérieur sans ascenseur</ion-label>
+          </div>
+          <div *ngIf!="a && location.elevator=='1' && location.inhome=='1'" style="width: 100%;float: left;">
+            <ion-label no-margin style="color: #A3A6A9;font-size: 1rem;padding-left: 12px;">Collection à l’intérieur avec ascenseur</ion-label>
+          </div>
+		  <div *ngIf!="a" style="width: 100%;float: left;">
+            <ion-label *ngIf="location.iwillbehelping==1" no-margin style="color: #A3A6A9;font-size: 1rem;padding-left: 12px;">Le Helper recevra de l'aide à cette adresse</ion-label>
+            <ion-label *ngIf="location.iwillbehelping==0" no-margin style="color: #A3A6A9;font-size: 1rem;padding-left: 12px;">Le Helper ne recevra pas de l'aide à cette adresse</ion-label>
+          </div>
+        </div>
+      </div>
+      <div style="width: 100%;float: left;margin-top: 10px">
+        <p no-margin style="color: #999999;float: left;">Adresse de livraison</p>
+        <div style="float:left;width: 100%;padding-left: 15px" *ngFor="let location of locations ; let a = last ; let i = index ">
+          <ion-label *ngIf="a" no-margin style="float:left;width:100%;white-space:unset;color: #000000;font-weight: bold;font-size: 1.2rem;" >
+            {{location.location_name}}
+          </ion-label>
+          <table style="margin-left:10px;font-size: 1rem;color: #555" >
+                <tr *ngIf="a && location.unit_nu">
+                  <th style="text-align: left;vertical-align: top;">Complément d'adresse</th>
+                  <td style="padding: 0 5px;vertical-align: top;">:</td>
+                  <td style="vertical-align: top;">{{location.unit_nu}}</td>
+                </tr>
+                <tr *ngIf="a  && location.inhome=='1'">
+                  <th style="text-align: left;vertical-align: top;">Etage</th>
+                  <td style="padding: 0 5px;vertical-align: top;">:</td>
+                  <td style="vertical-align: top;">{{location.stairs}}</td>
+                </tr>
+                <tr *ngIf="a && location.parking_info">
+                  <th style="text-align: left;vertical-align: top;">Information additionnelle</th>
+                  <td style="padding: 0 5px;vertical-align: top;">:</td>
+                  <td style="vertical-align: top;" [innerHTML]="location.parking_info|infoFilter"></td>
+                </tr>
+          </table>
+          <!-- <ion-label *ngIf="a && location.unit_nu" style="float:left;width:100%;white-space: unset;color:#555555;font-size: 0.9rem;font-weight: bold;padding-left: 10px" no-margin><span style="font-weight: bold">Complément d'adresse:</span> {{location.unit_nu}}</ion-label>
+          <ion-label *ngIf="a && location.stairs!='0' && location.elevator=='0' && location.inhome=='1'" style="float:left;width:100%;white-space: unset;color:#555555;font-size: 0.9rem;font-weight: bold;padding-left: 10px" no-margin><span style="font-weight: bold">Stairs:</span> {{location.stairs}}</ion-label>
+          <ion-label *ngIf="a && location.parking_info" style="float:left;width:100%;white-space: unset;color:#555555;font-size: 0.9rem;font-weight: bold;padding-left: 10px" no-margin><span style="font-weight: bold">Information additionnelle:</span> {{location.parking_info}}</ion-label> -->
+
+          <div *ngIf="a && location.curbside=='1'" style="width: 100%;float: left;">
+            <ion-label no-margin style="color: #A3A6A9;font-size: 1rem;margin-left: 12px;width: 100%;">Curbside delivery</ion-label>
+          </div>
+		  
+          <div *ngIf="a && location.inhome=='1' && location.elevator!='1'" style="width: 100%;float: left;">
+            <ion-label no-margin style="color: #A3A6A9;font-size: 1rem;margin-left: 12px;width: 100%;">Livraison à l’intérieur sans ascenseur</ion-label>
+          </div>
+          <div *ngIf="a && location.elevator=='1' && location.inhome=='1'" style="width: 100%;float: left;">
+            <ion-label no-margin style="color: #A3A6A9;font-size: 1rem;margin-left: 12px;width: 100%;">Livraison à l’intérieur avec ascenseur</ion-label>
+          </div>
+		  <div *ngIf="a" style="width: 75%;float: left;">
+            <ion-label *ngIf="location.iwillbehelping=='1'" no-margin style="color: #A3A6A9;font-size: 1rem;margin-left: 12px;width: 100%;">Le Helper recevra de l'aide à cette adresseooo</ion-label>
+            <ion-label *ngIf="location.iwillbehelping=='0'" no-margin style="color: #A3A6A9;font-size: 1rem;margin-left: 12px;width:100%;">Le Helper ne recevra pas de l'aide à cette adresseooo</ion-label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="height: 15px;width: 100%;float: left;"></div>
+    <ion-label style="height:auto;width:100%;margin:0;color:#727272;font-size: 1.5rem;">Objets</ion-label>
+
+    <div *ngIf="data" style="position:relative;background-color:#f7f7f7;height: 45px;border: 1px solid rgba(0,0,0,0.1);">
+        <div style="background: #999;width: 18%;height: 100%;float: left;text-align: center;" >
+          <div style="font-weight: 600;height:100%;position: relative;margin:0 auto">
+            <span style="color: #fff;font-size: 1.2em;position: absolute;top: 5px;left: 0;right: 0;">
+            {{item_quantity}}</span>
+            <span style="color: #fff;font-size: 0.8em;position: absolute;bottom: 5px;left: 0;right: 0;">items</span>
+          </div>
+        </div>
+        <div style="background: #f7f7f7;width: 82%;height: 100%;float: right;padding: 13px 18px;">
+          <ion-label style="font-weight: 600;width: 100%;color:#000000;margin:0;">
+            <span *ngFor="let item of data.items;let a = last ;let i = index ">
+              {{item.quantity}} {{item.item_name}}<span *ngIf="i+1!=data.items.length">, </span>
+            </span>
+          </ion-label>
+        </div>
+    </div>
+
+    <div style="float:left;height: 15px;width: 100%;"></div>
+    <ion-label style="height:20px;width:100%;margin:0;color:#727272;font-size: 1.5rem;">
+      Description
+    </ion-label>
+    <div *ngIf="!data.items" style="position:relative;background-color:#f7f7f7;width:100%;border: 2px solid red;float: left;border-radius: 3px;height: 50px;" padding>
+    </div>
+    <div *ngIf="data.items" style="position:relative;background-color:#f7f7f7;width:100%;border: 1px solid rgba(0,0,0,0.1);float: left;padding: 5px;">
+      <div style="width: 100%;float: left;margin-bottom: 10px;">
+           <div *ngFor="let item of data.items;let i = index " style="float:left;margin-top: unset;">
+             <p *ngIf="selected_item!=i" (click)="selected_item=i" style="font-weight:bold;margin:0px 6px 3px 0;padding:5px 8px 2px;border-radius: 3px;float:left;background: #eee;border: 1px solid #999;color:#999" >{{item.item_name}}</p>
+             <p *ngIf="selected_item==i" (click)="selected_item=i" style="font-weight:bold;margin:0px 6px 3px 0;padding:5px 8px 2px;border-radius: 3px;float:left;background: #eee;border: 1px solid #333;color:#333" >{{item.item_name}}</p>
+           </div>
+      </div>
+      <table style="color: black; font-size: 1rem">
+           <tr *ngIf="data.items[selected_item].quantity!=null">
+             <th class="table_data" style="text-align: left;">Quantité</th>
+             <th class="table_data" style="padding: 0 5px;">:</th>
+             <td class="table_data" >{{data.items[selected_item].quantity}}</td>
+           </tr>
+            <tr *ngIf="data.items[selected_item].information!=null && data.items[selected_item].information!=''">
+             <th class="table_data" style="text-align: left;">Détails</th>
+             <th class="table_data" style="padding: 0 5px;">:</th>
+             <td class="table_data" [innerHTML]="data.items[selected_item].information|infoFilter"></td>
+           </tr>
+           <tr *ngIf="locations.length>2">
+            <!--  <th class="table_data" style="text-align: left;">Pickup Location</th>
+             <th class="table_data" style="padding: 0 5px;">:</th>
+             <th class="table_data" style="padding: 0 5px;">:</th>
+             <td class="table_data" *ngIf="data.items[selected_item].src_item_loc==data.locations[0].id">{{data.locations[0].location_name}}</td>
+             <td class="table_data" *ngIf="data.items[selected_item].src_item_loc==data.locations[1].id">{{data.locations[1].location_name}}</td>
+             <td class="table_data" *ngIf="data.locations.length==4 && data.items[selected_item].src_item_loc==data.locations[2].id">{{data.locations[2].location_name}}</td> -->
+           </tr> 
+      </table>
+      <div style="width: 100%;">
+        <span (click)="openPic(data.items[selected_item].image.split(',')[0])" *ngIf="data.items[selected_item].image.split(',')[0] && data.items[selected_item].image.split(',')[0]!='no_image.jpg'">
+           <img style="width: 20vw;height: 20vw" *ngIf="my" src="{{my}}/public/frontend/img/addImage/{{data.items[selected_item].image.split(',')[0]}}">
+        </span>
+        <span (click)="openPic(data.items[selected_item].image.split(',')[1])" *ngIf="data.items[selected_item].image.split(',')[1] && data.items[selected_item].image.split(',')[1]!='no_image.jpg'">
+           <img style="width: 20vw;height: 20vw" *ngIf="my" src="{{my}}/public/frontend/img/addImage/{{data.items[selected_item].image.split(',')[1]}}">
+        </span>
+        <span (click)="openPic(data.items[selected_item].image.split(',')[2])" *ngIf="data.items[selected_item].image.split(',')[2] && data.items[selected_item].image.split(',')[2]!='no_image.jpg'">
+           <img style="width: 20vw;height: 20vw" *ngIf="my" src="{{my}}/public/frontend/img/addImage/{{data.items[selected_item].image.split(',')[2]}}">
+        </span>
+        <span (click)="openPic(data.items[selected_item].image.split(',')[3])" *ngIf="data.items[selected_item].image.split(',')[3] && data.items[selected_item].image.split(',')[3]!='no_image.jpg'">
+           <img style="width: 20vw;height: 20vw" *ngIf="my" src="{{my}}/public/frontend/img/addImage/{{data.items[selected_item].image.split(',')[3]}}">
+        </span>
+        <span *ngIf="data.items[selected_item].image.split(',').length==4 && data.items[selected_item].image.split(',')[3]=='no_image.jpg' && data.items[selected_item].image.split(',')[0]=='no_image.jpg' && data.items[selected_item].image.split(',')[1]=='no_image.jpg' && data.items[selected_item].image.split(',')[2]=='no_image.jpg'">
+           <img style="width: 20vw;height: 20vw" *ngIf="my" src="{{my}}/public/frontend/img/addImage/{{data.items[selected_item].image.split(',')[1]}}">
+        </span>
+      </div>
+    </div>
+
+    <div style="height: 15px;width: 100%;float: left;"></div>
+    <ion-label style="height:auto;width:100%;margin:0;color:#727272;font-size: 1.5rem;">Date et Heure</ion-label>
+    
+    <div *ngIf="data" style="position:relative;background-color:#f7f7f7;width:100%;border: 1px solid rgba(0,0,0,0.1);float: left;" padding margin-bottom>
+      <div style="width: 50%;font-size: 1.2rem;font-weight: bold;float: left;color: #000000">{{data.date|dateConvert}}</div>
+      <div style="width: 50%;font-size: 1.2rem;font-weight: bold;float: left;color: #000000">
+      <span>{{data.first_time | timemomentformat}}</span>
+      </div> 
+    </div>
+  </div>
+
+  <!-- laburonly cate -->
+
+  <div *ngIf="data && data.service_id == 7">
+    <div style="float: left;width: 100%;">
+      <ion-label style="float:left;height:20px;width:50%;margin:0;color:#727272;font-size: 1.5rem;">
+        <span *ngIf="data.track_status=='pending'">Starting in</span>
+        <span *ngIf="data.track_status!='pending'">Status</span>
+      </ion-label>
+    </div>
+    <div style="position:relative;background-color:#f7f7f7;height: 45px;border: 1px solid rgba(0,0,0,0.1);float: left;width: 100%;">
+        <div style="background: #fff;width: 100%;height: 100%;float: left;padding: 13px 18px;">
+          <ion-label style="font-weight: 600;width: 100%;color:#000000;margin:0;text-align: center;">
+            <span *ngIf="data.track_status=='pending'">{{(data?.date+'|'+data?.first_time) | startingTime}}</span>
+            <span *ngIf="data.track_status!='pending'">
+              <!-- {{data.track_status}} -->STARTED
+            </span>
+          </ion-label>
+        </div>
+    </div>
+    <div style="height: 15px;width: 100%;float: left;"></div>
+    <div style="float: left;width: 100%;">
+      <ion-label style="float:left;height:20px;width:50%;margin:0;color:#727272;font-size: 1.5rem;">
+        Catégorie
+      </ion-label>
+      <ion-label style="float:right;text-align: right;height:20px;width:50%;margin:0;color:#727272;font-size: 1.5rem;">
+        <span style="color: #1B4079;">Prix <span style="color: black;">{{data?.cost}}</span></span>
+      </ion-label>
+    </div>
+    <div style="position:relative;background-color:transparent;width:100%;border: 1px solid rgba(0,0,0,0.1);float: left;">
+          <div style="width: 100%;float: left;">
+            <div style="height:45px;float:left;width: 70px;border:1px solid rgba(0,0,0,0.1);background-color: #fff;">
+              <img style="width: 40px;margin:1px 10px;" src="http://18.188.229.2/oolaga/public/frontend/img/services/{{data?.service_image}}">
+            </div>
+            <div style="height:45px;float:left;width: calc(100% - 140px);" padding>
+              <div style="font-size: 1.2rem;font-weight: bold;float: left;color: #000000">{{data?.service}}</div>
+            </div>
+            <div style="padding:16px 10px;height:45px;float:left;width:70px;border:1px solid rgba(0,0,0,0.1);background: rgba(0,0,0,0.1);">
+              <div style="font-size: 1rem;font-weight: bold;float: left;color: #000000;position: relative;">{{data?.hours}}hrs<div style="position: absolute;top: -10px;left: 0px;font-size: 0.7rem;">Time</div></div>
+            </div>
+          </div>
+    </div>
+    <div style="height: 15px;width: 100%;float: left;"></div>
+
+    <ion-label style="float:left;height:auto;width:50%;margin:0;color:#727272;font-size: 1.5rem;">Meet Up Location</ion-label>
+    <div style="position:relative;background-color:#f7f7f7;width:100%;border: 1px solid rgba(0,0,0,0.1);float: left;" padding>
+          <div style="width: 100%;font-size: 1.2rem;font-weight: bold;float: left;color: #000000">{{data.src_location_name}}</div>
+    </div> 
+
+    <div style="height: 15px;width: 100%;float: left;"></div>
+    <ion-label style="height:auto;width:100%;margin:0;color:#727272;font-size: 1.5rem;">Info</ion-label>
+    
+    <div style="position:relative;background-color:#f7f7f7;width:100%;border: 1px solid rgba(0,0,0,0.1);float: left;" padding>
+      <div style="width: 100%;font-size: 1.2rem;font-weight: bold;float: left;color: #000000">{{data?.info}}</div>
+    </div>
+
+    <div style="height: 15px;width: 100%;float: left;"></div>
+    <ion-label style="height:auto;width:100%;margin:0;color:#727272;font-size: 1.5rem;float: left;">Date et Heure</ion-label>
+    
+    <div style="position:relative;background-color:#f7f7f7;width:100%;border: 1px solid rgba(0,0,0,0.1);float: left;" padding margin-bottom>
+      <div style="width: 50%;font-size: 1.2rem;font-weight: bold;float: left;color: #000000">{{data.date|dateConvert}}</div>
+      <div style="width: 50%;font-size: 1.2rem;font-weight: bold;float: left;color: #000000">
+      <span>{{data.first_time | timemomentformat}}</span>
+      </div> 
+    </div>
+  </div>
+</ion-content>
+
+<ion-content *ngIf="page=='active' && fromService" style="text-align:left;background-color: #f7f7f7;color:#1B4079" padding>
+  <div *ngIf="data && data.service_id != 7">
+    <div style="float: left;width: 100%;margin-top: 15%;">
+      <ion-label style="float:left;height:20px;width:50%;margin:0;color:#727272;font-size: 1.5rem;">
+        <span *ngIf="data.track_status=='pending'">Starting in</span>
+        <span *ngIf="data.track_status!='pending'">Status</span>
+      </ion-label>
+    </div>
+    <div style="position:relative;background-color:#f7f7f7;height: 45px;border: 1px solid rgba(0,0,0,0.1);float: left;width: 100%;">
+        <div style="background: #fff;width: 100%;height: 100%;float: left;padding: 13px 18px;">
+          <ion-label style="font-weight: 600;width: 100%;color:#000000;margin:0;text-align: center;">
+            <span *ngIf="data.track_status=='pending'">{{(data?.date+'|'+data?.first_time) | startingTime}}</span>
+            <span *ngIf="data.track_status!='pending'">
+              <!-- {{data.track_status}} -->STARTED
+            </span>
+          </ion-label>
+        </div>
+    </div>
+    <div style="height: 15px;width: 100%;float: left;"></div>
+    <div style="float: left;width: 100%;">
+      <ion-label style="float:left;height:20px;width:50%;margin:0;color:#727272;font-size: 1.5rem;">
+        Catégorie
+      </ion-label>
+      <ion-label style="float:right;text-align: right;height:20px;width:50%;margin:0;color:#727272;font-size: 1.5rem;">
+        <span style="color: #1B4079;">Prix <span style="color: black;">{{data?.cost}}</span></span>
+      </ion-label>
+    </div>
+    <div style="position:relative;background-color:#f7f7f7;height: 45px;border: 1px solid rgba(0,0,0,0.1);float: left;width: 100%;">
+        <div style="width: 18%;height: 100%;float: left;text-align: center;" >
+          <div style="font-weight: 600;height:100%;position: relative;margin:0 auto;display: flex;background-color: #fff;border-right: 1px solid rgba(0,0,0,0.1)">
+            <img src="http://18.188.229.2/oolaga/public/frontend/img/services/{{data.service.image}}" style="align-self: center;height:80%;margin:0 auto;">
+          </div>
+        </div>
+        <div style="background: #f7f7f7;width: 82%;height: 100%;float: right;padding: 13px 18px;">
+          <ion-label style="font-weight: 600;width: 100%;color:#000000;margin:0;">
+            <span>
+              {{data.service.service}}
+            </span>
+          </ion-label>
+        </div>
+    </div>
+    <div style="height: 15px;width: 100%;float: left;"></div>
+
+    <ion-label style="float:left;height:auto;width:50%;margin:0;color:#727272;font-size: 1.5rem;">Adresses</ion-label>
+    <div style="position:relative;background-color:#f7f7f7;width:100%;border: 1px solid rgba(0,0,0,0.1);float: left;padding: 5px;">
+      <div style="width: 100%;float: left;">
+        <p no-margin style="color: #999999;float: left;">Adresse(s) de collection</p>
+        <div style="float:left;width: 100%;padding-left: 15px" *ngFor="let location of locations ; let a = last ; let i = index ">
+          <ion-label *ngIf!="a" no-margin style="float:left;width:100%;white-space:unset;color: #000000;font-weight: bold;font-size: 1.2rem;" >
+            <span *ngIf="locations.length>2">{{i+1}}. </span>{{location.location_name}}
+          </ion-label>
+          <table style="margin-left:10px;font-size: 1rem;color: #555" >
+                <tr *ngIf!="a && location.unit_nu">
+                  <th style="text-align: left;vertical-align: top;">Complément d'adresse</th>
+                  <td style="padding: 0 5px;vertical-align: top;">:</td>
+                  <td style="vertical-align: top;">{{location.unit_nu}}</td>
+                </tr>
+                <tr *ngIf!="a && location.inhome=='1'">
+                  <th style="text-align: left;vertical-align: top;">Etage</th>
+                  <td style="padding: 0 5px;vertical-align: top;">:</td>
+                  <td style="vertical-align: top;">{{location.stairs}}</td>
+                </tr>
+                <tr *ngIf!="a && location.parking_info">
+                  <th style="text-align: left;vertical-align: top;">Information additionnelle</th>
+                  <td style="padding: 0 5px;vertical-align: top;">:</td>
+                  <td style="vertical-align: top;" [innerHTML]="location.parking_info|infoFilter"></td>
+                </tr>
+          </table>
+          <!-- <ion-label *ngIf!="a && location.unit_nu" style="float:left;width:100%;white-space: unset;color:#555555;font-size: 0.9rem;padding-left: 10px" no-margin><span style="font-weight: bold">Complément d'adresse:</span> {{location.unit_nu}}</ion-label>
+          <ion-label *ngIf!="a && location.stairs!='0' && location.elevator=='0' && location.inhome=='1'" style="float:left;width:100%;white-space: unset;color:#555555;font-size: 0.9rem;padding-left: 10px" no-margin><span style="font-weight: bold">Stairs:</span> {{location.stairs}}</ion-label>
+          <ion-label *ngIf!="a && location.parking_info" style="float:left;width:100%;white-space: unset;color:#555555;font-size: 0.9rem;padding-left: 10px" no-margin><span style="font-weight: bold">Information additionnelle:</span> {{location.parking_info}}</ion-label> -->
+
+          <div *ngIf!="a && location.curbside=='1'" style="width: 100%;float: left;">
+            <ion-label no-margin style="color: #A3A6A9;font-size: 1rem;padding-left: 12px;">Curbside delivery</ion-label>
+          </div>
+		   
+          <div *ngIf!="a && location.inhome=='1' && location.elevator!='1'" style="width: 100%;float: left;">
+            <ion-label no-margin style="color: #A3A6A9;font-size: 1rem;padding-left: 12px;">Livraison à l’intérieur sans ascenseur</ion-label>
+          </div>
+          <div *ngIf!="a && location.elevator=='1' && location.inhome=='1'" style="width: 100%;float: left;">
+            <ion-label no-margin style="color: #A3A6A9;font-size: 1rem;padding-left: 12px;">Livraison à l’intérieur avec ascenseur</ion-label>
+          </div>
+		  <div *ngIf!="a" style="width: 100%;float: left;">
+            <ion-label *ngIf="location.iwillbehelping==1" no-margin style="color: #A3A6A9;font-size: 1rem;padding-left: 12px;">Le Helper recevra de l'aide à cette adresse</ion-label>
+            <ion-label *ngIf="location.iwillbehelping==0"  no-margin style="color: #A3A6A9;font-size: 1rem;padding-left: 12px;">Le Helper ne recevra pas de l'aide à cette adresse</ion-label>
+          </div>
+        </div>
+      </div>
+      <div style="width: 100%;float: left;margin-top: 10px">
+        <p no-margin style="color: #999999;float: left;">Adresse de livraison</p>
+        <div style="float:left;width: 100%;padding-left: 15px" *ngFor="let location of locations ; let a = last ; let i = index ">
+          <ion-label *ngIf="a" no-margin style="float:left;width:100%;white-space:unset;color: #000000;font-weight: bold;font-size: 1.2rem;" >
+            {{location.location_name}}
+          </ion-label>
+          <table style="margin-left:10px;font-size: 1rem;color: #555" >
+                <tr *ngIf="a && location.unit_nu">
+                  <th style="text-align: left;vertical-align: top;">Complément d'adresse</th>
+                  <td style="padding: 0 5px;vertical-align: top;">:</td>
+                  <td style="vertical-align: top;">{{location.unit_nu}}</td>
+                </tr>
+                <tr *ngIf="a && location.inhome=='1'">
+                  <th style="text-align: left;vertical-align: top;">Etage</th>
+                  <td style="padding: 0 5px;vertical-align: top;">:</td>
+                  <td style="vertical-align: top;">{{location.stairs}}</td>
+                </tr>
+                <tr *ngIf="a && location.parking_info">
+                  <th style="text-align: left;vertical-align: top;">Information additionnelle</th>
+                  <td style="padding: 0 5px;vertical-align: top;">:</td>
+                  <td style="vertical-align: top;" [innerHTML]="location.parking_info|infoFilter"></td>
+                </tr>
+          </table>
+          <!-- <ion-label *ngIf="a && location.unit_nu" style="float:left;width:100%;white-space: unset;color:#555555;font-size: 0.9rem;font-weight: bold;padding-left: 10px" no-margin><span style="font-weight: bold">Complément d'adresse:</span> {{location.unit_nu}}</ion-label>
+          <ion-label *ngIf="a && location.stairs!='0' && location.elevator=='0' && location.inhome=='1'" style="float:left;width:100%;white-space: unset;color:#555555;font-size: 0.9rem;font-weight: bold;padding-left: 10px" no-margin><span style="font-weight: bold">Stairs:</span> {{location.stairs}}</ion-label>
+          <ion-label *ngIf="a && location.parking_info" style="float:left;width:100%;white-space: unset;color:#555555;font-size: 0.9rem;font-weight: bold;padding-left: 10px" no-margin><span style="font-weight: bold">Information additionnelle:</span> {{location.parking_info}}</ion-label> -->
+
+          <div *ngIf="a && location.curbside=='1'" style="width: 100%;float: left;">
+            <ion-label no-margin style="color: #A3A6A9;font-size: 1rem;margin-left: 12px;width: 100%;">Curbside delivery</ion-label>
+          </div>
+		    <div *ngIf="a" style="width: 100%;float: left;">
+            <ion-label *ngIf="location.iwillbehelping=='0'" no-margin style="color: #A3A6A9;font-size: 1rem;margin-left: 12px;width: 100%;">Le Helper ne recevra pas de l'aide à cette adresse</ion-label>
+            <ion-label *ngIf="location.iwillbehelping=='1'" no-margin style="color: #A3A6A9;font-size: 1rem;margin-left: 12px;width: 100%;">Le Helper recevra de l'aide à cette adresse</ion-label>
+          </div>
+          <div *ngIf="a && location.inhome=='1' && location.elevator!='1'" style="width: 50%;float: left;">
+            <ion-label no-margin style="color: #A3A6A9;font-size: 1rem;margin-left: 12px;width:100%;">Livraison à l’intérieur sans ascenseur</ion-label>
+          </div>
+          <div *ngIf="a && location.elevator=='1' && location.inhome=='1'" style="width: 50%;float: left;">
+            <ion-label no-margin style="color: #A3A6A9;font-size: 1rem;margin-left: 12px;width:100%;">Livraison à l’intérieur avec ascenseur</ion-label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="height: 15px;width: 100%;float: left;"></div>
+    <ion-label style="height:auto;width:100%;margin:0;color:#727272;font-size: 1.5rem;">Objets</ion-label>
+
+    <div *ngIf="data" style="position:relative;background-color:#f7f7f7;height: 45px;border: 1px solid rgba(0,0,0,0.1);">
+        <div style="background: #999;width: 18%;height: 100%;float: left;text-align: center;" >
+          <div style="font-weight: 600;height:100%;position: relative;margin:0 auto">
+            <span style="color: #fff;font-size: 1.2em;position: absolute;top: 5px;left: 0;right: 0;">
+            {{item_quantity}}</span>
+            <span style="color: #fff;font-size: 0.8em;position: absolute;bottom: 5px;left: 0;right: 0;" *ngIf="item_quantity >1">items</span>
+            <span style="color: #fff;font-size: 0.8em;position: absolute;bottom: 5px;left: 0;right: 0;" *ngIf="item_quantity <=1">item</span>
+          </div>
+        </div>
+        <div style="background: #f7f7f7;width: 82%;height: 100%;float: right;padding: 13px 18px;">
+          <ion-label style="font-weight: 600;width: 100%;color:#000000;margin:0;">
+            <span *ngFor="let item of data.oolaga_item;let a = last ;let i = index ">
+              {{item.quantity}} {{item.item_name}}<span *ngIf="i+1!=data.oolaga_item.length">, </span>
+            </span>
+          </ion-label>
+        </div>
+    </div>
+
+    <div style="float:left;height: 15px;width: 100%;"></div>
+    <ion-label style="height:20px;width:100%;margin:0;color:#727272;font-size: 1.5rem;">
+      Description
+    </ion-label>
+    <div *ngIf="!data.oolaga_item" style="position:relative;background-color:#f7f7f7;width:100%;border: 2px solid red;float: left;border-radius: 3px;height: 50px;" padding>
+    </div>
+    <div *ngIf="data.oolaga_item" style="position:relative;background-color:#f7f7f7;width:100%;border: 1px solid rgba(0,0,0,0.1);float: left;padding: 5px;">
+      <div style="width: 100%;float: left;margin-bottom: 10px;">
+           <div *ngFor="let item of data.oolaga_item;let i = index " style="float:left;margin-top: unset;">
+             <p *ngIf="selected_item!=i" (click)="selected_item=i" style="font-weight:bold;margin:0px 6px 3px 0;padding:5px 8px 2px;border-radius: 3px;float:left;background: #eee;border: 1px solid #999;color:#999" >{{item.item_name}}</p>
+             <p *ngIf="selected_item==i" (click)="selected_item=i" style="font-weight:bold;margin:0px 6px 3px 0;padding:5px 8px 2px;border-radius: 3px;float:left;background: #eee;border: 1px solid #333;color:#333" >{{item.item_name}}</p>
+           </div>
+      </div>
+      <table style="color: black; font-size: 1rem">
+           <tr *ngIf="data.items[selected_item].quantity!=null">
+             <th class="table_data" style="text-align: left;">Quantité</th>
+             <th class="table_data" style="padding: 0 5px;">:</th>
+             <td class="table_data" >{{data.items[selected_item].quantity}}</td>
+           </tr>
+            <tr *ngIf="data.items[selected_item].information!=null && data.items[selected_item].information!=''">
+             <th class="table_data" style="text-align: left;">Détails</th>
+             <th class="table_data" style="padding: 0 5px;">:</th>
+             <td class="table_data" [innerHTML]="data.items[selected_item].information|infoFilter"></td>
+           </tr>
+           <tr *ngIf="locations.length>2">
+            <!--  <th class="table_data" style="text-align: left;">Pickup Location</th>
+             <th class="table_data" style="padding: 0 5px;">:</th>
+             <th class="table_data" style="padding: 0 5px;">:</th>
+             <td class="table_data" *ngIf="data.items[selected_item].src_item_loc==data.locations[0].id">{{data.locations[0].location_name}}</td>
+             <td class="table_data" *ngIf="data.items[selected_item].src_item_loc==data.locations[1].id">{{data.locations[1].location_name}}</td>
+             <td class="table_data" *ngIf="data.locations.length==4 && data.items[selected_item].src_item_loc==data.locations[2].id">{{data.locations[2].location_name}}</td> -->
+           </tr> 
+      </table>
+      <div style="width: 100%;">
+        <span (click)="openPic(data.items[selected_item].image.split(',')[0])" *ngIf="data.items[selected_item].image.split(',')[0] && data.items[selected_item].image.split(',')[0]!='no_image.jpg'">
+           <img style="width: 20vw;height: 20vw" *ngIf="my" src="{{my}}/public/frontend/img/addImage/{{data.items[selected_item].image.split(',')[0]}}">
+        </span>
+        <span (click)="openPic(data.items[selected_item].image.split(',')[1])" *ngIf="data.items[selected_item].image.split(',')[1] && data.items[selected_item].image.split(',')[1]!='no_image.jpg'">
+           <img style="width: 20vw;height: 20vw" *ngIf="my" src="{{my}}/public/frontend/img/addImage/{{data.items[selected_item].image.split(',')[1]}}">
+        </span>
+        <span (click)="openPic(data.items[selected_item].image.split(',')[2])" *ngIf="data.items[selected_item].image.split(',')[2] && data.items[selected_item].image.split(',')[2]!='no_image.jpg'">
+           <img style="width: 20vw;height: 20vw" *ngIf="my" src="{{my}}/public/frontend/img/addImage/{{data.items[selected_item].image.split(',')[2]}}">
+        </span>
+        <span (click)="openPic(data.items[selected_item].image.split(',')[3])" *ngIf="data.items[selected_item].image.split(',')[3] && data.items[selected_item].image.split(',')[3]!='no_image.jpg'">
+           <img style="width: 20vw;height: 20vw" *ngIf="my" src="{{my}}/public/frontend/img/addImage/{{data.items[selected_item].image.split(',')[3]}}">
+        </span>
+        <span *ngIf="data.items[selected_item].image.split(',').length==4 && data.items[selected_item].image.split(',')[3]=='no_image.jpg' && data.items[selected_item].image.split(',')[0]=='no_image.jpg' && data.items[selected_item].image.split(',')[1]=='no_image.jpg' && data.items[selected_item].image.split(',')[2]=='no_image.jpg'">
+           <img style="width: 20vw;height: 20vw" *ngIf="my" src="{{my}}/public/frontend/img/addImage/{{data.items[selected_item].image.split(',')[1]}}">
+        </span>
+      </div>
+    </div>
+
+    <div style="height: 15px;width: 100%;float: left;"></div>
+    <ion-label style="height:auto;width:100%;margin:0;color:#727272;font-size: 1.5rem;">Date et Heure</ion-label>
+    
+    <div *ngIf="data" style="position:relative;background-color:#f7f7f7;width:100%;border: 1px solid rgba(0,0,0,0.1);float: left;" padding margin-bottom>
+      <div style="width: 50%;font-size: 1.2rem;font-weight: bold;float: left;color: #000000">{{data.date|dateConvert}}</div>
+      <div style="width: 50%;font-size: 1.2rem;font-weight: bold;float: left;color: #000000">
+      <span>{{data.first_time | timemomentformat}}</span>
+      </div> 
+    </div>
+  </div>
+
+  <!-- laburonly cate -->
+
+  <div *ngIf="data && data.service_id == 7">
+    <div style="float: left;width: 100%;">
+      <ion-label style="float:left;height:20px;width:50%;margin:0;color:#727272;font-size: 1.5rem;">
+        <span *ngIf="data.track_status=='pending'">Starting in</span>
+        <span *ngIf="data.track_status!='pending'">Status</span>
+      </ion-label>
+    </div>
+    <div style="position:relative;background-color:#f7f7f7;height: 45px;border: 1px solid rgba(0,0,0,0.1);float: left;width: 100%;">
+        <div style="background: #fff;width: 100%;height: 100%;float: left;padding: 13px 18px;">
+          <ion-label style="font-weight: 600;width: 100%;color:#000000;margin:0;text-align: center;">
+            <span *ngIf="data.track_status=='pending'">{{(data?.date+'|'+data?.first_time) | startingTime}}</span>
+            <span *ngIf="data.track_status!='pending'">
+              <!-- {{data.track_status}} -->STARTED
+            </span>
+          </ion-label>
+        </div>
+    </div>
+    <div style="height: 15px;width: 100%;float: left;"></div>
+    <div style="float: left;width: 100%;">
+      <ion-label style="float:left;height:20px;width:50%;margin:0;color:#727272;font-size: 1.5rem;">
+        Catégorie
+      </ion-label>
+      <ion-label style="float:right;text-align: right;height:20px;width:50%;margin:0;color:#727272;font-size: 1.5rem;">
+        <span style="color: #1B4079;">Prix <span style="color: black;">{{data?.cost}}</span></span>
+      </ion-label>
+    </div>
+    <div style="position:relative;background-color:transparent;width:100%;border: 1px solid rgba(0,0,0,0.1);float: left;">
+          <div style="width: 100%;float: left;">
+            <div style="height:45px;float:left;width: 70px;border:1px solid rgba(0,0,0,0.1);background-color: #fff;">
+              <img style="width: 40px;margin:1px 10px;" src="http://18.188.229.2/oolaga/public/frontend/img/services/{{data?.service_image}}">
+            </div>
+            <div style="height:45px;float:left;width: calc(100% - 140px);" padding>
+              <div style="font-size: 1.2rem;font-weight: bold;float: left;color: #000000">{{data?.service}}</div>
+            </div>
+            <div style="padding:16px 10px;height:45px;float:left;width:70px;border:1px solid rgba(0,0,0,0.1);background: rgba(0,0,0,0.1);">
+              <div style="font-size: 1rem;font-weight: bold;float: left;color: #000000;position: relative;">{{data?.hours}}hrs<div style="position: absolute;top: -10px;left: 0px;font-size: 0.7rem;">Time</div></div>
+            </div>
+          </div>
+    </div> 
+    <div style="height: 15px;width: 100%;float: left;"></div>
+
+    <ion-label style="float:left;height:auto;width:50%;margin:0;color:#727272;font-size: 1.5rem;">Meet Up Location</ion-label>
+    <div style="position:relative;background-color:#f7f7f7;width:100%;border: 1px solid rgba(0,0,0,0.1);float: left;" padding>
+          <div style="width: 100%;font-size: 1.2rem;font-weight: bold;float: left;color: #000000">{{data.src_location_name}}</div>
+    </div> 
+
+    <div style="height: 15px;width: 100%;float: left;"></div>
+    <ion-label style="height:auto;width:100%;margin:0;color:#727272;font-size: 1.5rem;">Info</ion-label>
+    
+    <div style="position:relative;background-color:#f7f7f7;width:100%;border: 1px solid rgba(0,0,0,0.1);float: left;" padding>
+      <div style="width: 100%;font-size: 1.2rem;font-weight: bold;float: left;color: #000000">{{data?.info}}</div>
+    </div>
+
+    <div style="height: 15px;width: 100%;float: left;"></div>
+    <ion-label style="height:auto;width:100%;margin:0;color:#727272;font-size: 1.5rem;float: left;">Date et Heure</ion-label>
+    
+    <div style="position:relative;background-color:#f7f7f7;width:100%;border: 1px solid rgba(0,0,0,0.1);float: left;" padding margin-bottom>
+      <div style="width: 50%;font-size: 1.2rem;font-weight: bold;float: left;color: #000000">{{data.date|dateConvert}}</div>
+      <div style="width: 50%;font-size: 1.2rem;font-weight: bold;float: left;color: #000000">
+      <span>{{data.first_time | timemomentformat}}</span>
+      </div> 
+    </div>
+  </div>
+</ion-content>
+
+
+<ion-content *ngIf="page=='auction'" style="text-align:left;background-color: #f7f7f7;color:#1B4079" padding>
+  <div *ngIf="data && data.status!='Assigned'" style="float: left;width: 100%;">
+    <ion-label style="float:left;height:20px;width:50%;margin:0;color:#727272;font-size: 1.5rem;">
+      Temps restant
+    </ion-label>
+  </div>
+  <div *ngIf="data && data.status!='Assigned'" style="position:relative;background-color:#f7f7f7;height: 45px;border: 1px solid rgba(0,0,0,0.1);float: left;width: 100%;">
+      <div style="background: #f7f7f7;width: 82%;height: 100%;float: left;padding: 13px 18px;">
+        <ion-label style="font-weight: 600;width: 100%;color:#000000;margin:0;">
+          <span>
+            {{data | objectTimer}}
+          </span>
+        </ion-label>
+      </div>
+      <div style="width: 45px;height: 100%;float: right;text-align: center;" >
+        <div (click)="notificationpage(data.oolaga_id,data.offers)" style="font-weight: 600;height:100%;position: relative;margin:0 auto;display: flex;background-color: #f7f7f7;">
+              <img *ngIf="data.offers!=0" src="img/auction.svg" style="width: 30px;height: 30px;margin-top: 7px;">
+              <img *ngIf="data.offers==0" src="img/auctiongray.png" style="width: 30px;height: 30px;margin-top: 7px;">
+            <ion-badge [hidden]="data.offers==0" color="maincolor" style="border-radius: 50%;font-size: 9px;height: 17px;width: 17px;position: absolute;right: 5px;top: 2px;padding: 0;display: flex;">
+            <span style="margin: auto;line-height: 17px;padding-top:1px;">{{data.offers}}</span>
+            </ion-badge>
+        </div>
+      </div>
+  </div>
+  <div style="height: 15px;width: 100%;float: left;"></div>
+  <div *ngIf="data" style="float: left;width: 100%;">
+    <ion-label style="float:left;height:20px;width:50%;margin:0;color:#727272;font-size: 1.5rem;">
+      Catégorie
+    </ion-label>
+    <ion-label *ngIf="data.status!='Assigned'" style="float:right;text-align: right;height:20px;width:50%;margin:0;color:#727272;font-size: 1.5rem;">
+      <span style="color: #1B4079;">Budget <span style="color: black;">{{data?.max_price}}€</span></span>
+    </ion-label>
+  </div>
+  <div *ngIf="data" style="position:relative;background-color:#f7f7f7;height: 45px;border: 1px solid rgba(0,0,0,0.1);float: left;width: 100%;">
+      <div style="width: 18%;height: 100%;float: left;text-align: center;" >
+        <div style="font-weight: 600;height:100%;position: relative;margin:0 auto;display: flex;background-color: #fff;border-right: 1px solid rgba(0,0,0,0.1)">
+          <img src="http://18.188.229.2/oolaga/public/frontend/img/services/{{data?.service_image}}" style="align-self: center;height:80%;margin:0 auto;">
+        </div>
+      </div>
+      <div style="background: #f7f7f7;width: 82%;height: 100%;float: right;padding: 13px 18px;">
+        <ion-label style="font-weight: 600;width: 100%;color:#000000;margin:0;">
+         <span [innerHtml]="data?.service">
+            
+          </span>
+        </ion-label>
+      </div>
+  </div>
+
+  <div style="height: 15px;width: 100%;float: left;"></div>
+  <ion-label style="float:left;height:auto;width:50%;margin:0;color:#727272;font-size: 1.5rem;">Adresses</ion-label>
+  <div *ngIf="data" style="position:relative;background-color:#f7f7f7;width:100%;border: 1px solid rgba(0,0,0,0.1);float: left;padding: 5px;">
+    <div style="width: 100%;float: left;">
+      <p no-margin style="color: #999999;float: left;">Adresse(s) de collection</p>
+      <div style="float:left;width: 100%;padding-left: 15px" *ngFor="let location of locations ; let a = last ; let i = index ">
+        <ion-label *ngIf!="a" no-margin style="float:left;width:100%;white-space:unset;color: #000000;font-weight: bold;font-size: 1.2rem;" >
+          <span *ngIf="locations.length>2">{{i+1}}. </span>{{location.location_name}}
+        </ion-label>
+        <table style="margin-left:10px;font-size: 1rem;color: #555" >
+                <tr *ngIf!="a && location.unit_nu">
+                  <th style="text-align: left;vertical-align: top;">Complément d'adresse</th>
+                  <td style="padding: 0 5px;vertical-align: top;">:</td>
+                  <td style="vertical-align: top;">{{location.unit_nu}}</td>
+                </tr>
+                <tr *ngIf!="a && location.inhome=='1'">
+                  <th style="text-align: left;vertical-align: top;">Etage</th>
+                  <td style="padding: 0 5px;vertical-align: top;">:</td>
+                  <td style="vertical-align: top;">{{location.stairs}}</td>
+                </tr>
+                <tr *ngIf!="a && location.parking_info">
+                  <th style="text-align: left;vertical-align: top;">Information additionnelle</th>
+                  <td style="padding: 0 5px;vertical-align: top;">:</td>
+                  <td style="vertical-align: top;" [innerHTML]="location.parking_info|infoFilter"></td>
+                </tr>
+        </table>
+        <!-- <ion-label *ngIf!="a && location.unit_nu" style="float:left;width:100%;white-space: unset;color:#555555;font-size: 0.9rem;padding-left: 10px" no-margin><span style="font-weight: bold">Complément d'adresse:</span> {{location.unit_nu}}</ion-label>
+        <ion-label *ngIf!="a && location.stairs!='0' && location.elevator=='0' && location.inhome=='1'" style="float:left;width:100%;white-space: unset;color:#555555;font-size: 0.9rem;padding-left: 10px" no-margin><span style="font-weight: bold">Stairs:</span> {{location.stairs}}</ion-label>
+        <ion-label *ngIf!="a && location.parking_info" style="float:left;width:100%;white-space: unset;color:#555555;font-size: 0.9rem;padding-left: 10px" no-margin><span style="font-weight: bold">Information additionnelle:</span> {{location.parking_info}}</ion-label> -->
+
+        <div *ngIf!="a && location.curbside=='1'" style="width: 100%;float: left;">
+          <ion-label no-margin style="color: #A3A6A9;font-size: 1rem;padding-left: 12px;">Livraison au "Pas-de-porte"</ion-label>
+        </div>
+		  
+        <div *ngIf!="a && location.inhome=='1' && location.elevator!='1'" style="width: 100%;float: left;">
+          <ion-label no-margin style="color: #A3A6A9;font-size: 1rem;padding-left: 12px;">Livraison à l’intérieur sans ascenseur</ion-label>
+        </div>
+        <div *ngIf!="a && location.elevator=='1' && location.inhome=='1'" style="width: 100%;float: left;">
+          <ion-label no-margin style="color: #A3A6A9;font-size: 1rem;padding-left: 12px;">Livraison à l’intérieur avec ascenseur</ion-label>
+        </div>
+		<div *ngIf!="a" style="width: 100%;float: left;">
+            <ion-label *ngIf="location.iwillbehelping==1" no-margin style="color: #A3A6A9;font-size: 1rem;padding-left: 12px;">Le Helper recevra de l'aide à cette adresse</ion-label>
+            <ion-label *ngIf="location.iwillbehelping==0" no-margin style="color: #A3A6A9;font-size: 1rem;padding-left: 12px;">Le Helper ne recevra pas de l'aide à cette adresse</ion-label>
+          </div>
+      </div>
+    </div>
+    <div style="width: 100%;float: left;margin-top: 10px">
+      <p no-margin style="color: #999999;float: left;">Adresse de livraison</p>
+      <div style="float:left;width: 100%;padding-left: 15px" *ngFor="let location of locations ; let a = last ; let i = index ">
+        <ion-label *ngIf="a" no-margin style="width:100%;float:left;white-space:unset;color: #000000;font-weight: bold;font-size: 1.2rem;" >
+          {{location.location_name}}
+        </ion-label>
+        <table style="margin-left:10px;font-size: 1rem;color: #555" >
+                <tr *ngIf="a && location.unit_nu">
+                  <th style="text-align: left;vertical-align: top;">Complément d'adresse</th>
+                  <td style="padding: 0 5px;vertical-align: top;">:</td>
+                  <td style="vertical-align: top;">{{location.unit_nu}}</td>
+                </tr>
+                <tr *ngIf="a && location.inhome=='1'">
+                  <th style="text-align: left;vertical-align: top;">Etage</th>
+                  <td style="padding: 0 5px;vertical-align: top;">:</td>
+                  <td style="vertical-align: top;">{{location.stairs}}</td>
+                </tr>
+                <tr *ngIf="a && location.parking_info">
+                  <th style="text-align: left;vertical-align: top;">Information additionnelle</th>
+                  <td style="padding: 0 5px;vertical-align: top;">:</td>
+                  <td style="vertical-align: top;" [innerHTML]="location.parking_info|infoFilter"></td>
+                </tr>
+        </table>
+        <!-- <ion-label *ngIf="a && location.unit_nu" style="float:left;width:100%;white-space: unset;color:#555555;font-size: 0.9rem;font-weight: bold;padding-left: 10px" no-margin><span style="font-weight: bold">Complément d'adresse:</span> {{location.unit_nu}}</ion-label>
+        <ion-label *ngIf="a && location.stairs!='0' && location.elevator=='0' && location.inhome=='1'" style="float:left;width:100%;white-space: unset;color:#555555;font-size: 0.9rem;font-weight: bold;padding-left: 10px" no-margin><span style="font-weight: bold">Stairs:</span> {{location.stairs}}</ion-label>
+        <ion-label *ngIf="a && location.parking_info" style="float:left;width:100%;white-space: unset;color:#555555;font-size: 0.9rem;font-weight: bold;padding-left: 10px" no-margin><span style="font-weight: bold">Information additionnelle:</span> {{location.parking_info}}</ion-label> -->
+
+        <div *ngIf="a" style="width: 100%;float: left;">
+          <ion-label no-margin style="color: #A3A6A9;font-size: 1rem;margin-left: 12px;display: inline;" *ngIf="location.curbside=='1'">Livraison au "Pas-de-porte"</ion-label>
+         </div>
+        <div *ngIf="a && location.inhome=='1' && location.elevator!='1'" style="width: 100%;float: left;">
+          <ion-label no-margin style="color: #A3A6A9;font-size: 1rem;margin-left: 12px;width: 100%;">Livraison à l’intérieur sans ascenseur</ion-label>
+        </div>
+        <div *ngIf="a && location.elevator=='1' && location.inhome=='1'" style="width: 100%;float: left;">
+          <ion-label no-margin style="color: #A3A6A9;font-size: 1rem;margin-left: 12px;width:100%;">Livraison à l’intérieur avec ascenseur</ion-label>
+        </div>
+		<div *ngIf="a" style="width: 100%;float: left;">
+            <ion-label *ngIf="location.iwillbehelping==1" no-margin style="color: #A3A6A9;font-size: 1rem;padding-left: 12px;">Le Helper recevra de l'aide à cette adresse</ion-label>
+            <ion-label *ngIf="location.iwillbehelping==0" no-margin style="color: #A3A6A9;font-size: 1rem;padding-left: 12px;">Le Helper ne recevra pas de l'aide à cette adresse</ion-label>
+         </div>
+	  </div>
+    </div>
+  </div>
+  <div style="height: 15px;width: 100%;float: left;"></div>
+  <ion-label style="height:auto;width:100%;margin:0;color:#727272;font-size: 1.5rem;">Objets</ion-label>
+
+  <div *ngIf="data" style="position:relative;background-color:#f7f7f7;height: 45px;border: 1px solid rgba(0,0,0,0.1);">
+      <!-- <ion-icon (click)="editItems()" *ngIf!="editenable" name="create" style="position: absolute;top: 0;right: 0;color: #999999;font-size: 1.5rem;"></ion-icon> -->
+      <div style="background: #999;width: 18%;height: 100%;float: left;text-align: center;" >
+        <div style="font-weight: 600;height:100%;position: relative;margin:0 auto">
+          <span style="color: #fff;font-size: 1.2em;position: absolute;top: 5px;left: 0;right: 0;">
+          {{item_quantity}}</span>
+          <span style="color: #fff;font-size: 0.8em;position: absolute;bottom: 5px;left: 0;right: 0;">items</span>
+        </div>
+      </div>
+      <div style="background: #f7f7f7;width: 82%;height: 100%;float: right;padding: 13px 18px;">
+        <ion-label style="font-weight: 600;width: 100%;color:#000000;margin:0;">
+          <span *ngFor="let item of data.items;let a = last ;let i = index ">
+            {{item.quantity}} {{item.item_name}}<span *ngIf="i+1!=data.items.length">, </span>
+          </span>
+        </ion-label>
+      </div>
+  </div>
+
+  <div style="float:left;height: 15px;width: 100%;"></div>
+  <ion-label style="height:20px;width:100%;margin:0;color:#727272;font-size: 1.5rem;">
+    Description
+  </ion-label>
+  <div *ngIf="!data.items" style="position:relative;background-color:#f7f7f7;width:100%;border: 2px solid red;float: left;border-radius: 3px;height: 50px;" padding>
+  </div>
+  <div *ngIf="data.items" style="position:relative;background-color:#f7f7f7;width:100%;border: 1px solid rgba(0,0,0,0.1);float: left;padding: 5px;">
+    <div style="width: 100%;float: left;margin-bottom: 10px;">
+         <div *ngFor="let item of data.items;let i = index " style="float:left;margin-top: unset;">
+           <p *ngIf="selected_item!=i" (click)="selected_item=i" style="font-weight:bold;margin:0px 6px 3px 0;padding:5px 8px 2px;border-radius: 3px;float:left;background: #eee;border: 1px solid #999;color:#999" >{{item.item_name}}</p>
+           <p *ngIf="selected_item==i" (click)="selected_item=i" style="font-weight:bold;margin:0px 6px 3px 0;padding:5px 8px 2px;border-radius: 3px;float:left;background: #eee;border: 1px solid #333;color:#333" >{{item.item_name}}</p>
+         </div>
+    </div>
+    <table style="color: black; font-size: 1rem">
+           <tr *ngIf="data.items[selected_item].quantity!=null">
+             <th class="table_data" style="text-align: left;">Quantité</th>
+             <th class="table_data" style="padding: 0 5px;">:</th>
+             <td class="table_data" >{{data.items[selected_item].quantity}}</td>
+           </tr>
+            <tr *ngIf="data.items[selected_item].information!=null && data.items[selected_item].information!=''">
+             <th class="table_data" style="text-align: left;">Détails</th>
+             <th class="table_data" style="padding: 0 5px;">:</th>
+             <td class="table_data" [innerHTML]="data.items[selected_item].information|infoFilter"></td>
+           </tr>
+           <tr *ngIf="locations.length>2">
+             <!--<th class="table_data" style="text-align: left;">Pickup Location</th>
+             <th class="table_data" style="padding: 0 5px;">:</th>
+             <th class="table_data" style="padding: 0 5px;">:</th>
+              <td class="table_data" *ngIf="data.items[selected_item].src_item_loc==data.locations[0].id">{{data.locations[0].location_name}}</td>
+             <td class="table_data" *ngIf="data.items[selected_item].src_item_loc==data.locations[1].id">{{data.locations[1].location_name}}</td>
+             <td class="table_data" *ngIf="data.locations.length==4 && data.items[selected_item].src_item_loc==data.locations[2].id">{{data.locations[2].location_name}}</td> -->
+           </tr> 
+      </table>
+    <div style="width: 100%;">
+      <span (click)="openPic(data.items[selected_item].image.split(',')[0])" *ngIf="data.items[selected_item].image.split(',')[0] && data.items[selected_item].image.split(',')[0]!='no_image.jpg'">
+         <img style="width: 20vw;height: 20vw" *ngIf="my" src="{{my}}/public/frontend/img/addImage/{{data.items[selected_item].image.split(',')[0]}}">
+      </span>
+      <span (click)="openPic(data.items[selected_item].image.split(',')[1])" *ngIf="data.items[selected_item].image.split(',')[1] && data.items[selected_item].image.split(',')[1]!='no_image.jpg'">
+         <img style="width: 20vw;height: 20vw" *ngIf="my" src="{{my}}/public/frontend/img/addImage/{{data.items[selected_item].image.split(',')[1]}}">
+      </span>
+      <span (click)="openPic(data.items[selected_item].image.split(',')[2])" *ngIf="data.items[selected_item].image.split(',')[2] && data.items[selected_item].image.split(',')[2]!='no_image.jpg'">
+         <img style="width: 20vw;height: 20vw" *ngIf="my" src="{{my}}/public/frontend/img/addImage/{{data.items[selected_item].image.split(',')[2]}}">
+      </span>
+      <span (click)="openPic(data.items[selected_item].image.split(',')[3])" *ngIf="data.items[selected_item].image.split(',')[3] && data.items[selected_item].image.split(',')[3]!='no_image.jpg'">
+         <img style="width: 20vw;height: 20vw" *ngIf="my" src="{{my}}/public/frontend/img/addImage/{{data.items[selected_item].image.split(',')[3]}}">
+      </span>
+      <span *ngIf="data.items[selected_item].image.split(',').length==4 && data.items[selected_item].image.split(',')[3]=='no_image.jpg' && data.items[selected_item].image.split(',')[0]=='no_image.jpg' && data.items[selected_item].image.split(',')[1]=='no_image.jpg' && data.items[selected_item].image.split(',')[2]=='no_image.jpg'">
+         <img style="width: 20vw;height: 20vw" *ngIf="my" src="{{my}}/public/frontend/img/addImage/{{data.items[selected_item].image.split(',')[1]}}">
+      </span>
+    </div>
+  </div>
+  <!-- <div style="height: 15px;width: 100%;float: left;"></div>
+  
+  <ion-label *ngIf="data && data.items[0].image!=null && pics" style="height:auto;width:100%;margin:0;color:#727272;font-size: 1.5rem;">pics</ion-label>
+  
+  <div *ngIf="data && data.items[0].image!=null && pics" style="position:relative;background-color:#f7f7f7;width:100%;border: 1px solid rgba(0,0,0,0.1);padding:10px;float: left;">
+    <div *ngFor="let pic of pics">
+      <img [src]="pic" style="object-fit: cover;width: 24%;height: 50px;background-color: #999;float: left;margin-right: 1%;">
+    </div>
+  </div>  -->
+  <div style="height: 15px;width: 100%;float: left;"></div>
+
+  <ion-label style="height:auto;width:100%;margin:0;color:#727272;font-size: 1.5rem;">Date et Heure</ion-label>
+  
+  <div *ngIf="data" style="position:relative;background-color:#f7f7f7;width:100%;border: 1px solid rgba(0,0,0,0.1);float: left;" padding>
+    <!-- <ion-icon (click)="editDateTime()" *ngIf!="editenable" name="create" style="position: absolute;top: 0;right: 0;color: #999999;font-size: 1.5rem;"></ion-icon> -->
+    <div style="width: 50%;font-size: 1.2rem;font-weight: bold;float: left;color: #000000">{{formatDate(data.date)}}</div>
+    <div style="width: 50%;font-size: 1.2rem;font-weight: bold;float: left;color: #000000">
+    <span>{{data.first_time | timemomentformat}}</span>
+    <!-- <span *ngIf="appProvider.current.last_time"> - {{appProvider.current.last_time}}</span> --><!-- {{appProvider.current.time.substring(0,8) | timemomentformat:'h:mm a'}} - {{appProvider.current.time.substring(9,18) | timemomentformat:'h:mm a'}} --> </div>
+  </div> 
+
+  <div style="height: 15px;width: 100%;float: left;"></div>
+  <!--
+  <ion-label style="height:auto;width:100%;margin:0;color:#727272;font-size: 1.5rem;">Helper</ion-label>
+  
+  <div *ngIf="data" style="position:relative;display:flex;float:left;padding:10px;background-color:rgba(0,0,0,0.03);width:100%;border: 1px solid rgba(0,0,0,0.1);">
+    <ion-icon (click)="editHelper()" *ngIf!="editenable" name="create" style="position: absolute;top: 0;right: 0;color: #999999;font-size: 1.5rem;"></ion-icon>
+    <div style="border:1px solid rgba(0,0,0,0.3);float:left;background:#fff;width: 40px;height: 40px;display: flex;text-align: center;">
+      <p style="align-self: center;margin: 0 auto;font-weight: bold;color: #000000;font-size: 2rem;"><!-- {{appProvider.current.helper_number}} 1</p>
+    </div>
+    <p no-margin style="margin-left: 20px;align-self: center;float: left;color:#000000;font-weight: bold;">{{data.helper_type}}</p>
+  </div> -->
+
+
+</ion-content>

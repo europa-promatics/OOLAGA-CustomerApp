@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-navbar color="maincolor">
+  <ion-title style="text-align: center;">Step 4 of 6</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="help()" style="min-width: 44px;text-transform: none;">
+        Help
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+ 
+<ion-content padding style="text-align: center;background-color: #f7f7f7;color: #1B4079" >
+
+  <p style="font-size: 18px;font-weight: bold;margin: 29px auto;" color="maincolor">How many helpers you need?</p>
+  
+  <div style="margin:10px 0;display:flex;padding-right:10px;background-color: #f2f2f2;color: black;height:70px;width: 100%;float: left;text-align: left;" (click)="selectcard(1)" [class.active]="selection1" class="bg-color">
+          <div style="background-color: #fff;border: 1px solid #ddd;height: 55px;float:left;margin: 7px 5px;width: 17%;">
+            <h1 style="margin:12px;text-align: center;color: black;">1</h1>
+          </div>
+          <p style="color: black;float: right;width:78%;align-self: center;">1 Helper + 1 Van</p>
+          <!-- <p style="color: black;float: right;width:78%;"> If your package is small and can be lighter by 1 helper</p> -->
+  </div>
+  <div style="display:flex;padding-right:10px;background-color: #f2f2f2;color: black;height:70px;width: 100%;float: left;text-align: left;" (click)="selectcard(2)" [class.active]="selection2" class="bg-color">
+          <div style="background-color: #fff;border: 1px solid #ddd;height: 55px;float:left;margin: 7px 5px;width: 17%;">
+            <h1 style="margin:12px;text-align: center;color: black;">2</h1>
+          </div>
+          <p style="color: black;float: right;width:78%;align-self: center;">1 Helper + 1 Van + You</p>
+          <!-- <p style="color: black;float: right;width:78%;"> If your package is small and can be lighter by 1 helper</p> -->
+  </div>
+  <div style="display:flex;padding-right:10px;margin:10px 0 10px 0;background-color: #f2f2f2;color: black;height:70px;width: 100%;float: left;text-align: left;" (click)="selectcard(3)" [class.active]="selection3" class="bg-color" >
+          <div style="background-color: #fff;border: 1px solid #ddd;height: 55px;margin:7px 5px;float:left;width: 17%;">
+            <h1 style="margin:12px;text-align: center;color: black;">3</h1>
+          </div>
+          <p style="color: black;float: right;width:78%;align-self: center;">2 Helper + 1 Van</p>
+          <!-- <p style="color: black;float: right;width:78%;">If your package is heavier and you need 2 helper</p> -->
+  </div>
+
+    <!-- <ion-item style="padding-left: 10px;  ;color: black;color: #1B4079;margin-bottom:10px;background-color:transparent;" no-lines>
+        <ion-checkbox color="maincolor" [(ngModel)]="user_help">
+        </ion-checkbox>
+        <ion-label style="color:black ;font-size: 15px"stacked>
+          I,ll be helping 
+        </ion-label>
+    </ion-item> -->
+    <div style="height: 10px;"></div>
+
+    <p style="font-size: 10px;color:black;float:left;margin: auto;">There will be no transpotation with helper</p>
+</ion-content>
+  
+<ion-footer style="background-color:#EAEAEA;border-top: 1px solid rgba(0,0,0,0.2);">
+  <button text-left ion-button clear style="font-weight: 600;color:#555;text-align:left;float: left;" (click)="submit(0)">
+   <ion-icon name="ios-arrow-back" style="margin-right: 10px;"></ion-icon> Back
+  </button>
+  <button text-right ion-button clear style="font-weight: 600;color:#555;text-align: right;float: right;" (click)="submit(1)">
+    Save & Continue <ion-icon name="ios-arrow-forward" style="margin-left: 10px;"></ion-icon>
+  </button>
+</ion-footer>

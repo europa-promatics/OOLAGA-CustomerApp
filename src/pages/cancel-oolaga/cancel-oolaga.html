@@ -1,0 +1,35 @@
+<ion-header>
+
+  <ion-navbar color="maincolor">
+    <ion-title style="text-align: center;margin-right: 55px;">Cancel oolaga</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding style="text-align: center;">
+	<div padding>
+		<ion-label margin-bottom padding-bottom color="dark" style="font-size:1.5rem;font-weight: bold;width: 100%;white-space: unset;">Please tell us the reason you want to cancel your oolaga?</ion-label>
+		<div *ngIf="reasons" style="float: left;font-size: 1.5rem;width: 100%;" >
+			<ion-item no-lines style="background-color: transparent;">
+			    <ion-checkbox [(ngModel)]="_1st" ></ion-checkbox>
+			    <ion-label text-wrap style="color: #999;">{{reasons[0]?.reason}}</ion-label>
+			</ion-item>
+			<ion-item no-lines style="background-color: transparent;">
+			    <ion-checkbox [(ngModel)]="_2nd" ></ion-checkbox>
+			    <ion-label text-wrap style="color: #999;">{{reasons[1]?.reason}}</ion-label>
+			</ion-item>
+			<ion-item no-lines style="background-color: transparent;">
+			    <ion-checkbox [(ngModel)]="_3rd" ></ion-checkbox>
+			    <ion-label text-wrap style="color: #999;">{{reasons[2]?.reason}}</ion-label>
+			</ion-item>
+			<ion-item no-lines style="background-color: transparent;">
+			    <ion-checkbox [(ngModel)]="_4th" ></ion-checkbox>
+			    <ion-label text-wrap style="color: #999;">{{reasons[3]?.reason}}</ion-label>
+			</ion-item>
+			<ion-label margin-bottom padding-bottom color="dark" style="width: 100%;font-size:1.2rem;white-space: unset;">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+			tempor incididunt ut labore et </ion-label>
+			<button ion-button color='primary' style="width: 60%;margin: 20px 20%;" (click)="submit()" >SUBMIT</button>
+		</div>
+	</div>
+</ion-content>

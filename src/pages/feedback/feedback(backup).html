@@ -1,0 +1,83 @@
+<ion-header>
+  <ion-navbar >
+    <ion-title color="maincolor" style="color:#1B4079;text-align: center;margin-right: 55px;font-weight: 600;">
+      <span style="color:#1B4079">Feedback</span>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding style="text-align: center;background: #f7f7f7">
+   		  <div>
+   		    <ion-item no-lines style="background: transparent;">
+	   		  	<ion-avatar item-center>
+              <img *ngIf="image=='img/man.png'" [src]="image" width="50px" height="50px">
+	   		  		<img *ngIf="image!='img/man.png'" [src]="image" width="50px" height="50px">
+	   		  	</ion-avatar>
+	   		 </ion-item>
+   		  </div>
+   		  <div class="name" *ngIf='data'>{{data?.helper_name}}</div>
+        <ion-label color="maincolor">Has Successfully delivered your Oolaga</ion-label>
+        <ion-label style="color:#999">Rate your experience with no of stars</ion-label>
+   		  <div class="spacer" style="width: 100%; height: 15px;"></div>
+        <table style="width: 100%;">
+          <tr style="width: 100%">
+            <td style="padding-bottom:10px;padding-left: 10%;text-align: left;width: 50%;">Punchuality</td>
+            <td style="padding-bottom:10px;width: 50%">
+              <ion-icon (click)="star1=1" *ngIf="star1 < 1 " name="ios-star-outline" class="star-size"></ion-icon>
+              <ion-icon (click)="star1=1" *ngIf="star1 >= 1 " name="ios-star" class="star-size"></ion-icon>
+              <ion-icon (click)="star1=2" *ngIf="star1 < 2 " name="ios-star-outline" class="star-size"></ion-icon>
+              <ion-icon (click)="star1=2" *ngIf="star1 >= 2 " name="ios-star" class="star-size"></ion-icon>
+              <ion-icon (click)="star1=3" *ngIf="star1 < 3 " name="ios-star-outline" class="star-size"></ion-icon>
+              <ion-icon (click)="star1=3" *ngIf="star1 >= 3 " name="ios-star" class="star-size"></ion-icon>
+              <ion-icon (click)="star1=4" *ngIf="star1 < 4 " name="ios-star-outline" class="star-size"></ion-icon>
+              <ion-icon (click)="star1=4" *ngIf="star1 >= 4 " name="ios-star" class="star-size"></ion-icon>
+              <ion-icon (click)="star1=5" *ngIf="star1 < 5 " name="ios-star-outline" class="star-size"></ion-icon>
+              <ion-icon (click)="star1=5" *ngIf="star1 >= 5 " name="ios-star" class="star-size"></ion-icon>
+            </td>
+          </tr>
+          <tr style="width: 100%">
+            <td style="padding-bottom:10px;padding-left: 10%;text-align: left;width: 50%;">Friendliness</td>
+            <td style="padding-bottom:10px;width: 50%">
+              <ion-icon (click)="star2=1" *ngIf="star2 < 1 " name="ios-star-outline" class="star-size"></ion-icon>
+              <ion-icon (click)="star2=1" *ngIf="star2 >= 1 " name="ios-star" class="star-size"></ion-icon>
+              <ion-icon (click)="star2=2" *ngIf="star2 < 2 " name="ios-star-outline" class="star-size"></ion-icon>
+              <ion-icon (click)="star2=2" *ngIf="star2 >= 2 " name="ios-star" class="star-size"></ion-icon>
+              <ion-icon (click)="star2=3" *ngIf="star2 < 3 " name="ios-star-outline" class="star-size"></ion-icon>
+              <ion-icon (click)="star2=3" *ngIf="star2 >= 3 " name="ios-star" class="star-size"></ion-icon>
+              <ion-icon (click)="star2=4" *ngIf="star2 < 4 " name="ios-star-outline" class="star-size"></ion-icon>
+              <ion-icon (click)="star2=4" *ngIf="star2 >= 4 " name="ios-star" class="star-size"></ion-icon>
+              <ion-icon (click)="star2=5" *ngIf="star2 < 5 " name="ios-star-outline" class="star-size"></ion-icon>
+              <ion-icon (click)="star2=5" *ngIf="star2 >= 5 " name="ios-star" class="star-size"></ion-icon>
+            </td>
+          </tr>
+          <tr style="width: 100%">
+            <td style="padding-bottom:10px;padding-left: 10%;text-align: left;width: 50%;">Preparedness</td>
+            <td style="padding-bottom:10px;width: 50%">
+              <ion-icon (click)="star3=1" *ngIf="star3 < 1 " name="ios-star-outline" class="star-size"></ion-icon>
+              <ion-icon (click)="star3=1" *ngIf="star3 >= 1 " name="ios-star" class="star-size"></ion-icon>
+              <ion-icon (click)="star3=2" *ngIf="star3 < 2 " name="ios-star-outline" class="star-size"></ion-icon>
+              <ion-icon (click)="star3=2" *ngIf="star3 >= 2 " name="ios-star" class="star-size"></ion-icon>
+              <ion-icon (click)="star3=3" *ngIf="star3 < 3 " name="ios-star-outline" class="star-size"></ion-icon>
+              <ion-icon (click)="star3=3" *ngIf="star3 >= 3 " name="ios-star" class="star-size"></ion-icon>
+              <ion-icon (click)="star3=4" *ngIf="star3 < 4 " name="ios-star-outline" class="star-size"></ion-icon>
+              <ion-icon (click)="star3=4" *ngIf="star3 >= 4 " name="ios-star" class="star-size"></ion-icon>
+              <ion-icon (click)="star3=5" *ngIf="star3 < 5 " name="ios-star-outline" class="star-size"></ion-icon>
+              <ion-icon (click)="star3=5" *ngIf="star3 >= 5 " name="ios-star" class="star-size"></ion-icon>
+            </td>
+          </tr>
+        </table>
+        <ion-label color="orange_color">Would you like to give tip?</ion-label>
+        <table  style="width: 100%;">
+          <tr style="width: 100%;">
+            <td #tip1 style="outline: 1px solid #999;width:20%;height: 35px;" (click)="select(tip1,tip2,tip3,tip4,tip5);set_tip(0)" >No Tip</td>
+            <td #tip2 style="outline: 1px solid #999;width:20%;height: 35px;" (click)="select(tip2,tip1,tip3,tip4,tip5);set_tip(3)" >$3</td>
+            <td #tip3 style="outline: 1px solid #999;width:20%;height: 35px;" (click)="select(tip3,tip1,tip2,tip4,tip5);set_tip(5)" >$5</td>
+            <td #tip4 style="outline: 1px solid #999;width:20%;height: 35px;" (click)="select(tip4,tip1,tip2,tip3,tip5);set_tip(10)" >$10</td>
+            <td #tip5 style="outline: 1px solid #999;width:20%;height: 35px;" (click)="select(tip5,tip1,tip2,tip3,tip4);set_tip(0);tip_value=null" >
+              <ion-input style="" [(ngModel)]="tip_value" (input)="set_tip(tip_value)" class="tip_input" placeholder="Enter" type="tel" min=3></ion-input>
+            </td>
+          </tr>
+        </table>
+   		  <div class="spacer" style="width: 100%; height: 15px;"></div>
+   		  <button ion-button round style="background-color: #F26419;width: 80%;font-weight: 600;" (click)="submit()">SUBMIT</button>
+</ion-content>

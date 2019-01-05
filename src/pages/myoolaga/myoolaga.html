@@ -1,0 +1,243 @@
+<ion-header >
+  <ion-navbar color="maincolor">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title style="text-align: center;">
+      Mes Oolagas
+    </ion-title>
+    <ion-buttons end>
+      <button color="light" ion-button icon-only (click)="createoolaga()" style="min-width: 44px;">
+        <ion-icon name="add"></ion-icon> 
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+    <ion-toolbar>
+  <ion-segment color="primary" class="home_segment" (ionChange)="tabChange()" [(ngModel)]="activeSec">
+    <ion-segment-button value="draft">
+      <span style="font-size: 1.6rem;font-family: nexa_boldregular !important;">Brouillon</span>
+    </ion-segment-button>
+    <ion-segment-button value="auction">
+      <span style="font-size: 1.6rem;font-family: nexa_boldregular !important;">Offres</span>
+    </ion-segment-button>
+    <ion-segment-button value="active">
+      <span style="font-size: 1.6rem;font-family: nexa_boldregular !important;">Confirmé(s)</span>
+    </ion-segment-button>
+  </ion-segment>
+      
+    </ion-toolbar>
+</ion-header>
+<ion-content style="background-color: #f9f9f9;font-weight: bold;">
+      <ion-refresher *ngIf="(enableScroll1 && activeSec=='draft') || (enableScroll2 && activeSec=='auction') || (enableScroll3 && activeSec=='active')" pullMax="200" pullMin="150" (ionRefresh)="refreshOolagas($event)">
+        <ion-refresher-content
+          pullingIcon="arrow-dropdown"
+          refreshingSpinner="ios"
+          refreshingText="Refreshing...">
+        </ion-refresher-content>
+      </ion-refresher>
+  <div [ngSwitch]="activeSec">
+  <ion-slides (ionSlideWillChange)="slideChanged()" >
+    <ion-slide #draft_slide (scroll)="onScroll($event)" id="draft_slide" style="text-align: unset;padding-top: 5px;">
+      <div id="a">
+        <div padding *ngIf="draft_oolaga_enable" style="text-align: center;color:#999;margin-top: calc(50% - 50px);">
+          <div style="width: 80%;margin-left: 10%;">
+          <p style="font-size: 22px; ">Vous n’avez aucun Oolaga de confirmé</p>
+          </div>
+        </div>
+        <div *ngIf!="draft_oolaga_enable" style="padding: 0 15px;">
+          <ion-card (tap)="showDraft(d)"  (press)="deleteDraft(d)" *ngFor="let d of data1" style="margin:0 0 10px 0;box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.25);background-color: #fff;position: relative; width: 100%;padding: 10px;" >
+            <div>
+              <div>
+                <ion-label style="margin: 5px 0 0 0;width: 100%;font-size: 14px;color: #1B4079;">
+                  <span>
+                    {{getServiceName(d.service.service)}}
+                  </span>
+                </ion-label>
+                <!-- <ion-label style="margin: 5px 0 0 0;width: 100%;font-size: 1rem;color: #1B4079;">
+                  <span style="color: #999;">ID #</span>
+                  <span style="margin-left: 10px;text-transform: uppercase;" *ngIf="d.uniccode!=null">{{d.uniccode}}</span>
+                   <span style="text-transform: uppercase;width: 100px;color: red" *ngIf="d.uniccode==null"></span>
+                </ion-label> -->
+                <ion-label style="width:100%;margin: 0px;float: left;margin-top: 10px;">
+                  <ion-label *ngIf="d.service.id==7 && d.source!=null " style="width: 100%;float: left;height: 20px;margin:0px;"><ion-icon name="pin" style="color: #999;font-size: 1.0em;margin-right: 5px;"></ion-icon>{{d.source.location_name}}</ion-label>
+                  <ion-label *ngIf="d.service.id==7 && d.source==null " style="width: 100%;float: left;height: 20px;margin:0px;color: red"><ion-icon name="pin" style="color: #999;font-size: 1.0em;margin-right: 5px;"></ion-icon></ion-label>
+
+                  <ion-label *ngIf="d.service.id!=7 && d.source!=null" style="max-width: 48%;float: left;height: 20px;margin:0px;"><ion-icon name="pin" style="color: #999;font-size: 1.0em;margin-right: 5px;"></ion-icon>{{d.source.location_name}}</ion-label>
+                  <ion-label *ngIf="d.service.id!=7 && d.destination!=null " style="margin-left:10px;max-width: 48%;float: left;height: 20px;margin:0px;"> <span style="color: #aaa;font-size: 0.8em;margin:0 10px;">à</span> {{d.destination.location_name}}</ion-label>
+                  <ion-label *ngIf="d.service.id!=7 && d.source==null " style="color:red; max-width: 48%;float: left;height: 20px;margin:0px;"><ion-icon name="pin" style="color: #999;font-size: 1.0em;margin-right: 5px;"></ion-icon>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</ion-label>
+                  <ion-label *ngIf="d.service.id!=7 && d.destination==null" style="color:red; margin-left:10px;max-width: 48%;float: left;height: 20px;margin:0px;"> <span style="color: #aaa;font-size: 0.8em;margin:0 10px;">à</span></ion-label>
+                </ion-label>
+                <ion-label style="width:100%;color: #aaa;margin: 0px;float: left;margin-top: 5px;">
+                  <span style="width:30%;font-size: 0.8em;float: left;">Date</span>
+                  <span style="width:30%;font-size: 0.8em;float: left;">Heure</span>
+                </ion-label>
+                <ion-label style="width:100%;color: #000;margin: 0px;float: left;margin-top: 3px;">
+                  <span style="width:30%;font-size: 0.8em;float: left;" *ngIf="d.date!=null">{{d.date|dateConvert}}</span>
+                  <span style="width:30%;font-size: 0.8em;float: left;color:red" *ngIf="d.date==null">&nbsp;</span>
+                  <span style="width:30%;font-size: 0.8em;float: left;" *ngIf="d.first_time!=null">{{d.first_time | timemomentformat:'h:mm a'}}</span>
+                  <span style="width:30%;font-size: 0.8em;float: left;color: red" *ngIf="d.first_time==null">&nbsp;</span>
+                </ion-label>
+              </div>     
+            </div>
+          </ion-card>
+        </div>
+      </div>
+    </ion-slide>
+    
+    <ion-slide #auction_slide (scroll)="onScroll($event)" id="auction_slide" style="text-align: unset;padding-top: 5px;">
+      <div >
+        <div *ngIf="oolaga_created" padding style="text-align: center;color:#999;margin-top: calc(50% - 50px);">
+          <div style="width: 80%;margin-left: 10%;">
+          <p style="font-size: 22px; ">Vous n’avez aucun Oolaga de Offres</p>
+          </div>
+        </div>
+        <div *ngIf!="oolaga_created" style="padding: 0 15px;">
+          <!-- <p style="font-size: 10px;margin: 0;color: #999" >Active</p> -->
+          <div *ngFor="let d of data;let i = index" >
+          <ion-card (click)="oolaga_detail(d)" style="margin:0 0 10px 0;box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.25);background-color: #fff;position: relative; width: 100%;padding: 10px;" >
+            <ion-buttons no-margin no-padding style="display:flex;height:55px;width: 65px;position: absolute;top: 0px;right: 0px;">
+              <button no-margin no-padding ion-button clear icon-only style="margin:auto;width: 40px;" (click)="page_selection=false;notificationpage(d.oolaga_id,d.offers, d.remaining_time)">
+                <img *ngIf="d.offers!=0" src="img/auction.svg" style="width: 30px;">
+                <img *ngIf="d.offers==0" src="img/auctiongray.png" style="width: 30px;">
+              </button>
+             <!-- <button no-margin no-padding ion-button clear icon-only style="height:35px;width: 30px;" (click)="notificationpage()">
+                <img src="assets/icon/bell-grey.png" style="width: 20px;">
+              </button>
+              <button no-margin no-padding ion-button clear icon-only style="height:35px;width: 30px;">
+                <img src="assets/icon/chat.png" style="width: 20px;">
+d.service=='No van, Labor only'
+              </button> -->
+            </ion-buttons>
+            <ion-badge *ngIf="d.offers!=0" color="maincolor" style="border-radius: 50%;font-size: 9px;height: 17px;width: 17px;position: absolute;right: 5px;top: 5px;padding: 0;display: flex;">
+            <span style="margin: auto;line-height: 17px;padding-top:1px;">{{d.offers}}</span>
+            </ion-badge>
+            <!-- <div style="background-color: black;position:absolute;min-width: 10px;height: 10px;top: 10px;right: 10px;max-width: 20px">13</div> -->
+            <!-- <div (click)="get_detail(d)"> -->
+            <div>
+              <div>
+                <!-- <ion-label style="color: #000;margin: 0px;width: calc(100% - 70px);font-size: 14px;color: #119DA4;text-decoration:underline; text-decoration-color:rgba(0,0,0,0.1) ">
+                  <span *ngFor="let item of d.items">
+                  {{item.item_name}}({{item.quantity}}) 
+                  </span>
+                </ion-label> -->
+                <ion-label style="margin: 5px 0 0 0;width: 100%;font-size: 14px;color: #1B4079;">
+                  <span>
+                    {{getServiceName(d.service)}}
+                  </span>
+                </ion-label>
+                <ion-label style="margin: 5px 0 0 0;width: 100%;font-size: 1rem;color: #1B4079;">
+                  <span style="color: #999;">Référence</span>
+                  <span style="margin-left: 10px;text-transform: uppercase;">{{d.uniccode}}</span>
+                </ion-label>
+                <ion-label style="width:100%;margin: 0px;float: left;margin-top: 10px;">
+                  <ion-label *ngIf="d.service=='Labor Only'" style="width: 100%;float: left;height: 20px;margin:0px;"><ion-icon name="pin" style="color: #999;font-size: 1.0em;margin-right: 5px;"></ion-icon>{{d.src_location_name}}</ion-label>
+                  <ion-label *ngIf="d.service!='Labor Only'" style="max-width: 48%;float: left;height: 20px;margin:0px;"><ion-icon name="pin" style="color: #999;font-size: 1.0em;margin-right: 5px;"></ion-icon>{{d.src_location_name}}</ion-label>
+                  <ion-label *ngIf="d.service!='Labor Only'"style="margin-left:10px;max-width: 48%;float: left;height: 20px;margin:0px;"> <span style="color: #aaa;font-size: 0.8em;margin:0 10px;">à</span> {{d.dst_location_name}}</ion-label>
+                </ion-label>
+                <ion-label style="width:100%;color: #aaa;margin: 0px;float: left;margin-top: 5px;">
+                  <!-- <span style="width:32%;font-size: 0.8em;float: left;">Assigned helper</span> -->
+                  <span style="width:30%;font-size: 0.8em;float: left;">Date</span>
+                  <span style="width:30%;font-size: 0.8em;float: left;">Heure</span>
+                  <span style="width:23%;font-size: 0.8em;float: right;">Temps restant</span>
+                </ion-label>
+                <ion-label style="width:100%;color: #000;margin: 0px;float: left;margin-top: 3px;">
+                  <!-- <span style="width:32%;font-size: 0.8em;float: left;">{{d.helper_name}}</span> -->
+                  <span style="width:30%;font-size: 0.8em;float: left;">{{d.date|dateConvert}}</span>
+                  <span style="width:30%;font-size: 0.8em;float: left;">{{d.first_time | timemomentformat:'h:mm a'}}<!-- {{d.time.substring(0,8) | timemomentformat:'h:mm a'}}-{{d.time.substring(9,18) | timemomentformat:'h:mm a'}} --></span>
+                  <span style="width:23%;font-size: 0.8em;float: right;color:#119DA4">{{d | objectTimer}}</span>
+                </ion-label>
+              </div>     
+            </div>
+          </ion-card>
+          </div>
+        </div>
+      </div>
+    </ion-slide>
+    <ion-slide #active_slide (scroll)="onScroll($event)" id="active_slide" style="text-align: unset;padding-top: 5px;">
+      <div >
+        <div padding *ngIf="!assigned_oolaga_enable" style="text-align: center;color:#999;margin-top: calc(50% - 50px);">
+          <div style="width: 80%;margin-left: 10%;">
+          <p style="font-size: 22px; ">Vous n’avez aucun Oolaga de Confirmé</p>
+          <img src="assets/icon/add.png" width="50px" (click)="createoolaga()">
+          <p style="margin:3px;" color="maincolor" (click)="createoolaga()">Nouveau</p>
+          </div>
+        </div>
+
+        <div *ngIf="assigned_oolaga_enable" style="padding: 0 15px;">
+          <!-- <p style="font-size: 10px;margin: 0;color: #999" >Active</p> -->
+          <ion-card *ngFor="let d of assignedOolagas" style="margin:0 0 10px 0;box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.25);background-color: #fff;position: relative; width: 100%;padding: 10px;" >
+
+            <ion-buttons no-margin no-padding style="z-index:1;display:flex;height:65px;width: 85px;position: absolute;top: 0px;right: 0px;">
+              <!-- <button *ngIf="d.cancel_status=='cancel_by_helper'" no-margin no-padding ion-button clear color="red_color" style="height:45px;width: 65px;font-size: 1rem;">
+                CANCELED
+              </button> -->
+              <button *ngIf="d.cancel_status!='cancel_by_helper'" no-margin no-padding ion-button clear icon-only style="height:45px;width: 35px;" (click)="openmap(d)">
+              <!-- (click)="notificationpage()" -->
+			    <img *ngIf="d.track_status=='pending'" src="img/pin.png" style="width: 25px;">
+                <img *ngIf="d.track_status!='pending'" src="img/pin_started.png" style="width: 25px;">
+              </button>
+              <button *ngIf="d.cancel_status!='cancel_by_helper'" no-margin no-padding (click)="openChat(d.helper_id,d.helper_img,d.helper_name, d.oolaga_id)" ion-button clear icon-only style="height:45px;width: 35px;">
+                <img src="img/message.png" style="width: 25px;">
+              </button>
+              <div *ngIf="d.cancel_status!='cancel_by_helper'" class="msg-box">{{d.unread_messages}}</div>
+            </ion-buttons>
+            <!-- <ion-badge color="maincolor" style="z-index:10;border-radius: 50%;font-size: 9px;height: 17px;width: 17px;position: absolute;right: 5px;top: 5px;padding: 0;display: flex;">
+            <span style="margin: auto;line-height: 17px;padding-top:1px;">5</span>
+            </ion-badge> -->
+            <!-- <div style="background-color: black;position:absolute;min-width: 10px;height: 10px;top: 10px;right: 10px;max-width: 20px">13</div> -->
+            <!-- <div (click)="get_detail(d)"> -->
+            <div>
+              <div>
+                <!-- <ion-label style="color: #000;margin: 0px;width: calc(100% - 70px);font-size: 14px;color: #119DA4;text-decoration:underline; text-decoration-color:rgba(0,0,0,0.1) ">
+                  <span *ngFor="let item of d.items">
+                  {{item.item_name}}({{item.quantity}}) 
+                  </span>
+                </ion-label> -->
+                <ion-label (click)="active_oolaga_detail(d)" style="float:left;margin: 5px 0 0 0;width: 70%;font-size: 14px;color: #1B4079;">
+                  <span>
+                    {{getServiceName(d.service)}}
+                  </span>
+                </ion-label>
+                <ion-label (click)="active_oolaga_detail(d)" style="float:left;margin: 5px 0 0 0;width: 100%;font-size: 1rem;color: #1B4079;">
+                  <span style="color: #999;">Référence</span>
+                  <span style="margin-left: 10px;text-transform: uppercase;">{{d.uniccode}}</span>
+                </ion-label>
+                <ion-label (click)="active_oolaga_detail(d)" *ngIf="d.service_id == 7" style="width:100%;margin: 0px;float: left;margin-top: 10px;">
+                  <ion-label style="max-width: 100%;float: left;height: 20px;margin:0px;"><ion-icon name="pin" style="color: #999;font-size: 1.0em;margin-right: 5px;"></ion-icon>{{d.src_location_name}}</ion-label>
+                </ion-label>
+                <ion-label (click)="active_oolaga_detail(d)" *ngIf="d.service_id != 7" style="width:100%;margin: 0px;float: left;margin-top: 10px;">
+                  <ion-label style="max-width: 48%;float: left;height: 20px;margin:0px;"><ion-icon name="pin" style="color: #999;font-size: 1.0em;margin-right: 5px;"></ion-icon>{{d.src_location_name}}</ion-label>
+                  <ion-label style="margin-left:10px;max-width: 48%;float: left;height: 20px;margin:0px;"> <span style="color: #aaa;font-size: 0.8em;margin:0 10px;">à</span> {{d.dst_location_name}}</ion-label>
+                </ion-label>
+                <ion-label (click)="active_oolaga_detail(d)" style="width:100%;color: #aaa;margin: 0px;float: left;margin-top: 5px;">
+                  <span style="width:32%;font-size: 0.8em;float: left;">Assigned helper</span>
+                  <span style="width:20%;font-size: 0.8em;float: left;">Date</span>
+                  <span style="width:25%;font-size: 0.8em;float: left;">Heure</span>
+                  <span *ngIf="d.cancel_status!='cancel_by_helper'" style="width:23%;font-size: 0.8em;float: right;">
+                    <span *ngIf="d.track_status=='pending'">Starting in</span>
+                    <span *ngIf="d.track_status!='pending'">Status</span>
+                  </span>
+                  <span *ngIf="d.cancel_status=='cancel_by_helper'" style="width:23%;font-size: 0.8em;float: right;">Status</span>
+                </ion-label>
+                <ion-label (click)="active_oolaga_detail(d)" style="width:100%;color: #000;margin: 0px;float: left;margin-top: 3px;">
+                  <span style="width:32%;font-size: 0.8em;float: left;text-transform: capitalize;">{{titleCase(d.helper_name.split(' ').slice(0, -1).join(' '))}} {{titleCase(d.helper_name.split(' ').slice(-1).join(' ')[0])}}</span>
+                  <span style="width:20%;font-size: 0.8em;float: left;">{{d.date|dateConvert}}</span>
+                  <span style="width:25%;font-size: 0.8em;float: left;">{{d.first_time | timemomentformat:'h:mm a'}}<!-- {{d.time.substring(0,8) | timemomentformat:'h:mm a'}}-{{d.time.substring(9,18) | timemomentformat:'h:mm a'}} --></span>
+                  <span *ngIf="d.cancel_status!='cancel_by_helper'" style="width:23%;font-size: 0.8em;float: right;color:#119DA4">
+                    <span *ngIf="d.track_status=='pending'">{{(d.date+'|'+d.first_time) | startingTime}}</span>
+                    <span *ngIf="d.track_status!='pending'">STARTED</span>
+                  </span>
+                  <span *ngIf="d.cancel_status=='cancel_by_helper'" style="width:23%;font-size: 0.8em;float: right;color:#ff0000">
+                    CANCELED
+                  </span>
+                </ion-label>
+              </div>     
+            </div>
+          </ion-card>
+        </div>
+       <!-- (press)="deleteDraft(d)" -->
+      </div>
+    </ion-slide>
+  </ion-slides>
+  </div>
+</ion-content>

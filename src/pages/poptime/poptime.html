@@ -1,0 +1,20 @@
+<div class="time_option">
+	<div class="selected_time">
+	  <div class="left_div" [class.active]="!am_pm" (click)="am_pm=false"><span>AM</span></div>
+	  <div class="right_div" [class.active]="am_pm" (click)="am_pm=true"><span>PM</span></div>
+	</div>
+	<div class="time_selection">
+	  <div>
+	    <ion-icon name="ios-arrow-up" (click)="hh=up(hh,0)"></ion-icon>
+	    <span style="color:#aaa;display: block;font-size: 0.8rem">H</span>
+	    <span class="hm_color">{{hh}}</span>
+	    <ion-icon name="ios-arrow-down" (click)="hh=down(hh,0)"></ion-icon>
+	  </div>
+	  <div>
+	    <ion-icon name="ios-arrow-up" (click)="mm=up(mm,1)"></ion-icon>
+	    <span style="color:#aaa;display: block;font-size: 0.8rem">M</span>
+	    <span class="hm_color">{{mm}}</span>
+	    <ion-icon name="ios-arrow-down" (click)="mm=down(mm,1)"></ion-icon>
+	  </div>
+	</div>
+</div>

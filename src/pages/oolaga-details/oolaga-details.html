@@ -1,0 +1,130 @@
+<ion-header >
+  <ion-navbar color="maincolor">
+  	<button ion-button icon-only menuToggle (click)="takeMeBack()">
+      <ion-icon name="arrow-back"></ion-icon>
+    </button>
+    <ion-title><span style="font-style: italic;position: relative;margin-right: 2px;font-family:'MarkPro-BookItalic';">
+      <p style="position: absolute;top: 20%;left: 4px;background-color: #119da4;height: 3px;width: 22px;margin: 0px;padding: 0px;"></p>oo</span><span style="font-style:normal;font-family:'MarkPro-Bold';">LAGA</span> Details</ion-title>
+  </ion-navbar>
+	<ion-toolbar color="maincolor">
+	    <ion-segment [(ngModel)]="selection" (ionChange)="loadmap(selection)" color="light">
+	      <ion-segment-button value="detail" >DETAIL</ion-segment-button>
+	      <ion-segment-button value="helper">HELPER</ion-segment-button>
+	      <ion-segment-button value="messages">MESSAGES</ion-segment-button>
+	      <ion-segment-button value="map">MAP</ion-segment-button>
+	    </ion-segment>
+	</ion-toolbar>
+</ion-header>
+<ion-content >
+	<div [ngSwitch]="selection">
+	  
+	  <ion-list *ngSwitchCase="'detail'" no-margin>
+		    <ion-card no-margin style="position: relative;width: 100%;max-height:250px;background: #ddd">
+		    	
+		    	<ion-card no-margin style="text-align: center;position: absolute;top: 0px;right: 0px;background: white;width: 60px;height: 55px;">
+			      <p style="color: red;padding: 5px;font-size: 20px;">${{d.cost}}</p>
+			      <div style="font-weight: bold;color:white;background-color: red;padding:3px;font-size:12px;position: absolute;bottom: 0px;width: 100%;">Standard</div>
+			    </ion-card>
+
+		    	<div *ngIf="d.items[0]!=null " style="width: 100%;height: 100%;">
+			        <div *ngIf="d.items[0].image==null" style="width: 100%;height: 100%;text-align: center;padding: 9% 37%;"> 
+			         <img src="img/un_available.png" style="width: 100%;height: 100%;">
+			        </div>
+			        <div *ngIf="d.items[0].image!=null" style="width: 100%;height: 100%;float: left;"> 
+			         <img src="http://18.188.229.2/oolaga/public/frontend/img/oolagaImage/{{d.items[0].image}}" style="width: 100%;height: 100%;">
+			        </div>
+			    </div>
+			    <div *ngIf="d.items[0]==null " style="width: 100%;height: 100%;text-align: center;padding: 9% 37%;">
+			      <img src="img/un_available.png" style="width: 100%;height: 100%;">
+			    </div>
+		    	<div style=" padding-top: 2px;font-size: 18px;position:absolute;bottom:0px;text-align: center;background-color: rgba(255,255,255,0.8);height: 25px;color:red;width: 100%;"><span>COMPLETE</span></div>
+		 	</ion-card>
+			<ion-card no-margin padding style="width: 100%;">
+		    	<div *ngIf="d.items[0]!=null" style="margin-bottom: 5px;">
+			    	<div *ngFor="let item of d.items">
+			    		<span>{{item.item_name}} ({{item.quantity}})</span><br>
+			    	</div>	
+		    	</div>
+		        <div>{{d.service}}</div>
+		    	<div>Helpers:-{{d.helper_type}}</div>
+		    </ion-card>
+		    <ion-card no-margin padding style="width: 100%;">
+		    	<p><ion-icon name="clock"><span margin-left>{{d.arriving_time}}</span></ion-icon></p>
+		 	</ion-card>
+		 	<ion-card no-margin padding style="width: 100%;">
+		    	<div style="font-weight: 500;" margin-bottom>ITEM DETAILS</div>
+				<div *ngFor="let item of d.items;let last = last">
+		    		<div >Item Name:- {{item.item_name}}</div>
+		    		<div >Quantity:- {{item.quantity}}</div>
+		    		<div >Information:- {{item.information}}</div>
+		    		<hr *ngIf!="last" margin-top margin-bottom>
+				</div>
+
+		 	</ion-card>
+		 	
+		 	<ion-card no-margin padding style="width: 100%;">
+		    	<p style="width: 100%;">LOCATION DETAILS</p>
+		    	<p style="width: 100%;margin: 0;font-weight: 500;"><ion-icon name="pin"></ion-icon><ion-label no-margin style="float: right;width: 92%;">{{d.src_location_name}}</ion-label></p>
+		    	<p style="margin: 0 0 0 8%;">unit_nu:- {{d.src_unit_nu}}</p>
+		    	<p style="margin: 0 0 0 8%;">stairs:- {{d.src_stairs}}</p>
+		    	<p style="margin: 0 0 0 8%;">elevator:- {{d.src_elevator}}</p>
+		    	<p style="margin: 0 0 0 8%;">ride:- {{d.src_ride}}</p>
+		    	<p style="margin: 0 0 0 8%;">parking_info:- {{d.src_parking_info}}</p>
+		    	<hr margin-top margin-bottom>
+		    	<p style="margin: 0;width: 100%;font-weight: 500;"><ion-icon name="pin"></ion-icon><ion-label no-margin style="float: right;width: 92%;">{{d.dst_location_name}}</ion-label></p>
+		 		<p style="margin: 0 0 0 8%;">unit_nu:- {{d.dst_unit_nu}}</p>
+		    	<p style="margin: 0 0 0 8%;">stairs:- {{d.dst_stairs}}</p>
+		    	<p style="margin: 0 0 0 8%;">elevator:- {{d.dst_elevator}}</p>
+		    	<p style="margin: 0 0 0 8%;">ride:- {{d.dst_ride}}</p>
+		    	<p style="margin: 0 0 0 8%;">parking_info:- {{d.dst_parking_info}}</p>
+		 	</ion-card>
+	  </ion-list>
+
+	  <ion-list *ngSwitchCase="'helper'" no-margin>
+			<img src="assets/img/imgg.png"/>
+			<ion-card>
+			  <ion-card-content style="text-align: center;">
+			    <ion-card-title>
+			     <div class="iconss"> <ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon></div>
+			      </ion-card-title>
+			   <h2> Samuel E.</h2>
+			   <p > 2015 Chevrolet Silverado 1500</p>
+			  </ion-card-content>
+			</ion-card>
+
+			<ion-card padding>
+				<ion-list >
+				  <div  style="width:100%;"><span style="float:left"><ion-icon name="contact"></ion-icon> Reva B.</span><span style="float:right"><div class="iconss"> <ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon></div></span></div>
+				  
+				</ion-list>
+			</ion-card>
+			<ion-card padding>
+			<ion-list >
+			  <div style="width:100%;"><span style="float:left"><ion-icon name="contact"></ion-icon> Dan C.</span><span style="float:right"><div class="iconss"> <ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon></div></span></div>
+			  
+			</ion-list>
+			</ion-card>
+
+			<ion-card padding>
+			<ion-list >
+			  <div style="width:100%;"><span style="float:left"><ion-icon name="contact"></ion-icon>Aron S.</span><span style="float:right"><div class="iconss"> <ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon></div></span></div>
+			  
+			</ion-list>
+			</ion-card>
+	  </ion-list>
+	  
+	  <ion-list *ngSwitchCase="'messages'" no-margin>
+	    <div padding style="text-align: center;color:#999;margin-top: calc(50% - 50px);">
+		    <ion-icon name="mail" style="font-size: 50px;"></ion-icon>
+		    <h1 style="color: #999;">No Messages</h1>
+		    <p>Helper can message you through the app to discuss details and logistics</p>
+		</div>
+	  </ion-list>
+
+	  <ion-list *ngSwitchCase="'map'" no-margin>
+			<div #map1 id="map1" style="width: 100%;height:570px"></div>
+	  </ion-list>
+
+	</div>
+	
+</ion-content>

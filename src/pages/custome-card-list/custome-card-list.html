@@ -1,0 +1,90 @@
+<!--
+  Generated template for the CustomeCardList page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header >
+  <ion-navbar color="maincolor">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title style="text-align: center;margin-right: 55px;">Saved Cards</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+
+
+<!-- <ion-content   style="background-color: rgba(0, 0, 0, 0.7);">
+     <div >
+            <ion-card >
+                <form  #paymentForm="ngForm" novalidate >
+                <ion-list>
+                    <ion-item ion-item class="paymentItem secondItem">
+                        <ion-input id="cardNumber"  class="form-control" placeholder="Card Number" name="cardNumber" type="text" minlength="15" maxlength="16"  [(ngModel)]='PaymentDetails.number' #cardNumber="ngModel" required (keyup)="cardCheck(PaymentDetails.number)" >
+                            
+                        </ion-input>
+                        <div style="margin-top: 50px">
+                            scdsds    
+                        </div>
+                        <div *ngIf="cardNumber.invalid && (cardNumber.dirty || cardNumber.touched)"
+                                 class="alert alert-danger">
+                            <div *ngIf="cardNumber.errors.required">
+                                cardNumber is required.
+                            </div>
+                            <div *ngIf="cardNumber.errors.minlength">
+                                  cardNumber must be at least 15 characters long.
+                            </div>
+                            <div *ngIf="cardNumber.errors.maxlength">
+                                  cardNumber cannot be more than 16 characters .
+                            </div>
+                        </div>
+                    </ion-item>
+                    <ion-item class="paymentItem thirdItem">
+                        <ion-icon  item-start class="paymentIcon"><img src="./img/clndr.png"></ion-icon>
+                        <ion-input placeholder="MM/YY" name="expireDate" type="text" minlength="5" maxlength="5" [(ngModel)]='PaymentDetails.expireDate' #expireDate="ngModel" required (keyup)="dateCheck(PaymentDetails.expireDate)"></ion-input>
+                        <ion-icon   item-end class="paymentIcon"><img [hidden]="(!expireDate.touched || expireDate.valid ) && !dateError" src="./img/error.png"><img *ngIf="expireDate.touched && expireDate.valid &&  !dateError" src="./img/check-mark.png"></ion-icon>
+                    </ion-item>
+                    <ion-item class="paymentItem thirdItem">
+                        <ion-icon  item-start class="paymentIcon"><img src="./img/padlock.png"></ion-icon>
+                        <ion-input placeholder="CVV"  name="CVC" type="text" maxlength="4" minlength="3" [(ngModel)]='PaymentDetails.cvc' #CVC="ngModel" required></ion-input>
+                        <ion-icon   item-end class="paymentIcon"><img [hidden]="!CVC.touched || CVC.valid" src="./img/error.png"><img *ngIf="CVC.touched && CVC.valid" src="./img/check-mark.png"></ion-icon>
+                    </ion-item>
+                    <div class="buttondiv">
+                        <button style="width: 80%" ion-button color="payButtonFirst" type="submit" (click)="onSaveCard()" >
+                       		save card details
+                        </button>
+                      
+                    </div>
+                </ion-list>
+                </form>
+                <ion-list>
+                    <div class="buttondiv" >
+                        <button style="width: 80%"  ion-button color="payButtonSecond">
+                       		Cancel
+                        </button>
+                    </div>
+                </ion-list>
+            </ion-card>
+        </div>
+</ion-content> -->
+
+<ion-content  style="background-color:#fff;">
+<ion-list *ngFor="let card of CardData">
+
+  <ion-item>
+    <ion-label>{{card.card_type}}</ion-label>
+	 <ion-toggle [(ngModel)]="card.card_status" (ngModelChange)="setCardStatus(card.id)" ></ion-toggle>
+	</ion-item>
+	<ion-item>
+    <ion-label *ngIf="card.card_number">{{card.card_number}}</ion-label>
+    <ion-label *ngIf="!card.card_number">Card Number Not Available!</ion-label>
+   
+  </ion-item>  
+  
+  
+ 
+
+</ion-list>
+</ion-content>

@@ -1,0 +1,45 @@
+page-assigned-oolaga-map {
+	#assignedMap{
+		width: 100%;
+		height: 100%;
+		z-index: 1;
+	}
+	.topButton{
+		z-index: 2;
+		position: absolute;
+		top: 15px;
+		left: 15px;
+		background: transparent;
+		width: 30px;
+		height: 15px;
+		border-radius: 5px;
+	}
+	.bottomDiv{
+		z-index: 2;
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		width: 100%;
+		height: 250px;
+		background: transparent;
+		padding: 15px;
+	}
+	.bottomDiv .subdiv{
+		border-radius: 10px;
+		overflow: hidden;
+		background: rgba(27, 64, 121,0.95);
+		width: 100%;
+		height: 100%;
+		position: relative;
+	} 
+	.bottomDiv .subdiv button{
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		width: 100%;
+		height: 40px;
+		margin: 0;
+		border-radius: 0;
+		background: #3DADF5;
+	}
+}

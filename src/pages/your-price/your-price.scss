@@ -1,0 +1,92 @@
+page-your-price {
+	.selecttype.active{
+		opacity: 0;
+	}
+	.price_input::after{
+	  content: "€";
+	  position: fixed;
+      right: 150px;
+	  top:182px;
+	 
+	}
+	.cardstyle.active{
+		opacity: 0.9;
+		border:1px solid #1B4079;
+	}
+	.price_input{
+		display: inline-block;
+		margin: 0 auto;
+		padding: 0;
+		//width: 35px;
+		background-color: transparent;
+	}
+	.price_input_label{
+		width: 140px!important;
+	}
+	.price_input_input input{
+		letter-spacing: 10px!important;
+		padding-left: 10px;
+	}
+
+.cstm-icon{
+	position:absolute;
+	top:0;
+	left:0;
+}
+
+	
+	.label.price_input{
+		position: relative;
+		top: 13px;
+	}
+
+	.text-center{
+		text-align: center;
+	}
+	
+	.price_input input:nth-child(1){
+		margin:3px 0 0 0 !important;
+		width: 100% !important; 
+		text-align: center;
+		//text-decoration: underline;
+		//border-bottom: 3px solid #000;
+	}
+	.price div{	
+		box-shadow: none !important;
+		min-width: 200px;
+		margin: 0 auto;
+	}
+	.price{
+		padding: 0!important;
+		background-color: transparent;
+	}
+	.price_input ion-input{
+		color: black;
+		font-size: 3rem;
+		margin: 0 5px;
+		width: 40px;
+	}
+	.price_input ion-label{
+		font-size: 3.2rem;
+		color:black!important;
+		margin-top: 15px;
+	}
+	.item-md.item-block .item-inner {
+	  	border-bottom: none;
+	  	padding-right: 0;
+	}
+	.item-md.item-input.input-has-focus .item-inner {
+		box-shadow: none;
+	}
+	.item-ios.item-block .item-inner {
+		border-bottom: none;
+		padding-right: 0;
+	}
+	.item-ios.item-input.input-has-focus .item-inner {
+		box-shadow: none;
+	}
+	.item-md.item-input.ng-valid.input-has-value:not(.input-has-focus) .item-inner {
+		box-shadow: none;
+	}
+	
+}

@@ -1,0 +1,99 @@
+<ion-header >
+  <ion-navbar color="maincolor">
+    <ion-title style="text-align: center;">S'inscrire</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content style="background-color:#fff; text-align: center;">
+  <div style="width: 100%;">
+    <!-- <ion-row>
+      <ion-col style="margin: 2vh auto;">
+        <img src="assets/img/oolaga.png" width="50%" />
+      </ion-col>
+    </ion-row> -->
+      <!-- <h6 style="color:black;margin-top: 5%;">Move,Haul,Deliver,On Demand</h6 > -->
+      <ion-row>
+        <ion-col>
+          <ion-list inset style="margin-bottom: 0px;">
+            <form [formGroup]="register">
+              <!-- <button class="cus-btn fb" ion-button> <ion-icon name="logo-facebook"></ion-icon> Facebook</button>
+              <button class="cus-btn gp" ion-button color="danger"> <ion-icon name="logo-googleplus"></ion-icon> Google Plus</button> -->
+
+              <div class="div-wrap">
+                <div class="form-name">
+                  <ion-item ion-item>
+                    <ion-label floating>Prénom</ion-label>
+                    <ion-input class="signup-input" type="text" formControlName="firstname"></ion-input>
+                  </ion-item>
+                </div>
+
+                <div class="form-last-name">
+                  <ion-item ion-item>
+                    <ion-label floating>Nom de famille</ion-label>
+                    <ion-input class="signup-input" type="text" formControlName="lastname"></ion-input>
+                  </ion-item>
+                </div>
+
+              </div>
+
+              <ion-item ion-item>
+                <ion-label floating>Email</ion-label>
+                <ion-input class="signup-input" type="text" formControlName="email"></ion-input>
+              </ion-item>
+
+              <ion-item ion-item class="dob">
+                <ion-label floating>Mot de passe</ion-label>
+                <ion-input class="signup-input" type="password" formControlName="password"></ion-input>
+              </ion-item>
+			  
+			    <ion-item ion-item class="dob">
+                <ion-label floating>Confirmer Mot de passe</ion-label>
+                <ion-input class="signup-input" type="password" formControlName="confirm"></ion-input>
+              </ion-item>
+              
+              <ion-item ion-item>
+                <ion-label floating>Numéro de mobile</ion-label>
+                <ion-input class="signup-input" type="tel" formControlName="phone"></ion-input>
+              </ion-item>
+
+              <ion-item ion-item style="padding-left: 0">
+                <ion-label floating>Date de naissance </ion-label>
+                <ion-datetime class="signup-input" class="signup-input" displayFormat="MM/DD/YYYY" formControlName="dob" >
+                </ion-datetime>
+              </ion-item>  
+
+              <ion-item ion-item class="cus-select select_p_0">
+                <ion-label class="select_label" floating>Comment avez-vous entendu parler de nous ?</ion-label>
+                <ion-select formControlName="hearDetailsFrom">
+                  <ion-option value="" selected disabled>Choisir</ion-option>
+                  <ion-option value="Le Bon Coin">Le Bon Coin</ion-option>
+                  <ion-option value="Google">Google</ion-option>
+                  <ion-option value="Instagram">Instagram</ion-option>
+                  <ion-option value="Blog">Blog</ion-option>
+                  <ion-option value="Radio">Radio</ion-option>
+                  <ion-option value="Publicite">Publicite</ion-option>
+                  <ion-option value="Facebook">Facebook</ion-option>
+                  <ion-option value="Craigslist">Craigslist</ion-option>
+				  <ion-option value="Youtube">Youtube </ion-option>
+				  <ion-option value="Pinterest">Pinterest</ion-option>
+				  <ion-option value="Twitter">Twitter</ion-option>
+				  <ion-option value="Amis">Amis</ion-option>
+				  <ion-option value="Autre">Autre</ion-option>
+		
+                </ion-select>
+              </ion-item>
+
+            </form>
+
+          </ion-list>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col class="colspace">
+          <button ion-button style="height:4rem;margin-bottom: 5px;padding-left: 10px;background-color:#1B4079;width: 90%;height: 42px;margin-top: 1px;box-shadow: none;" (click)="submit()" >S'inscrire</button>
+        </ion-col>
+      </ion-row>
+       <p style="bottom: 5px;color: #1B4079;font-size: 15px;margin: 5% auto 0;">Déjà membre ? <span style="color: #1B4079;font-weight:bold;font-size:16px" navPop> Se connecter</span></p>
+  </div>
+</ion-content>

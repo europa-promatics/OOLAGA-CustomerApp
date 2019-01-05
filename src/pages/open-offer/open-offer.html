@@ -1,0 +1,375 @@
+<ion-header>
+  <ion-navbar color="light">
+    <ion-title text-center style="margin-right: 55px;">Profile</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+		<div style="float: left;">
+			<div *ngIf="helper_data.user.image && helper_data.user.vehicle_image">
+				<img src="http://18.188.229.2/oolaga-french/public/img/helperfiles/{{helper_data.user.image}}" style="width: 60px;height: 60px;border:1px solid rgba(0,0,0,0.2);float: left;">
+			</div>
+			<div *ngIf="helper_data.user.image && !helper_data.user.vehicle_image">
+				<img src="http://18.188.229.2/oolaga-french/public/img/helperfiles/{{helper_data.user.image}}" style="width: 120px;height: 120px;border:1px solid rgba(0,0,0,0.2);float: left;">
+			</div>
+			<div *ngIf="helper_data.user.vehicle_image">
+				<img src="http://18.188.229.2/oolaga-french/public/img/helperfiles/{{helper_data.user.vehicle_image}}" style="width: 60px;height: 60px;border:1px solid rgba(0,0,0,0.2);float: left;">
+			</div>
+			<div style="float: left; width: calc(100% - 120px); height: 100px; padding: 0px 10px;">
+				<h3 style="width: 100%; float: left; margin: 0px;text-transform: initial;" *ngIf="helper_data.user.lastname">{{titleCase(helper_data.user.firstname)}} {{titleCase(helper_data.user.lastname[0].split()[0])}}</h3>
+				<button ion-button round outline color="dark" style="background:white; width:70%;float: left;height: 25px;font-size: 1rem" *ngIf="helper_data.user.helper_type==0">Helper with truck</button>
+				<button ion-button round outline color="dark" style="background:white; width:70%;float: left;height: 25px;font-size: 1rem" *ngIf="helper_data.user.helper_type==1">Jobeur</button>
+				<div style="float: left; width: 100%;height: 25px;">
+					<ion-label style="width: 100%;margin:0;font-size: 1.5rem" *ngIf="helper_data.user.average_rating!=null">
+					  	<ion-icon *ngIf="checkNumber(helper_data?.user.average_rating.overall_rating) >= 1" name="ios-star" color="primary"></ion-icon>
+					  	<ion-icon *ngIf="checkNumber(helper_data?.user.average_rating.overall_rating) < 1" name="ios-star-outline" color="primary"></ion-icon>
+					  	<ion-icon *ngIf="checkNumber(helper_data?.user.average_rating.overall_rating) >= 2" name="ios-star" color="primary"></ion-icon>
+					  	<ion-icon *ngIf="checkNumber(helper_data?.user.average_rating.overall_rating) < 2" name="ios-star-outline" color="primary"></ion-icon>
+					  	<ion-icon *ngIf="checkNumber(helper_data?.user.average_rating.overall_rating) >= 3" name="ios-star" color="primary"></ion-icon>
+					  	<ion-icon *ngIf="checkNumber(helper_data?.user.average_rating.overall_rating) < 3" name="ios-star-outline" color="primary"></ion-icon>
+					  	<ion-icon *ngIf="checkNumber(helper_data?.user.average_rating.overall_rating) >= 4" name="ios-star" color="primary"></ion-icon>
+					  	<ion-icon *ngIf="checkNumber(helper_data?.user.average_rating.overall_rating) < 4" name="ios-star-outline" color="primary"></ion-icon>
+					  	<ion-icon *ngIf="checkNumber(helper_data?.user.average_rating.overall_rating) >= 5" name="ios-star" color="primary"></ion-icon>
+					  	<ion-icon *ngIf="checkNumber(helper_data?.user.average_rating.overall_rating) < 5" name="ios-star-outline" color="primary"></ion-icon>
+					  	<!-- (15 Review) -->
+					</ion-label>
+					<ion-label style="width: 100%;margin:0;font-size: 1.5rem" *ngIf="helper_data.user.average_rating==null">
+					  	<ion-icon name="ios-star-outline" color="primary"></ion-icon>
+					  	<ion-icon name="ios-star-outline" color="primary"></ion-icon>
+					  	<ion-icon name="ios-star-outline" color="primary"></ion-icon>
+					  	<ion-icon name="ios-star-outline" color="primary"></ion-icon>
+					  	<ion-icon name="ios-star-outline" color="primary"></ion-icon>
+					  	<!-- (15 Review) -->
+					</ion-label>
+				</div>
+				<div style="float: left; width: 100%;height: 25px;">
+					<div style="float: left;">
+						<ion-label no-margin style="width: 100%;font-size: 1rem;color:#555">
+							Offer
+						</ion-label>
+						<ion-label style="width: 100%;margin:0;font-size: 1.7rem;color:#004574" >
+							${{helper_data.bid_amount}}
+						</ion-label>
+					</div>
+					<button style="float: right;font-size: 1.2rem;padding: 0px 10px;height: 30px;" ion-button round color="orange_color" (click)="submit(helper_data.id)">ACCEPT OFFER</button>
+				</div>
+			</div>
+		</div>
+		<ion-label text-wrap style="float:left;padding:10px 0;width: 100%;text-align: center;">
+			<div style="float: left; width: 33%">
+				<ion-label no-margin style="width: 100%;font-size: 1.3rem;color:#555">Punchuality</ion-label>
+				<ion-label style="width: 100%;margin:0;font-size: 1.3rem;color:#004574" *ngIf="helper_data.user.average_rating!=null">
+				  	<ion-icon *ngIf="checkNumber(helper_data?.user.average_rating.average_punchuality) >= 1" name="ios-star"></ion-icon>
+				  	<ion-icon *ngIf="checkNumber(helper_data?.user.average_rating.average_punchuality) < 1" name="ios-star-outline"></ion-icon>
+				  	<ion-icon *ngIf="checkNumber(helper_data?.user.average_rating.average_punchuality) >= 2" name="ios-star"></ion-icon>
+				  	<ion-icon *ngIf="checkNumber(helper_data?.user.average_rating.average_punchuality) < 2" name="ios-star-outline"></ion-icon>
+				  	<ion-icon *ngIf="checkNumber(helper_data?.user.average_rating.average_punchuality) >= 3" name="ios-star"></ion-icon>
+				  	<ion-icon *ngIf="checkNumber(helper_data?.user.average_rating.average_punchuality) < 3" name="ios-star-outline"></ion-icon>
+				  	<ion-icon *ngIf="checkNumber(helper_data?.user.average_rating.average_punchuality) >= 4" name="ios-star"></ion-icon>
+				  	<ion-icon *ngIf="checkNumber(helper_data?.user.average_rating.average_punchuality) < 4" name="ios-star-outline"></ion-icon>
+				  	<ion-icon *ngIf="checkNumber(helper_data?.user.average_rating.average_punchuality) >= 5" name="ios-star"></ion-icon>
+				  	<ion-icon *ngIf="checkNumber(helper_data?.user.average_rating.average_punchuality) < 5" name="ios-star-outline"></ion-icon>
+				</ion-label>
+				<ion-label style="width: 100%;margin:0;font-size: 1.5rem" *ngIf="helper_data.user.average_rating==null">
+					  	<ion-icon name="ios-star-outline" color="primary"></ion-icon>
+					  	<ion-icon name="ios-star-outline" color="primary"></ion-icon>
+					  	<ion-icon name="ios-star-outline" color="primary"></ion-icon>
+					  	<ion-icon name="ios-star-outline" color="primary"></ion-icon>
+					  	<ion-icon name="ios-star-outline" color="primary"></ion-icon>
+					  	<!-- (15 Review) -->
+					</ion-label>
+			</div>
+			<div style="float: left; width: 33%">
+				<ion-label no-margin style="width: 100%;font-size: 1.3rem;color:#555">Friendliness</ion-label>
+				<ion-label style="width: 100%;margin:0;font-size: 1.3rem;color:#004574" *ngIf="helper_data.user.average_rating!=null">
+				  	<ion-icon *ngIf="checkNumber(helper_data?.user.average_rating.average_friendliness) >= 1" name="ios-star"></ion-icon>
+				  	<ion-icon *ngIf="checkNumber(helper_data?.user.average_rating.average_friendliness) < 1" name="ios-star-outline"></ion-icon>
+				  	<ion-icon *ngIf="checkNumber(helper_data?.user.average_rating.average_friendliness) >= 2" name="ios-star"></ion-icon>
+				  	<ion-icon *ngIf="checkNumber(helper_data?.user.average_rating.average_friendliness) < 2" name="ios-star-outline"></ion-icon>
+				  	<ion-icon *ngIf="checkNumber(helper_data?.user.average_rating.average_friendliness) >= 3" name="ios-star"></ion-icon>
+				  	<ion-icon *ngIf="checkNumber(helper_data?.user.average_rating.average_friendliness) < 3" name="ios-star-outline"></ion-icon>
+				  	<ion-icon *ngIf="checkNumber(helper_data?.user.average_rating.average_friendliness) >= 4" name="ios-star"></ion-icon>
+				  	<ion-icon *ngIf="checkNumber(helper_data?.user.average_rating.average_friendliness) < 4" name="ios-star-outline"></ion-icon>
+				  	<ion-icon *ngIf="checkNumber(helper_data?.user.average_rating.average_friendliness) >= 5" name="ios-star"></ion-icon>
+				  	<ion-icon *ngIf="checkNumber(helper_data?.user.average_rating.average_friendliness) < 5" name="ios-star-outline"></ion-icon>
+				</ion-label>
+				<ion-label style="width: 100%;margin:0;font-size: 1.5rem" *ngIf="helper_data.user.average_rating==null">
+					  	<ion-icon name="ios-star-outline" color="primary"></ion-icon>
+					  	<ion-icon name="ios-star-outline" color="primary"></ion-icon>
+					  	<ion-icon name="ios-star-outline" color="primary"></ion-icon>
+					  	<ion-icon name="ios-star-outline" color="primary"></ion-icon>
+					  	<ion-icon name="ios-star-outline" color="primary"></ion-icon>
+					  	<!-- (15 Review) -->
+					</ion-label>
+			</div>
+			<div style="float: left; width: 33%">
+				<ion-label no-margin style="width: 100%;font-size: 1.3rem;color:#555">Preparedness</ion-label>
+				<ion-label style="width: 100%;margin:0;font-size: 1.3rem;color:#004574" *ngIf="helper_data.user.average_rating!=null">
+				  	<ion-icon *ngIf="checkNumber(helper_data?.user.average_rating.average_prepardness) >= 1" name="ios-star"></ion-icon>
+				  	<ion-icon *ngIf="checkNumber(helper_data?.user.average_rating.average_prepardness) < 1" name="ios-star-outline"></ion-icon>
+				  	<ion-icon *ngIf="checkNumber(helper_data?.user.average_rating.average_prepardness) >= 2" name="ios-star"></ion-icon>
+				  	<ion-icon *ngIf="checkNumber(helper_data?.user.average_rating.average_prepardness) < 2" name="ios-star-outline"></ion-icon>
+				  	<ion-icon *ngIf="checkNumber(helper_data?.user.average_rating.average_prepardness) >= 3" name="ios-star"></ion-icon>
+				  	<ion-icon *ngIf="checkNumber(helper_data?.user.average_rating.average_prepardness) < 3" name="ios-star-outline"></ion-icon>
+				  	<ion-icon *ngIf="checkNumber(helper_data?.user.average_rating.average_prepardness) >= 4" name="ios-star"></ion-icon>
+				  	<ion-icon *ngIf="checkNumber(helper_data?.user.average_rating.average_prepardness) < 4" name="ios-star-outline"></ion-icon>
+				  	<ion-icon *ngIf="checkNumber(helper_data?.user.average_rating.average_prepardness) >= 5" name="ios-star"></ion-icon>
+				  	<ion-icon *ngIf="checkNumber(helper_data?.user.average_rating.average_prepardness) < 5" name="ios-star-outline"></ion-icon>
+				</ion-label>
+				<ion-label style="width: 100%;margin:0;font-size: 1.5rem" *ngIf="helper_data.user.average_rating==null">
+					  	<ion-icon name="ios-star-outline" color="primary"></ion-icon>
+					  	<ion-icon name="ios-star-outline" color="primary"></ion-icon>
+					  	<ion-icon name="ios-star-outline" color="primary"></ion-icon>
+					  	<ion-icon name="ios-star-outline" color="primary"></ion-icon>
+					  	<ion-icon name="ios-star-outline" color="primary"></ion-icon>
+					  	<!-- (15 Review) -->
+					</ion-label>
+			</div>
+		</ion-label>
+		<div padding style="background:#fff;float:left;border:1px solid rgba(0,0,0,0.1);width: 100%;">
+		<table style="width: 100%">
+			<tbody style="width: 100%; text-align:center;">
+				<tr style="width: 100%;font-size: 1rem;color: #555 "> 
+					<td style="width: 37%">Vehicle</td>
+					<td style="width: 25%">Color</td>
+					<td style="width: 38%">Total Oolagas</td>
+					
+				</tr>
+				<tr style="width: 100% ; font-weight: bold;margin-top: 10px;">
+					<td style="width: 37%">{{helper_data.user.vehicle_type}}</td>
+					<td style="width: 25%" *ngIf="helper_data.user.vehicle_color">{{helper_data.user.vehicle_color}}</td>
+					<td style="width: 25%" *ngIf="!helper_data.user.vehicle_color">/</td>
+					<td style="text-transform: uppercase;width: 38%;" *ngIf="helper_data.total_oolagas">{{helper_data.total_oolagas}}</td>
+					<td style="text-transform: uppercase;width: 38%;" *ngIf="!helper_data.total_oolagas">0</td>
+					
+				</tr>
+			</tbody>
+		</table>
+		</div>
+		<div style="padding:0 15px 15px 15px;float: left;width: 100%;">
+		<ion-label no-margin style="margin: 3px 0;text-align: center;">Recent Review</ion-label>
+		<div *ngFor="let review of helper_data.user.recent_ratings" style="float:left;background: #fff;border: 1px solid rgba(0, 0, 0, 0.2);margin-bottom: 15px;width: 100%;">
+			<div *ngIf="review.customer">
+				
+				<img src="{{env}}/public/frontend/img/profile/{{review.customer.image}}" style="float:left;width: 70px;height: 70px;padding: 5px;border-radius: 50%;">
+				<div style="float:left;width: calc(100% - 70px);padding: 5px;">
+					<div style="width: 100%;float: left;">
+						<ion-label no-margin style="width: 70%;float: left;font-weight: 600">{{review.customer.firstname}} {{getLastName(review.customer.lastname)}}</ion-label>
+					</div>
+					<ion-label style="width: 100%;margin:0;font-size: 0.8rem" > 
+				  		<ion-icon *ngIf="((review.punchuality + review.friendliness + review.prepardness)/3) >= 1" name="ios-star"></ion-icon>
+					  	<ion-icon *ngIf="((review.punchuality + review.friendliness + review.prepardness)/3) < 1" name="ios-star-outline"></ion-icon>
+					  	<ion-icon *ngIf="((review.punchuality + review.friendliness + review.prepardness)/3) >= 2" name="ios-star"></ion-icon>
+					  	<ion-icon *ngIf="((review.punchuality + review.friendliness + review.prepardness)/3) < 2" name="ios-star-outline"></ion-icon>
+					  	<ion-icon *ngIf="((review.punchuality + review.friendliness + review.prepardness)/3) >= 3" name="ios-star"></ion-icon>
+					  	<ion-icon *ngIf="((review.punchuality + review.friendliness + review.prepardness)/3) < 3" name="ios-star-outline"></ion-icon>
+					  	<ion-icon *ngIf="((review.punchuality + review.friendliness + review.prepardness)/3) >= 4" name="ios-star"></ion-icon>
+					  	<ion-icon *ngIf="((review.punchuality + review.friendliness + review.prepardness)/3) < 4" name="ios-star-outline"></ion-icon>
+					  	<ion-icon *ngIf="((review.punchuality + review.friendliness + review.prepardness)/3) >= 5" name="ios-star"></ion-icon>
+					  	<ion-icon *ngIf="((review.punchuality + review.friendliness + review.prepardness)/3) < 5" name="ios-star-outline"></ion-icon>
+					</ion-label>
+					<div style="float: left; width: 33%;height: 25px;">
+						<ion-label no-margin style="width: 100%;font-size: 1rem;">Punchuality</ion-label>
+						<ion-label style="width: 100%;margin:0;font-size: 0.8rem" >
+						  	<ion-icon *ngIf="review.punchuality >= 1" name="ios-star"></ion-icon>
+						  	<ion-icon *ngIf="review.punchuality < 1" name="ios-star-outline"></ion-icon>
+						  	<ion-icon *ngIf="review.punchuality >= 2" name="ios-star"></ion-icon>
+						  	<ion-icon *ngIf="review.punchuality < 2" name="ios-star-outline"></ion-icon>
+						  	<ion-icon *ngIf="review.punchuality >= 3" name="ios-star"></ion-icon>
+						  	<ion-icon *ngIf="review.punchuality < 3" name="ios-star-outline"></ion-icon>
+						  	<ion-icon *ngIf="review.punchuality >= 4" name="ios-star"></ion-icon>
+						  	<ion-icon *ngIf="review.punchuality < 4" name="ios-star-outline"></ion-icon>
+						  	<ion-icon *ngIf="review.punchuality >= 5" name="ios-star"></ion-icon>
+						  	<ion-icon *ngIf="review.punchuality < 5" name="ios-star-outline"></ion-icon>
+						</ion-label>
+					</div>
+					<div style="float: left; width: 33%;height: 25px;">
+					<ion-label no-margin style="width: 100%;font-size: 1rem;">Friendliness</ion-label>
+						<ion-label style="width: 100%;margin:0;font-size: 0.8rem" >
+						  	<ion-icon *ngIf="review.friendliness >= 1" name="ios-star"></ion-icon>
+						  	<ion-icon *ngIf="review.friendliness < 1" name="ios-star-outline"></ion-icon>
+						  	<ion-icon *ngIf="review.friendliness >= 2" name="ios-star"></ion-icon>
+						  	<ion-icon *ngIf="review.friendliness < 2" name="ios-star-outline"></ion-icon>
+						  	<ion-icon *ngIf="review.friendliness >= 3" name="ios-star"></ion-icon>
+						  	<ion-icon *ngIf="review.friendliness < 3" name="ios-star-outline"></ion-icon>
+						  	<ion-icon *ngIf="review.friendliness >= 4" name="ios-star"></ion-icon>
+						  	<ion-icon *ngIf="review.friendliness < 4" name="ios-star-outline"></ion-icon>
+						  	<ion-icon *ngIf="review.friendliness >= 5" name="ios-star"></ion-icon>
+						  	<ion-icon *ngIf="review.friendliness < 5" name="ios-star-outline"></ion-icon>
+						</ion-label>
+					</div>
+					<div style="float: left; width: 33%;height: 25px;">
+						<ion-label no-margin style="width: 100%;font-size: 1rem;">Preparedness</ion-label>
+						<ion-label style="width: 100%;margin:0;font-size: 0.8rem" >
+						  	<ion-icon *ngIf="review.prepardness >= 1" name="ios-star"></ion-icon>
+						  	<ion-icon *ngIf="review.prepardness < 1" name="ios-star-outline"></ion-icon>
+						  	<ion-icon *ngIf="review.prepardness >= 2" name="ios-star"></ion-icon>
+						  	<ion-icon *ngIf="review.prepardness < 2" name="ios-star-outline"></ion-icon>
+						  	<ion-icon *ngIf="review.prepardness >= 3" name="ios-star"></ion-icon>
+						  	<ion-icon *ngIf="review.prepardness < 3" name="ios-star-outline"></ion-icon>
+						  	<ion-icon *ngIf="review.prepardness >= 4" name="ios-star"></ion-icon>
+						  	<ion-icon *ngIf="review.prepardness < 4" name="ios-star-outline"></ion-icon>
+						  	<ion-icon *ngIf="review.prepardness >= 5" name="ios-star"></ion-icon>
+						  	<ion-icon *ngIf="review.prepardness < 5" name="ios-star-outline"></ion-icon>
+						</ion-label>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- <div style="float:left;background: #fff;border: 1px solid rgba(0, 0, 0, 0.2);margin-bottom: 15px;width: 100%;">
+			<img src="{{env}}/public/frontend/img/profile/{{helper_data.user.image}}" style="float:left;width: 70px;height: 70px;padding: 5px;border-radius: 50%;">
+			<div style="float:left;width: calc(100% - 70px);padding: 5px;">
+				<div style="width: 100%;float: left;">
+					<ion-label no-margin style="width: 70%;float: left;font-weight: 600">Helper name</ion-label>
+				</div>
+				<ion-label style="width: 100%;margin:0;font-size: 0.8rem" >
+				  	<ion-icon name="ios-star" color="primary"></ion-icon>
+				  	<ion-icon name="ios-star" color="primary"></ion-icon>
+				  	<ion-icon name="ios-star" color="primary"></ion-icon>
+				  	<ion-icon name="ios-star" color="primary"></ion-icon>
+				  	<ion-icon name="ios-star" color="primary"></ion-icon>
+				</ion-label>
+				<div style="float: left; width: 33%;height: 25px;">
+					<ion-label no-margin style="width: 100%;font-size: 1rem;">Punchuality</ion-label>
+					<ion-label style="width: 100%;margin:0;font-size: 0.8rem" >
+					  	<ion-icon name="ios-star"></ion-icon>
+					  	<ion-icon name="ios-star"></ion-icon>
+					  	<ion-icon name="ios-star"></ion-icon>
+					  	<ion-icon name="ios-star"></ion-icon>
+					  	<ion-icon name="ios-star"></ion-icon>
+					</ion-label>
+				</div>
+				<div style="float: left; width: 33%;height: 25px;">
+				<ion-label no-margin style="width: 100%;font-size: 1rem;">Friendliness</ion-label>
+					<ion-label style="width: 100%;margin:0;font-size: 0.8rem" >
+					  	<ion-icon name="ios-star"></ion-icon>
+					  	<ion-icon name="ios-star"></ion-icon>
+					  	<ion-icon name="ios-star"></ion-icon>
+					  	<ion-icon name="ios-star"></ion-icon>
+					  	<ion-icon name="ios-star"></ion-icon>
+					</ion-label>
+				</div>
+				<div style="float: left; width: 33%;height: 25px;">
+					<ion-label no-margin style="width: 100%;font-size: 1rem;">Preparedness</ion-label>
+					<ion-label style="width: 100%;margin:0;font-size: 0.8rem" >
+					  	<ion-icon name="ios-star"></ion-icon>
+					  	<ion-icon name="ios-star"></ion-icon>
+					  	<ion-icon name="ios-star"></ion-icon>
+					  	<ion-icon name="ios-star"></ion-icon>
+					  	<ion-icon name="ios-star"></ion-icon>
+					</ion-label>
+				</div>
+			</div>
+		</div> -->
+		</div>
+	<!-- <div style="width:100%;float: left;">
+		<div style="width: 120px;border: 1px solid #999;float: left;">
+			<img src="{{env}}/public/frontend/img/profile/{{helper_data.user.image}}" style="width: 100%;height:120px;filter: blur(2px);">
+		</div>
+		<div style="width: calc(100% - 120px);padding: 0 5px;float: left;">
+			<ion-label style="margin:5px;text-transform: capitalize;font-size: 2rem;font-weight: bold;float: left;width: 100%" no-margin color="maincolor">{{helper_data.user.firstname}} {{helper_data.user.lastname[0]}}</ion-label>
+			<div style="border:1px solid #999;margin:0 5px;padding: 2px 5px;font-size: 1rem;float: left;background: #fff;border-radius: 10px;">Muscle with Truck</div>
+			<ion-label no-margin color="maincolor" style="margin:5px;font-size: 1.5rem;float: left;width: 100%">
+				<ion-icon name="md-star" color="maincolor"></ion-icon>
+				<ion-icon name="md-star" color="maincolor"></ion-icon>
+				<ion-icon name="md-star" color="maincolor"></ion-icon>
+				<ion-icon name="md-star" color="maincolor"></ion-icon>
+				<ion-icon name="md-star" color="maincolor"></ion-icon>
+				<span style="float: right;font-size: 0.8rem;margin-top: -20px;">(15 reviews)</span>
+			</ion-label>
+			<div style="width: 100%;float: left;">
+				<div style="width: 50%;float: left;">
+					<ion-label no-margin style="margin:0;font-size: 1.5rem;color: #E9621F;">
+					<span style="color: #999;font-size: 0.8rem;">Offer</span><br />
+					${{helper_data.bid_amount}}
+					</ion-label>
+				</div>
+				<div style="width: 50%;float: left;">
+					<div style="background: #e9621f none repeat scroll 0 0;border-radius: 10px;color: #fff;float: left;font-size: 1.1rem;height: 22px;padding: 3px 5px;">ACCEPT OFFER</div>
+				</div>
+			</div>
+		</div>
+		<div style="width: 100%;padding: 10px;flex: 1;">
+			<div style="height: 20px;">
+				
+			</div>
+			<div style="height: 20px;">
+				
+			</div>
+			<div style="height: 20px;">
+				
+			</div>
+		</div>
+	</div> -->
+	<!-- <div padding style="width: 100%;float: left;text-align: center;" *ngIf="helper_data">
+		<button ion-button round color="maincolor" style="width:80px;float:left;padding: 0 15px;font-size: 1rem;text-transform: none;height: 25px;">Available</button>
+		<img src="{{env}}/public/frontend/img/profile/{{helper_data.user.image}}" style="background-color: #ddd;border-radius: 50%;overflow: hidden;width: 100px;height: 100px;">
+		<ion-label style="width:80px;margin:5px 0 0 0;font-size: 2rem;float:right;" color="maincolor" >${{helper_data.bid_amount}}</ion-label>
+		<ion-label style="width: 100%;float: left;">{{helper_data.user.firstname}} {{helper_data.user.lastname}}</ion-label>
+		<div style="width: 100%;float: left;text-align: center;">
+			<ion-label no-margin color="maincolor" style="font-size: 2rem;">
+				<ion-icon name="md-star" color="orange_color"></ion-icon>
+				<ion-icon name="md-star" color="orange_color"></ion-icon>
+				<ion-icon name="md-star" color="orange_color"></ion-icon>
+				<ion-icon name="md-star" color="orange_color"></ion-icon>
+				<ion-icon name="md-star" color="orange_color"></ion-icon>
+			</ion-label>
+			<span style="float: right;font-size: 1rem;margin-top: -20px;">(15 reviews)</span>
+		</div>
+		<div style="width: 100%;float: left;display: block;">
+			<button ion-button round outline item-left>Hiking</button>
+			<button ion-button round outline item-left>Reading</button>
+			<button ion-button round outline item-left>Riding</button>
+			<button ion-button round outline item-left>+3</button>
+		</div>
+		<button ion-button round color="orange_color" style="width: 30%;display: block;margin-left: 35%" (click)="submit(helper_data.id)">HIRE</button>
+	</div>
+	<div style="width: 100%;height: auto;float: left;">
+    <ion-segment [(ngModel)]="option" color="maincolor">
+      <ion-segment-button value="about">
+      	<ion-label no-margin>about</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="feedback">
+      	<ion-label no-margin>feedback</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+	</div>
+	<div padding style="width: 100%;height:auto;float: left;background-color: #fff">
+		<div [ngSwitch]="option">
+		  <ion-list *ngSwitchCase="'about'" style="font-size: 1rem;">
+		    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+		    tempor incididunt ut labore et dolore magna aliqua. Uvoluptate velit esse
+		    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+		    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+		    <br>
+		    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+		    tempor incididunt ut labore et dolore magna aliqua.nt occaecat cupidatat non
+		    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+		  </ion-list>
+
+		  <ion-list *ngSwitchCase="'feedback'" style="width: 100%;float: left;">
+
+		    <div *ngIf="feedback" style="margin-bottom:10px;width: 100%;padding:10px; background-color: #fff;border:1px solid rgba(0,0,0,0.2);float: left;box-shadow: 0 0 5px 0 rgba(0,0,0,0.2)">
+		    	<img src="" style="background-color: #ddd;height:70px;width: 70px;border-radius: 50%;float: left; ">
+		    	<div style="width:calc(100% - 70px);height: 70px;padding: 10px;float: left;">
+		    		<div style="width: 100%;float: left;text-align: center;">
+							<ion-label no-margin color="maincolor" style="text-align:left;width:100%;font-size: 1.5rem;float: left;">
+								<ion-icon name="md-star" color="orange_color"></ion-icon>
+								<ion-icon name="md-star" color="orange_color"></ion-icon>
+								<ion-icon name="md-star" color="orange_color"></ion-icon>
+								<ion-icon name="md-star" color="orange_color"></ion-icon>
+								<ion-icon name="md-star" color="orange_color"></ion-icon>
+							</ion-label>
+							<ion-label no-margin style="width:100%;font-size: 1rem;">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim ve</ion-label>
+							<ion-label no-margin style="font-size: 1.5rem;float: right;text-align: right;">asd asd</ion-label>
+						</div>
+		    	</div>
+		    </div>
+		    <div *ngIf="!feedback" style="width: 100%;padding-top: 20px;">
+		    	<ion-label style="margin: 0 auto;color:#000">No Feedback...</ion-label>
+		    </div>
+		  </ion-list>
+		</div>
+	</div> -->
+</ion-content>

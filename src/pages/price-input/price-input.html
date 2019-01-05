@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-navbar color="maincolor">
+    <ion-title style="text-align: center;">Step 5 of 5</ion-title>
+      <ion-buttons end>
+        <button ion-button style="min-width: 44px;text-transform: none;" (click)="help()">
+          Help
+        </button>
+      </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content padding style="text-align: center;background-color: #f7f7f7;" >
+
+<ion-label style="font-size: 2rem;font-weight: bold;margin: 20px 0 10px;">Enter your price</ion-label>
+
+<ion-item class="price" no-lines style="font-size: 5rem;font-weight: bold;">
+	<ion-input class="price_input" value='$00'  style="color:#1B4079"></ion-input>
+</ion-item>
+
+<ion-label style="margin: 20px 0 10px;opacity: 0.8;" color="maincolor">Price cannot be less then $25</ion-label>
+
+<div style="float: left;text-align: center;width: 100%;display: flex;">
+	<hr style="float: left;width: 40%;align-self: center;background-color:rgba(0,0,0,0.2)">
+		<span style="float: left;font-size: 2.5rem;width: 20%;align-self: center;color: rgba(0,0,0,0.6)">
+			or
+		</span>
+	<hr style="float: right;width: 40%;align-self: center;background-color:rgba(0,0,0,0.2)">
+</div>
+
+<ion-label style="font-size: 2rem;font-weight: bold;margin: 15px 0 10px;display: inline-block;">Set a price range</ion-label>
+
+<ion-item class="price" no-lines style="font-size: 5rem;font-weight: bold;">
+	<ion-input class="price_input" value='$00'  style="color:#1B4079"></ion-input>
+</ion-item>
+
+<span style="font-size: 2.5rem;width: 20%;color: rgba(0,0,0,0.6)">
+			to
+</span>
+
+<ion-item class="price" no-lines style="margin-top:10px;font-size: 5rem;font-weight: bold;">
+	<ion-input class="price_input" value='$00'  style="color:#1B4079"></ion-input>
+</ion-item>
+
+</ion-content>
+<ion-footer style="background-color:#EAEAEA;border-top: 1px solid rgba(0,0,0,0.2);">
+  <button text-left ion-button clear style="font-weight: 600;color:#555;text-align:left;float: left;" (click)="submit(0)">
+   <ion-icon name="ios-arrow-back" style="margin-right: 10px;"></ion-icon> Back
+  </button>
+  <button text-right ion-button clear style="font-weight: 600;color:#555;text-align: right;float: right;" (click)="submit(1)">
+    Save & Continue <ion-icon name="ios-arrow-forward" style="margin-left: 10px;"></ion-icon>
+  </button>
+</ion-footer>

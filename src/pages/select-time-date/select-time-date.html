@@ -1,0 +1,143 @@
+<ion-header>
+  	<ion-navbar color="maincolor">
+       <ion-title style="text-align: center" *ngIf='appProvider.current.service_id!=7'>Étape 5 sur 6</ion-title>
+       <ion-title style="text-align: center" *ngIf='appProvider.current.service_id==7'>Étape 2 sur 3</ion-title>
+     <ion-buttons end>
+      <button ion-button (click)="help()" style="min-width: 44px;text-transform: none;">
+        Aide
+      </button>
+    </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+<ion-content style="text-align: center;background-color: #fff;color: #1B4079">
+	   
+    <p style="font-weight: 600;font-size: 1.7rem;margin: 20px;">CHOISIR LA DATE ET L’HEURE</p>
+    <ion-card>
+
+      <ion-card-header style="text-align:center;background-color:#1B4079;height: 30px;padding-top: 5px;">
+          <!-- <ion-icon name="ios-arrow-back-outline" style="color:#fff;float: left;width: 20px;" ></ion-icon> -->
+            <div style="font-weight: bold; color:#fff;width: 100%;float: left;margin:0 auto;text-align: center; ">
+              {{viewTitle}}
+            </div>
+          <!-- <ion-icon name="ios-arrow-forward-outline" style="color:#fff;float: right;width: 20px;"></ion-icon> -->
+      </ion-card-header>
+
+      <ion-card-content class="my_calendar">
+        <calendar 
+				  [eventSource]="eventSource"
+                  [calendarMode]="calendar.mode"
+				  [startingDayWeek]="1"
+				  [startingDayMonth]="1"
+                  [currentDate]="calendar.currentDate"
+                  (onCurrentDateChanged)="onCurrentDateChanged($event)"
+                  (onEventSelected)="onEventSelected($event)"
+                  (onTitleChanged)="onViewTitleChanged($event)"
+                  (onTimeSelected)="onTimeSelected($event)"
+                  step="30">
+        </calendar>
+      </ion-card-content>
+
+    </ion-card>
+    <p style="width: auto;margin:20px auto;color:black;font-weight: 600;">Votre Helper arrivera sur le lieu de collection<br />à la date et à l’heure sélectionnée</p>
+	<p style="width: auto;margin:20px auto;color:red;font-weight: 600;word-break:break-all;">Nos Helpers sont uniquement disponibles durant<br />la plage horaire allant de 7h00 à 20h00</p>
+     <p style="width: 100%;color: black;font-size: 1.3rem;font-weight: 600;text-align: center;">Choisissez votre premier horaire possible</p>
+	<ion-item no-lines style="width: 100%;float: left;">
+     
+      <ion-datetime (ionChange)="checktime(0)" style="border: 1px solid #5394d8;border-radius: 25px;font-size: 1.5rem;font-weight: 600;padding: 11px 14px;width: 100%;" doneText="Terminé" cancelText="Annuler" displayFormat="HH:mm" pickerFormat="HH:mm" minuteValues="0,5,10,15,20,25,30,35,40,45,50,55" hourValues="07,08,09,10,11,12,13,14,15,16,17,18, 19, 20" [(ngModel)]="firsttime">
+          <div class="datetime-text">{{firsttime}}</div>
+      </ion-datetime>
+	  
+    </ion-item>
+    <!-- <div style="float: left;width: 100%;padding: 0 16px;font-weight: 600;position: relative;">
+      <p style="float: left;width: 59%;color: black;">First available start time</p>
+      <button ion-button round outline style="border:1px solid rgba(27,64,121,0.3);font-weight: 600;font-size:1rem;float: right;width: 39%;" (click)="show_first_time($event)">
+        <div *ngIf="firsttime != 'SELECT A TIME'" >
+          {{firsttime}}
+        </div>
+        <div *ngIf="firsttime == 'SELECT A TIME'">
+          SELECT A TIME
+        </div>
+      </button>
+
+      <div class="time_option" *ngIf="enabletimediv" (click)="ondiv()">
+        <div class="selected_time">
+          <div class="left_div" [class.active]="!am_pm" (click)="am_pm=!am_pm"><span>AM</span></div>
+          <div class="right_div" [class.active]="am_pm" (click)="am_pm=!am_pm"><span>PM</span></div>
+        </div>
+        <div class="time_selection">
+          <div>
+            <ion-icon name="ios-arrow-up" (click)="hh=up(hh,0)"></ion-icon>
+            <span style="color:#aaa;display: block;font-size: 0.8rem">H</span>
+            <span class="hm_color">{{hh}}</span>
+            <ion-icon name="ios-arrow-down" (click)="hh=down(hh,0)"></ion-icon>
+          </div>
+          <div>
+            <ion-icon name="ios-arrow-up" (click)="mm=up(mm,1)"></ion-icon>
+            <span style="color:#aaa;display: block;font-size: 0.8rem">M</span>
+            <span class="hm_color">{{mm}}</span>
+            <ion-icon name="ios-arrow-down" (click)="mm=down(mm,1)"></ion-icon>
+          </div>
+        </div>
+      </div>
+
+    </div> -->
+	<p *ngIf="showlast" style="width: 100%;color: black;font-size: 1.3rem;font-weight: 600;text-align: center;margin-top:75px">Choisissez votre dernier horaire possible</p>  
+    <div *ngIf="showlast" style="float:left;width: 100%;padding: 0 0;font-weight: 600;position: relative;">
+  
+	 <ion-item no-lines style="width: 100%;margin-top: 10px;">
+      
+        <ion-datetime (ionChange)="checktime(1)" style="border: 1px solid #5394d8;border-radius: 25px;font-size: 1.5rem;font-weight: 600;padding: 11px 14px;width: 100%;" displayFormat="HH:mm" doneText="Terminé" cancelText="Annuler" pickerFormat="HH:mm" minuteValues="0,5,10,15,20,25,30,35,40,45,50,55" [(ngModel)]="lasttime"  hourValues="07,08,09,10,11,12,13,14,15,16,17,18, 19, 20">
+        </ion-datetime>
+      </ion-item>
+      <!-- <p style="float: left;width: 59%;color: black;">Last available start time</p>
+      <button ion-button round outline style="border:1px solid rgba(27,64,121,0.3);font-weight: 600;font-size:1rem;float: right;width: 39%;" (click)="show_last_time($event)">
+        <div *ngIf="lasttime != 'SELECT A TIME'" >
+          {{lasttime}}
+        </div>
+        <div *ngIf="lasttime == 'SELECT A TIME'">
+          SELECT A TIME
+        </div>
+      </button> -->
+      <!-- <div class="time_option" >
+        <div class="selected_time">
+          <div class="left_div" [class.active]="!am_pm" (click)="am_pm=!am_pm"><span>AM</span></div>
+          <div class="right_div" [class.active]="am_pm" (click)="am_pm=!am_pm"><span>PM</span></div>
+        </div>
+        <div class="time_selection">
+          <div>
+            <ion-icon name="ios-arrow-up" (click)="hh=up(hh,0)"></ion-icon>
+            <span style="color:#aaa;display: block;font-size: 0.8rem">H</span>
+            <span class="hm_color">{{hh}}</span>
+            <ion-icon name="ios-arrow-down" (click)="hh=down(hh,0)"></ion-icon>
+          </div>
+          <div>
+            <ion-icon name="ios-arrow-up" (click)="mm=up(mm,1)"></ion-icon>
+            <span style="color:#aaa;display: block;font-size: 0.8rem">M</span>
+            <span class="hm_color">{{mm}}</span>
+            <ion-icon name="ios-arrow-down" (click)="mm=down(mm,1)"></ion-icon>
+          </div>
+        </div>
+      </div> -->
+    </div>
+    <!-- <div padding>
+  		<ion-item no-lines margin-bottom style="width: 100%;float: left;border:1px solid #999">
+  		  	<ion-label>Date</ion-label>
+  		  	<ion-datetime placeholder="Select Date" displayFormat="MM/DD/YYYY" pickerFormat="MM/DD/YYYY" min="{{yyyy}}" max="2025-12-30" [(ngModel)]="myDate"></ion-datetime>
+  		</ion-item>
+  		<ion-item no-lines margin-bottom style="width: 100%;float: left;border:1px solid #999">
+  		  	<ion-label>Time</ion-label>
+  		  	<ion-datetime placeholder="Select Time" displayFormat="hh/mm/A" [(ngModel)]="myTime"></ion-datetime>
+  		</ion-item>
+  	</div> -->
+    <button ion-button round outline color="orange_color" style="text-transform: none;width: 60%;margin: 10px auto;font-weight: 600;" (click)="flexable()" ><span *ngIf="showlast">Choisir un horaire unique</span><span *ngIf!="showlast">Je suis flexible</span></button>
+</ion-content>
+
+<ion-footer style="background-color:#EAEAEA;border-top: 1px solid rgba(0,0,0,0.2);">
+  <button text-left ion-button clear style="font-weight: 600;color:#555;text-align:left;float: left;" (click)="submit(0)">
+   <ion-icon name="ios-arrow-back" style="margin-right: 10px;"></ion-icon> Retour
+  </button>
+  <button text-right ion-button clear style="font-weight: 600;color:#555;text-align: right;float: right;" (click)="submit(1)">
+   Suivant <ion-icon name="ios-arrow-forward" style="margin-left: 10px;"></ion-icon>
+  </button>
+</ion-footer>

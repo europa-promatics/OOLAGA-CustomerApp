@@ -1,0 +1,27 @@
+page-oolaga-payment {
+	.circle{
+		width: 230px;
+		height: 230px;
+		border-radius: 50%;
+		background-color: #062b64;
+		margin: 50px auto;
+		padding: 25px;
+	}
+	.headerText{
+ 		font-size: 1.6em !important;
+	}
+	.circle .priceheader{
+		font-size: 1.3em !important;
+		font-weight: bold;
+	}
+	.circle .price{
+		font-size: 2.5em !important;
+		font-weight: bold;
+	}
+	.circle .innerPriceText{
+		margin: -5px;
+	}
+	.circle .helper{
+		font-weight: bold;
+	}
+}

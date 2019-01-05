@@ -1,0 +1,12 @@
+page-fill-location-detail {
+	.item-md.item-input.ng-valid.input-has-value:not(.input-has-focus) .item-inner {
+	  box-shadow: none;
+	}
+	.checkbox-md-maincolor .checkbox-checked {
+	  background-color: transparent!important;
+	  border-color: gray!important;
+	}
+	.checkbox-md-maincolor .checkbox-checked .checkbox-inner {
+	  border-color: #f00!important;
+	}
+}

@@ -1,0 +1,43 @@
+<ion-content class="happy" padding style="position: relative;background-image: url('img/backimage.jpg');background-repeat: no-repeat;background-size: cover;text-align: center;">
+  <div padding style="float: left;text-align: center;width: 100%;">
+    <ion-row>
+      <ion-col style="margin: 5vh auto 10vh;">
+        <img src="assets/img/oolaga.png" width="40%" />
+      </ion-col>
+    </ion-row>
+    <!-- <h2 style="color:black ;font-size:107.5%;font-weight: bold; ">Oolaga your friend with a truck</h2> -->
+    <div padding style="position: relative;background: rgb(255, 255, 255) none repeat scroll 0 0;border: 1px solid rgba(0, 0, 0, 0.1);box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);margin-top:95px">
+    <div style="padding:10px;position: absolute;top: -40px;right: calc( 50% - 40px);width: 80px;z-index: 10;height: 80px;border-radius: 50%;background: rgb(255, 255, 255) none repeat scroll 0 0;border: 1px solid rgba(0, 0, 0, 0.1);box-shadow: 0 0px 3px rgba(0, 0, 0, 0.5);">
+      <img src="img/user-2-app-.png">
+    </div>
+      <ion-row margin-top>
+        <ion-col>
+          <ion-list inset style="margin-bottom: 0">
+            <form [formGroup]="log_in">
+              <ion-item ion-item style="margin-bottom: 5px;background-color:transparent;height:4rem;min-height: unset;margin-bottom:5%;width: 100%;">
+                <ion-label icon-only no-margin style="width: 20px;text-align: left;"><ion-icon no-padding><img src="img/100-app-user.png" width="25px"> </ion-icon></ion-label>
+                <ion-input class="login-input" type="email" placeholder="Username" formControlName="username" style="font-size: 2rem;"></ion-input>
+                
+              </ion-item>
+              <ion-item ion-item style="margin-bottom: 5px;background-color:transparent;height:4rem;min-height: unset;width: 100%;">
+                <ion-label icon-only no-margin style="width: 20px;text-align: left;"><ion-icon no-padding><img src="img/100-apppadlock.png" width="25px"> </ion-icon></ion-label>
+                <ion-input class="login-input" type="password" placeholder="Password"  formControlName="password" style="font-size: 2rem;" (keyup.enter)="login()"></ion-input>
+              </ion-item>
+            </form>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+      <ion-row style="height: 50px;">
+        <ion-col class="colspace">
+          <span style="color: #112B54;font-size:15px;float: right;margin-right: 10px;"  [navPush]="forgot">Mot de passe oublié ?</span>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+          <ion-col class="colspace">
+            <button ion-button style="box-shadow: none; margin-bottom: 5px;background-color:#1B4079;width: 90%;height:4rem;font-size: 2rem;" (click)="login()" >CONNEXION</button>
+          </ion-col>
+      </ion-row>
+    </div>
+    <p style="color: #1B4079;font-size: 14px;font-weight: bold;margin: 10% auto;">Pas encore membre ?<span class="signup-text" [navPush]="signupage" > S'inscrire</span></p>
+  </div>
+</ion-content>

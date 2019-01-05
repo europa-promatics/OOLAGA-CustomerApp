@@ -1,0 +1,46 @@
+page-past-oolaga-details {
+
+.toolbar-ios-maincolor .segment-ios .segment-button.segment-activated {
+    color: #fff;
+}
+.segment-ios-light .segment-button.segment-activated {
+    background-color: rgba(0, 0, 0, 0);
+    border-bottom: 2px solid #ffffff;
+    color: #ffffff;
+}
+.segment-ios .segment-button:first-of-type {
+    border-radius: 4px 0 0 4px;
+    margin-right: 0;
+}
+.segment-ios .segment-button.segment-activated {
+    background-color: transparent;
+    opacity: 1;
+    transition: all 100ms linear 0s;
+}
+.segment-ios-light .segment-button {
+    border-color: rgba(0, 0, 0, 0);
+    color: #ffffff;
+}
+.toolbar-ios .segment-button {
+    font-size: 1.2rem;
+    height: 2.6rem;
+    line-height: 2.5rem;
+    max-width: 100px;
+}
+.segment-ios .segment-button {
+    background-color: rgba(0, 0, 0, 0);
+    border-color: transparent;
+    border-style: solid;
+    border-width: 1px;
+    color: #aaa;
+    flex: 1 1 0;
+    font-size: 1.3rem;
+    height: 3.2rem;
+    line-height: 3rem;
+    width: 0;
+}
+.iconss{
+		color: #FFc000;
+	}
+    
+}

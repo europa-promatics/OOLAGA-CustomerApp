@@ -1,0 +1,27 @@
+<ion-header >
+  <ion-navbar color="maincolor">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title >Messages</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+<div *ngIf!="msg" style="text-align: center;color:#999;margin-top: calc(50% - 50px);">
+    <ion-icon name="mail" style="font-size: 50px;"></ion-icon>
+    <h1 style="color: #999;">Inbox Empty</h1>
+    <p>Qiockly access messages from Helpers</p>
+</div>
+
+<ion-item no-lines style="margin-bottom:2px;background-color: #E2EAF7;" *ngFor="let d of data" (click)="chat(d.user_id,d.image)">
+  <div style="width: 100%;"> 
+    <ion-avatar style="float: left;">
+      <img *ngIf!=" d.image == '' || d.image == null " src="http://gagandeepsethi.com/oolaga/public/frontend/img/profile/{{d.image}}">
+      <img *ngIf=" d.image == '' || d.image == null " src="img/man.png">
+    </ion-avatar>
+    <p style="margin:10px 0px 0px 10%;width:30%;float: left;">{{d.firstname}}</p>
+    <p style="width: 10px;height: 10px;margin:15px 10px 0px 0px;background-color: green;float: right;border-radius: 50%;"></p>
+  </div>
+</ion-item>
+
+</ion-content>

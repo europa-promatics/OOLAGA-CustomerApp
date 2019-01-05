@@ -1,0 +1,64 @@
+<ion-content padding-left padding-right style="text-align: center;background-color: #eee;color: #1B4079;position: relative;" >
+	<div >
+		<ion-label color="maincolor" style=";font-size: 17px;margin-top: 50px;margin-bottom: 30px;text-align: center;">{{locationTitle}}</ion-label>
+		<div style="text-align: left;">
+				<ion-item style="border: 1px solid #ddd;color: black;color: #1B4079;margin-bottom:10px;" no-lines>
+					<ion-input type="text" value="{{location_name}}" disabled=true></ion-input>
+				</ion-item>
+
+				<ion-item style="border: 1px solid #ddd;color: black;color: #1B4079;margin-bottom:10px;" no-lines>
+					<ion-input placeholder="Complément d'adresse" type="tel" [(ngModel)]="unit_nu" (input)="checkUnit_nu()"></ion-input>
+				</ion-item>
+
+				<ion-item style="padding-left:5px;color: #1B4079;margin-bottom:5px;background:transparent;width:40%;float:left;" no-lines >
+					<ion-label style="font-weight: 600;color:black ;font-size: 11px ;white-space:normal;" stacked>Pas-de-porte </ion-label>
+					<ion-checkbox style="margin:4px 9px 11px 4px; " color="maincolor" [(ngModel)]="curb" (click)="check(1)"></ion-checkbox>
+				</ion-item>
+				<ion-item style="padding-left:86px;color: #1B4079;margin-bottom:5px;background:transparent;width:60%;float:right;" no-lines >
+					<ion-label style="font-weight: 600;color: black;font-size:11px ;white-space:normal; " stacked>À l'intérieur</ion-label>
+					<ion-checkbox style="margin:4px 9px 11px 4px; " color="maincolor" [(ngModel)]="inhome" (click)="check(2)"></ion-checkbox>
+				</ion-item>
+				<ion-label *ngIf='curb' no-margin style="color: gray;font-size: 1rem;margin-bottom: 10px;margin-left: 15px;width: 100%;">
+					Objet(s) à collecter ou livrer à l'extérieur de cette adresse <br />(Trottoir, porche, etc.)
+				</ion-label>
+				<ion-label *ngIf='inhome' no-margin style="color: gray;font-size: 1rem;margin-bottom: 10px;margin-left: 15px;width: 100%;">
+					Objet(s) à collecter ou livrer à l'intérieur de cette adresse
+				</ion-label>
+				<ion-item style="padding-left:5px;color: #1B4079;margin-bottom:5px;background:transparent;width:100%;float:left;" no-lines >
+					<ion-label style="font-weight: 600;color: black;font-size:11px ;white-space:normal; " stacked>Le Helper recevra de l'aide à cette adresse</ion-label>
+					<ion-checkbox style="margin:4px 9px 11px 4px;" color="maincolor" [(ngModel)]="iwillhelp" (click)="check(3)"></ion-checkbox>
+				</ion-item>
+				<div *ngIf="inhome" style="float:left;width:100%;border: 1px solid #ddd;color: black;background-color:#e5e5e5;margin-bottom:10px;" no-lines>
+					  <ion-row >
+					  <div style="height:47px;width:60%;background-color:#e5e5e5;">
+					  <ion-label style="margin-left:15px;font-size:15px" class="label label-ios">Étage</ion-label>
+					  </div>
+					  <div style="width:40%;background-color:#fff;height:47px;border-radius: 5px 0 0 5px;">
+					  <ion-row style="text-align: center;">
+					  <ion-col width-35>
+						<button no-margin no-padding ion-button clear icon-only (click)="sub()" style="width: 35px;height: 35px;"><ion-icon style="color: #F26419;font-size:1.2em;" name="remove"  ></ion-icon></button>				 
+					 </ion-col>
+					 <ion-col width-30>
+					 <div style="text-align: center;margin-top: 10px;">{{count}}
+					 </div>
+					  </ion-col>
+					   <ion-col width-35>
+						<button no-margin no-padding ion-button clear icon-only (click)="add()" style="width: 35px;height: 35px;"><ion-icon style="color: #F26419;font-size:1.2em;" name="add" ></ion-icon></button>				  
+					  </ion-col>
+					  </ion-row>
+					  </div>
+					  </ion-row>
+				</div>
+				<ion-item *ngIf="inhome" style="border: 1px solid #ddd;color: black;color: #1B4079;margin-bottom:10px;background-color:#e5e5e5" no-lines>
+					<ion-label style="font-weight: 600;color:black ;font-size: 15px" stacked >Ascenseur</ion-label>
+					<ion-checkbox style="margin:9px 15px 9px 4px; " color="maincolor" [(ngModel)]="elevator"></ion-checkbox>
+				</ion-item>
+				<ion-item style="border: 1px solid #ddd;color: black;color: #1B4079;margin-bottom:10px;" no-lines>
+					<ion-textarea rows="3" placeholder="Information additionnelle" [(ngModel)]="parking_info"></ion-textarea>
+				</ion-item>
+		</div>
+	</div>
+	<button ion-button round (click)="submit()" style="font-weight: 600;background-color:#F26419;margin-top: 30px;height: 40px;width: 80%;">
+			Sauvegarder
+	</button>
+</ion-content>

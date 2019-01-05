@@ -1,0 +1,39 @@
+<ion-menu id="mymenu" [content]="content">
+  <ion-content style="background: rgba(27, 64, 121,0.95);position: relative;"> 
+    <div no-margin style="background: transparent;border-radius:0px;position: relative;height:20%;width: 100%;display: flex;align-content: center;" (click)="profile()" menuClose>
+      <ion-item no-lines style="float: left;width: 100%;background: transparent;" (click)="profile()" menuClose>
+        <ion-avatar item-left style="width:50px;">
+           <img style="width:50px;height:50px;" [src]="profile_pic" *ngIf="pic">
+           <img id="my-image" style="width:50px;" src="img/man.png" *ngIf!="pic">
+        </ion-avatar>
+        <p id="my-name" style="text-transform: capitalize;font-weight: 600;padding-left:10%;color:white;width:100%;float: right;margin:0px;background:transparent;" (click)="profile()" menuClose>{{this.user_name}}</p><br>
+      </ion-item>
+    </div> 
+    <ion-list no-lines>
+      <button class="menu-items" menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)" style="position: relative;">
+         
+         <ion-icon style="position:absolute;top: 10px; width: 20%;float: left;text-align: center;font-size:larger;font-weight: 900 "><img src="{{p.logo}}" width="25"></ion-icon>
+         <h2 color="light" style="font-weight: 600;width: 78%;float: right;">{{p.title}} <ion-badge color="red_color" *ngIf="p.title=='Past Oolagas'" class="badge badge-positive"><span *ngIf="pendingRatingsCount > 3">{{pendingRatingsCount}}</span></ion-badge><ion-badge color="red_color" *ngIf="p.title=='Notifications'" class="badge badge-positive"><span *ngIf="notificationcount!=0">{{notificationcount}}</span></ion-badge>
+         </h2> 
+         <!--h2 color="light" style="font-weight: 600;width: 78%;float: right;">{{p.title}} <ion-badge color="red_color" *ngIf="p.title=='Notifications'" class="badge badge-positive"><span *ngIf="notificationcount!=0">{{notificationcount}}</span></ion-badge>
+         </h2--> 
+      </button>
+    </ion-list>
+    <button ion-button clear style="position: absolute;top: 0px;right: 0px;" menuClose><ion-icon name="close" style="color: white;font-size: 30px;"></ion-icon></button>
+  </ion-content>
+<ion-footer>
+    <!-- <button class="menu-items" menuClose ion-item no-lines style="padding-left: 10%;padding-bottom: 10%;">
+        <ion-icon style="width: 20%;float: left;text-align: center;"><img src="assets/icon/logout.png"></ion-icon>
+
+         <h2 color="light" style="font-weight: 600;width: 78%;float: right;">Log Out</h2>
+    </button> -->
+</ion-footer>
+  
+<!-- <ion-footer style="width: 100%;float: left;background-color: #eee;color:#888">
+    <p menuClose style="width: 49%;float: left;text-align: right;padding-right:4px;padding-left:4px;border-right: 1px solid #888;  " (click)="reportbug()">Report a bug</p>
+    <p  style="width: 49%;float: right;text-align: left;padding-left:4px;padding-right:4px;">version 0.0</p>
+</ion-footer> -->
+</ion-menu>
+
+<!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

@@ -1,0 +1,114 @@
+<ion-header>
+  <ion-navbar color="maincolor">
+    <ion-title *ngIf='appProvider.current.service_id!=7' style="text-align: center;">Étape 6 sur 6</ion-title>
+    <ion-title *ngIf='appProvider.current.service_id==7' style="text-align: center;">Étape 3 sur 3</ion-title>
+      <ion-buttons end>
+        <button ion-button style="min-width: 44px;text-transform: none;" (click)="help()">
+          Aide
+        </button>
+      </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content padding style="text-align: center;background-color: #f7f7f7;" >
+
+<ion-label color="maincolor" style="padding-top:50px;font-size: 2rem;font-weight: bold;margin: 21px 0 10px;">Saisir votre budget</ion-label>
+
+<div class="text-center" id="text_center" #text_center>
+  <!-- <ion-item class="price_input label" no-lines>
+    <ion-label no-margin no-lines><ion-icon><img src="img/dollar.png" width="35px"></ion-icon></ion-label>
+  </ion-item> -->
+  <!-- <ion-item class="price_input price_input_label">
+    <ion-input maxlength="4" type="number" class="price_input_input" [(ngModel)]="val"></ion-input>
+  </ion-item> -->
+<ion-item class="price" no-lines style="font-size: 5rem;font-weight: bold;">
+ <ion-input #price_input (input)="_price=check(_price)" (blur)="_price=onBlur(_price,'p')" (focus)="onFocus(_price,'p')" [(ngModel)]='_price' class="price_input" style="color:#000000;"></ion-input>
+</ion-item>
+  <!-- <ion-item class="price_input" no-lines >
+    <ion-input maxlength="1" type="number" #inputOne (input)="checkinput(inputTwo,inputOne,val1)" [(ngModel)]="val1"></ion-input>
+  </ion-item>
+  <ion-item class="price_input" no-lines >
+    <ion-input maxlength="1" type="number" #inputTwo (input)="checkinput(inputThree,inputOne,val2)" [(ngModel)]="val2"></ion-input>
+  </ion-item>
+  <ion-item class="price_input" no-lines >
+    <ion-input maxlength="1" type="number" #inputThree (input)="checkinput(inputFour,inputTwo,val3)" [(ngModel)]="val3"></ion-input>
+  </ion-item>
+  <ion-item class="price_input" no-lines>
+    <ion-input maxlength="1" type="number" #inputFour (input)="checkinput(inputFour,inputThree,val4)" [(ngModel)]="val4"></ion-input>
+  </ion-item> -->
+</div>
+
+
+
+<ion-label style="margin: 20px 0 10px;opacity: 0.8;" color="maincolor">Votre prix ne peut être inférieur à 25€</ion-label>
+
+<!-- <div style="float: left;text-align: center;width: 100%;display: flex;">
+  <hr style="float: left;width: 40%;align-self: center;background-color:rgba(0,0,0,0.2)">
+    <span style="float: left;font-size: 2.5rem;width: 20%;align-self: center;color: rgba(0,0,0,0.6)">
+      or
+    </span>
+  <hr style="float: right;width: 40%;align-self: center;background-color:rgba(0,0,0,0.2)">
+</div>
+
+<ion-label style="font-size: 2rem;font-weight: bold;margin: 15px 0 10px;display: inline-block;">Set a range</ion-label>
+
+<ion-item class="price" no-lines style="font-size: 5rem;font-weight: bold;">
+  <ion-input (input)="_1price=check(_1price)" (blur)="_1price=onBlur(_1price,1)" (focus)="onFocus(_1price,1)" [(ngModel)]='_1price' class="price_input" style="color:#1B4079"></ion-input>
+</ion-item>
+
+<span style="font-size: 2.5rem;width: 20%;color: rgba(0,0,0,0.6)">
+      to
+</span>
+
+<ion-item class="price" no-lines style="margin-top:10px;font-size: 5rem;font-weight: bold;">
+  <ion-input (input)="_2price=check(_2price)" (blur)="_2price=onBlur(_2price,2)" (focus)="onFocus(_2price,2)" [(ngModel)]='_2price' class="price_input" style="color:#1B4079"></ion-input>
+</ion-item> -->
+
+</ion-content>
+<ion-footer style="background-color:#EAEAEA;border-top: 1px solid rgba(0,0,0,0.2);">
+  <button text-left ion-button clear style="font-weight: 600;color:#555;text-align:left;float: left;" (click)="submit(0)">
+   <ion-icon name="ios-arrow-back" style="margin-right: 10px;"></ion-icon> Retour
+  </button>
+  <button text-right ion-button clear style="font-weight: 600;color:#555;text-align: right;float: right;" (click)="submit(1)">
+   Suivant <ion-icon name="ios-arrow-forward" style="margin-left: 10px;"></ion-icon>
+  </button>
+</ion-footer>
+<!-- 
+<ion-header>
+  <ion-navbar color="maincolor">
+    <ion-title style="text-align: center;">Step 5 of 5</ion-title>
+      <ion-buttons end>
+        <button ion-button style="min-width: 44px;text-transform: none;" (click)="help()">
+          Help
+        </button>
+      </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content padding style="text-align: center;background-color: #f7f7f7;" >
+	
+		<p margin-top style="font-size:2rem;font-weight: bold;">
+    Your Price <ion-icon name="ios-information-circle-outline"></ion-icon></p>
+		<p style="font-size:4rem;font-weight: bolder;margin:20px;" color="maincolor">${{this.appProvider.current.price}}</p>
+    <p margin-bottom style="font-size: 1.3rem;text-decoration: underline;" color="maincolor">Have a promocode?</p>
+    <p margin-bottom style="font-size: 1.3rem;"><span style="font-weight: bold;">ooLAGA</span> credit cannot be used to tip</p>
+
+		<ion-card padding color="light" style="width:100%;box-shadow: none;margin:0 0 10px 0; text-align: left;position: relative;" (click)="selectcard(1)" class="cardstyle" [class.active]="selection1">
+			<p style="font-size: 18px;font-weight: bold;" color="maincolor">Standard</p>
+			<p>Your Helper will load, transport and place item(s) in theroomof your choice.</p>
+		</ion-card>
+		<ion-card padding color="light" style="width:100%;box-shadow: none;margin:0; text-align: left;position: relative;" (click)="selectcard(2)" class="cardstyle" [class.active]="selection2">
+			<p style="font-size: 18px;font-weight: bold;" color="maincolor">Doorstep</p>
+			<p>Your Helper will pic up from your door, and drop off at the door step. You are responsible for getting items inside.</p>
+		</ion-card>
+  <!-- <ion-card  color="primary">
+    <p style="font-size:10px;">I have a discount code </p>
+	</ion-card> 
+</ion-content>
+
+<ion-footer style="background-color:#EAEAEA;border-top: 1px solid rgba(0,0,0,0.2);">
+  <button text-left ion-button clear style="font-weight: 600;color:#555;text-align:left;float: left;" (click)="submit(0)">
+   <ion-icon name="ios-arrow-back" style="margin-right: 10px;"></ion-icon> Back
+  </button>
+  <button text-right ion-button clear style="font-weight: 600;color:#555;text-align: right;float: right;" (click)="submit(1)">
+    Save & Continue <ion-icon name="ios-arrow-forward" style="margin-left: 10px;"></ion-icon>
+  </button>
+</ion-footer> -->

@@ -1,0 +1,31 @@
+page-summary-edit-location {
+      #mapp {
+        width: 100%;
+        height: 82%;
+        float:left;
+        position: absolute !important;
+        z-index: 1;
+        bottom: 0;
+      }
+      
+      .location-input input{
+      	margin: 0;
+      	align-self:center;
+        text-overflow: ellipsis;
+      }
+      .location-input{
+      	display: flex;
+      }
+      
+      .location-pan::after{
+        background-color: rgba(27, 64, 121, 0.85);
+        bottom: 0;
+        content: "";
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: -1;
+      }
+
+}

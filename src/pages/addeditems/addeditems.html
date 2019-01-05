@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-navbar color="maincolor">
+    <ion-title style="text-align: center;">Objet(s) ajouté(s)</ion-title>
+	<ion-buttons end>
+      <button ion-button (click)="help()" style="min-width: 44px;text-transform: none;">
+        Aide
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content style="text-align:center;background-color: #f4f4f4;color:#1B4079" padding (click)="enableclear?selecteditem=null:'';">
+	<div *ngFor="let item of items;let i = index " style="border:1px solid rgba(0,0,0,0.05);width: 100%;height: 40px;margin-bottom: 15px;">
+		<div style="width: 45px;height:100%;background: #fff;float: left;padding: 10px;">
+			{{item.quantity}}
+		</div>
+		<div style="position:relative;width: calc(100% - 45px);height:100%;background: #eee;float: left;">
+			<div style="text-align: left;float: left;margin: 10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: calc(100% - 45px - 0.9em);">{{item.item_name}}</div>
+			<button icon-only ion-button clear style="float: right;margin: 0;" (click)="select(i);enableclear=false"><ion-icon name='more'></ion-icon></button>
+			<div *ngIf="selecteditem==i" (click)="enableclear=false;enablecleartrue()" style="position: absolute;top: 5px;right: 10px;width: 115px;height: 60px;z-index: 1;background: #fff;border:1px solid rgba(0,0,0,0.1);border-radius: 5px;">
+				<button ion-button clear style="width: 100%;height: 30px;margin: 0;font-size: 1.3rem;" (click)='selecteditem=null;edit(item)'>Modifier</button>
+				<button ion-button clear style="width: 100%;height: 30px;margin: 0;font-size: 1.3rem;" (click)='selecteditem=null;delete(item)'>Supprimer</button>
+			</div>
+		</div>
+	</div>
+</ion-content>
+
+<ion-footer style="background-color:#EAEAEA;border-top: 1px solid rgba(0,0,0,0.2);">
+  <button text-left ion-button clear style="font-weight: 600;color:#555;text-align:left;float: left;" (click)="submit(0)">
+   <ion-icon name="ios-arrow-back" style="margin-right: 10px;"></ion-icon> Retour
+  </button>
+  <button text-right ion-button clear style="font-weight: 600;color:#555;text-align: right;float: right;" (click)="submit(1)">
+    Suivant <ion-icon name="ios-arrow-forward" style="margin-left: 10px;"></ion-icon>
+  </button>
+</ion-footer>

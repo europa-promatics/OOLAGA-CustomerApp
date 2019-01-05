@@ -1,0 +1,116 @@
+<ion-header>	
+  <ion-navbar color="maincolor">
+    <ion-title style="text-align: center;">Create an <span style="font-style: italic;position: relative;margin-right: 2px;font-family:'MarkPro-BookItalic';">
+      <p style="position: absolute;top: 20%;left: 4px;background-color: #119da4;height: 3px;width: 22px;margin: 0px;padding: 0px;"></p>oo</span><span style="font-style:normal;font-family:'MarkPro-Bold';">LAGA</span>
+    </ion-title>
+  	<ion-buttons end style="margin: 0 6px;min-width: 44px;padding: 0 5px;">
+      <button ion-button clear icon-only (click)="submit(1)"><ion-icon name="arrow-forward"></ion-icon></button>
+    </ion-buttons>
+  </ion-navbar>
+  	<ion-title style="text-align: center; height: 40px;background-color: #fff;"><p color="maincolor">Please review your details.</p></ion-title>
+</ion-header>
+
+<ion-content style="text-align: center;background-color: #eee;color: #1B4079" >
+	
+	<ion-card padding color="primary"  style="position: relative;">
+
+		<div no-margin no-padding >
+			<p margin-bottom style="font-weight: bold;">What kind of move are you planning? </p>
+			<ion-card center class="cardstyle" style="position: relative;padding: 5px;display: flex;align-items: center;">
+			<ion-icon (click)="edit_oolaga_type()" style="position: absolute;z-index: 10;top: 3px;right: 5px;font-size: 35px;color: red;" name="ios-create-outline"></ion-icon>
+		      <div style="width: 15%;float: left;border-right: 1px solid #eee; padding:5px;text-align: center;">
+		        <img width="100%" src="http://gagandeepsethi.com/oolaga/public/frontend/img/services/{{oolaga_img}}"/>
+		      </div>
+		      <div style="padding-left:5%;width: 75%;float: left;">  
+		        <ion-card-content center no-padding>
+		          <h4 style="color:#111;float: left;margin:0px;">{{oolaga_name}}</h4>
+		        </ion-card-content>
+		      </div>
+		    </ion-card>
+		</div>
+	</ion-card>
+
+	<ion-card padding color="primary"  style="position: relative;">
+	<p style="font-weight: bold;">Where are your items coming from and going to? </p>
+		<ion-card *ngFor="let location of locations;let i=index" class="cardstyle" style="position: relative;padding: 5px;display: flex;align-items: center;">
+			<ion-icon (click)="edit_locations(i)" style="position: absolute;z-index: 10;top: 0px;right: 5px;font-size: 35px;color:red" name="ios-create-outline"></ion-icon>
+			      <div style="width: 10%;float: left;border-right: 1px solid #eee; padding:5px;text-align: center;">
+			        <ion-icon name="pin" style="color: red;"></ion-icon>
+			      </div>
+			      <div style="padding-left:5%;width: 75%;float: left;">  
+			        <ion-card-content no-padding>
+			          <ion-label style="color:#111;float: left;margin:0px;width: 95%;">{{location.location_name}}</ion-label>
+			        </ion-card-content>
+			      </div>
+	    </ion-card>
+		
+	</ion-card>
+
+	<ion-card padding color="primary"  style="position: relative;">
+	<p style="font-weight: bold;">Optional details for your helper.</p>
+		<ion-card *ngFor="let location of locations;let i=index" class="cardstyle" style="text-align:left;position: relative;padding: 5px;display: flex;align-items: center;">
+			<ion-icon (click)="edit_location_details(i,location)" style="position: absolute;z-index: 10;top: 0px;right: 5px;font-size: 35px;color:red" name="ios-create-outline"></ion-icon>
+	        <ion-card-content no-padding style="width: 100%;">
+	        	<p style="color: red;width: 90%;font-weight: 500; ">{{location.location_name}}</p>
+				<p style="color: red;width: 100%;">Unit Number <span style="width: 40%;float: right;text-align: left;color: black;">: {{location.unit_nu}}</span></p>
+				<p style="color: red;width: 100%;">Number of Stairs <span style="width: 40%;float: right;text-align: left;color: black;">: {{location.stairs}}</span></p>
+				<p style="color: red;width: 100%;">Elevator Building <span style="width: 40%;float: right;text-align: left;color: black;">: {{location.elevator}}</span></p>
+				<p style="color: red;width: 100%;">Ride with helper <span style="width: 40%;float: right;text-align: left;color: black;">: {{location.ride}}</span></p>
+				<p style="color: red;width: 100%;">Parking & Building Info <span style="width: 40%;float: right;text-align: left;color: black;">:{{location.parking_info}}</span> </p>
+	        </ion-card-content>
+	    </ion-card>
+	</ion-card>
+	<ion-card padding color="primary"  style="position: relative;">
+	<p style="font-weight: bold;">What can we move for you? </p>
+		<ion-card *ngFor="let item of items;let i=index" class="cardstyle" style="text-align:left;position: relative;padding: 5px;display: flex;align-items: center;">
+			<ion-icon (click)="edit_item_details(i,item.item_id)" style="position: absolute;z-index: 10;top: 0px;right: 5px;font-size: 35px;color:red" name="ios-create-outline"></ion-icon>
+	        <ion-card-content no-padding style="width: 100%;">
+				<p style="color: red;width: 100%;">Item Name <span style="width: 40%;float: right;text-align: left;color: black;">: {{item.item_name}} </span></p>
+				<p style="color: red;width: 100%;">Quantity <span style="width: 40%;float: right;text-align: left;color: black;">: {{item.quantity}} </span></p>
+				<p style="color: red;width: 100%;">Additional Information <span style="width: 40%;float: right;text-align: left;color: black;">: {{item.information}} </span></p>
+				<img src="img/imgg.png" width-100>
+	        </ion-card-content>
+	    </ion-card>
+	</ion-card>
+
+	<ion-card padding color="primary"  style="position: relative;">
+		<p style="font-weight: bold;">How many helpers do you need? </p>
+			<ion-card class="cardstyle" style="padding:5px;position: relative;display: flex;align-items: center;">
+			<ion-icon (click)="edit_helper_details()" style="position: absolute;z-index: 10;top: 0px;right: 5px;color:red;font-size:35px; " name="ios-create-outline"></ion-icon>
+		      <div style="width: 15%;float: left;border-right: 1px solid #eee; padding:5px;text-align: center;">
+		        <img width="100%" src="assets/icon/buildings.png"  />
+		      </div>
+		      <div style="padding-left:5%;width: 75%;float: left;">  
+		        <ion-card-content no-padding style="text-align: left;"> 
+		          <h4 style="color:#111;float: left;margin: 0px;">{{this.helper}}</h4>
+		        </ion-card-content>
+		      </div>
+		    </ion-card>
+	</ion-card>
+
+	<ion-card padding color="primary" class="text-left" style="position: relative;">
+		<p style="font-weight: bold;">Your helper will arrive during the time window you select.</p>		
+		<ion-card class="cardstyle" style="padding:5px;position: relative;display: flex;align-items: center;">
+			<ion-icon (click)="edit_time_details()" style="position: absolute;z-index: 10;top: 0px;right: 5px;color:red;font-size:35px; " name="ios-create-outline"></ion-icon>
+		      <div style="width: 10%;float: left;border-right: 1px solid #eee; padding:5px;text-align: center;">
+		        <ion-icon name="clock" style="color: red;"></ion-icon>
+		      </div>
+		      <div style="padding-left:5%;width: 75%;float: left;">  
+		        <ion-card-content no-padding style="text-align: left;"> 
+		          <h4 style="color:#111;float: left;margin: 0px;">{{this.date}}, {{this.time}}</h4>
+		        </ion-card-content>
+		      </div>
+		    </ion-card>
+	</ion-card>
+
+</ion-content>
+<ion-footer style="background-color:transparent;">
+
+  <button text-left ion-button color="orange_color" round style="text-align:left;float: left;box-shadow:-1px 3px 3px 0px rgba(0, 0, 0, 0.44), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);" (click)="submit(0)">
+  <span style="text-shadow:-2px 2px 1px rgba(0,0, 0, 0.4);">< Back</span>
+  </button>
+  <button text-right ion-button color="orange_color" round style="text-align: right;float: right;box-shadow:-1px 3px 3px 0px rgba(0, 0, 0, 0.44), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);" (click)="submit(1)">
+  <span style="text-shadow:-2px 2px 1px rgba(0,0, 0, 0.4);">Next ></span>
+  </button>
+
+</ion-footer>

@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-navbar color="maincolor">
+
+    <ion-title style="text-align: center;margin-right: 55px;">Step 1 of 3</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding style="background-color: #f3f3f3;">
+	<ion-label color="maincolor" style="font-weight: bold;margin:10px 5px;font-size: 1.5rem;width: 100%;" no-margin>How many hours of Muscle do you need?</ion-label>
+	<ion-label no-margin style="margin:5px;font-size:1rem;color:#555;width: 100%;">Hours</ion-label>
+	<div style="border:1px solid rgba(0,0,0,0.1);padding:5px;background-color: #fff;position: relative;width: 50%;">
+		<!-- <ion-label no-margin style="margin-left:10px;font-size: 3rem;">{{oolaga.hours}}</ion-label>
+		<button style="background:transparent; ;position: absolute;top:0;right: 10px;font-size: 2rem;" (click)="up()">
+			<ion-icon name="ios-arrow-up" ></ion-icon>
+		</button>
+		<button style="background:transparent; ;position: absolute;bottom:0;right: 10px;font-size: 2rem;" (click)="down()">
+			<ion-icon name="ios-arrow-down" ></ion-icon>
+		</button> -->
+		<ion-label no-margin style="text-align:center;font-size: 3rem;">{{oolaga.hours}}</ion-label>
+		<button style="background:transparent;position:absolute;top:10px;right: 3px;font-size: 2rem;" (click)="up()">
+			<ion-icon name="ios-arrow-up" ></ion-icon>
+		</button>
+		<button style="background:transparent;position: absolute;bottom:9px;left:3px;font-size: 2rem;" (click)="down()">
+			<ion-icon name="ios-arrow-down" ></ion-icon>
+		</button>
+	</div>
+	<ion-label color="maincolor" style="font-weight: bold;margin:10px 5px;font-size: 1.5rem;width: 100%;" no-margin>Where do you need the Muscle?</ion-label>
+	<ion-label no-margin style="margin:5px;font-size:1rem;color:#555;width: 100%;">Meet Up Location</ion-label>
+	<div style="position:relative;width: 100%;height: 50px;">
+		<ion-item no-lines style="border:1px solid rgba(0,0,0,0.1);width: 100%;background: #fff">
+			<ion-input (input)="searchLocation()" [(ngModel)]="oolaga.location_name" placeholder="Enter Location"></ion-input>
+		</ion-item>
+		<div *ngIf="locationData.length>0" style="background: transparent;border: 1px solid rgba(0, 0, 0, 0.1);position: absolute;top: 50px;width: 100%;z-index: 11;">
+			<ion-item no-lines (click)="oolaga.location_name=item.description;locationData=[];selectLocation(item.place_id)" *ngFor="let item of locationData" style="border-bottom: 1px solid rgba(0,0,0,0.05)">{{item.description}}</ion-item>
+		</div>
+	</div>	
+	<ion-label no-margin style="margin:5px;font-size:1rem;color:#555;width: 100%;">Unit No</ion-label>
+	<ion-item no-lines style="border:1px solid rgba(0,0,0,0.1);width: 100%;background: #fff">
+		<ion-input placeholder="Enter Unit #" [(ngModel)]="oolaga.unit_nu"></ion-input>
+	</ion-item>
+	<ion-label color="maincolor" style="font-weight: bold;margin:10px 5px;font-size: 1.5rem;width: 100%;" no-margin>What do you need help with?</ion-label>
+	<ion-label no-margin style="margin:5px;font-size:1rem;color:#555;width: 100%;">Info</ion-label>
+	<ion-item no-lines style="border:1px solid rgba(0,0,0,0.1);width: 100%;background: #fff">
+		<ion-textarea rows="4" placeholder="To insure the most offers,please give on accurate description of what you need to be moved" [(ngModel)]="oolaga.info"></ion-textarea>
+	</ion-item>
+</ion-content>
+<ion-footer style="background-color:#EAEAEA;border-top: 1px solid rgba(0,0,0,0.2);">
+  <button (click)="submit(0)" text-left ion-button clear style="font-weight: 600;color:#555;text-align:left;float: left;">
+   <ion-icon name="ios-arrow-back" style="margin-right: 10px;"></ion-icon> Back
+  </button>
+  <button (click)="submit(1)" text-right ion-button clear style="font-weight: 600;color:#555;text-align: right;float: right;">
+    Save & Continue <ion-icon name="ios-arrow-forward" style="margin-left: 10px;"></ion-icon>
+  </button>
+</ion-footer>

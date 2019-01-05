@@ -1,0 +1,86 @@
+<ion-header>
+  <ion-navbar color="maincolor">
+    <ion-title style="text-align: center">Summary</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="withdrawAuction(data.oolaga_id)" style="min-width: 44px;text-transform: none;color:white">
+        <ion-icon name="ios-trash-outline" ></ion-icon>  
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content style="text-align:left;background-color: #f7f7f7;color:#1B4079" padding>
+  <div>
+    <div *ngIf="data && data.status!='Assigned'" style="float: left;width: 100%;">
+      <ion-label style="float:left;height:20px;width:50%;margin:0;color:#727272;font-size: 1.5rem;">
+        Closing in
+      </ion-label>
+    </div>
+    <div *ngIf="data && data.status!='Assigned'" style="position:relative;background-color:#f7f7f7;height: 45px;border: 1px solid rgba(0,0,0,0.1);float: left;width: 100%;">
+        <div style="background: #f7f7f7;width: 82%;height: 100%;float: left;padding: 13px 18px;">
+          <ion-label style="font-weight: 600;width: 100%;color:#000000;margin:0;">
+            <span>
+              {{data?.updated_at.date | timer}}
+            </span>
+          </ion-label>
+        </div>
+        <div style="width: 45px;height: 100%;float: right;text-align: center;" >
+          <div (click)="notificationpage(data.oolaga_id,data.offers)" style="font-weight: 600;height:100%;position: relative;margin:0 auto;display: flex;background-color: #f7f7f7;">
+              <img src="img/auction.svg" style="width: 30px;" >
+              <ion-badge color="maincolor" style="border-radius: 50%;font-size: 9px;height: 17px;width: 17px;position: absolute;right: 5px;top: 2px;padding: 0;display: flex;">
+              <span style="margin: auto;line-height: 17px;padding-top:1px;">{{data.offers}}</span>
+              </ion-badge>
+          </div>
+        </div>
+    </div>
+    <div style="height: 15px;width: 100%;float: left;"></div>
+    <ion-label style="float:left;height:auto;width:50%;margin:0;color:#727272;font-size: 1.5rem;">Category</ion-label>
+    <ion-label style="text-align:right;float:right;height:auto;width:50%;margin:0;color:#727272;font-size: 1.5rem; ">Budget <span color="maincolor">$ {{data.max_price}}</span></ion-label>
+      <div style="position:relative;background-color:transparent;width:100%;border: 1px solid rgba(0,0,0,0.1);float: left;">
+        <div style="width: 100%;float: left;">
+          <div style="height:45px;float:left;width: 70px;border:1px solid rgba(0,0,0,0.1);background-color: #fff;">
+            <img style="width: 40px;margin:1px 10px;" src="http://18.188.229.2/oolaga/public/frontend/img/services/{{data.service_image}}">
+          </div>
+          <div style="height:45px;float:left;width: calc(100% - 140px);" padding>
+            <div style="font-size: 1.2rem;font-weight: bold;float: left;color: #000000">{{data.service}}</div>
+          </div>
+          <div style="padding:16px 10px;height:45px;float:left;width:70px;border:1px solid rgba(0,0,0,0.1);background: rgba(0,0,0,0.1);">
+            <div style="font-size: 1rem;font-weight: bold;float: left;color: #000000;position: relative;">{{data.hours}}hrs<div style="position: absolute;top: -10px;left: 0px;font-size: 0.7rem;">Time</div></div>
+          </div>
+        </div>
+      </div>
+      
+      <div style="height: 15px;width: 100%;float: left;"></div>
+
+      <ion-label style="height:auto;width:100%;margin:0;color:#727272;font-size: 1.5rem;">Meet Up Location</ion-label>
+      <div style="position:relative;background-color:#f7f7f7;width:100%;border: 1px solid rgba(0,0,0,0.1);float: left;" padding>
+        <div style="width: 100%;font-size: 1.2rem;font-weight: bold;float: left;color: #000000">{{data.src_location_name}}</div>
+      </div> 
+	  
+	  <div style="height: 15px;width: 100%;float: left;"></div>
+
+      <ion-label style="height:auto;width:100%;margin:0;color:#727272;font-size: 1.5rem;">Unit No.</ion-label>
+      <div style="position:relative;background-color:#f7f7f7;width:100%;border: 1px solid rgba(0,0,0,0.1);float: left;" padding>
+        <div style="width: 100%;font-size: 1.2rem;font-weight: bold;float: left;color: #000000">{{data.src_unit_nu}}</div>
+      </div> 
+
+      <div style="height: 15px;width: 100%;float: left;"></div>
+
+      <ion-label style="height:auto;width:100%;margin:0;color:#727272;font-size: 1.5rem;">Info</ion-label>
+      <div style="position:relative;background-color:#f7f7f7;width:100%;border: 1px solid rgba(0,0,0,0.1);float: left;" padding>
+        <div style="width: 100%;font-size: 1.2rem;font-weight: bold;float: left;color: #000000">{{data.info}}</div>
+      </div> 
+
+      <div style="height: 15px;width: 100%;float: left;"></div>
+
+      <ion-label style="height:auto;width:100%;margin:0;color:#727272;font-size: 1.5rem;">Date & Time </ion-label>
+      
+      <div style="position:relative;background-color:#f7f7f7;width:100%;border: 1px solid rgba(0,0,0,0.1);float: left;" padding>
+        <div style="width: 50%;font-size: 1.2rem;font-weight: bold;float: left;color: #000000">{{data.date|dateConvert}}</div>
+        <div style="width: 50%;font-size: 1.2rem;font-weight: bold;float: left;color: #000000">
+        <span>{{data.first_time | timemomentformat:'h:mm a'}}</span>
+        <span *ngIf="data.last_time && data.last_time!='SELECT A TIME'"> - {{data.last_time | timemomentformat:'h:mm a'}}</span></div>
+      </div>
+  </div>
+</ion-content>

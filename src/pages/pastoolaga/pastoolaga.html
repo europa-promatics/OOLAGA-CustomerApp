@@ -1,0 +1,97 @@
+<ion-header >
+  <ion-navbar color="maincolor">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title style="text-align: center;margin-right: 55px;"> Projets terminés</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content style="background-color: #f9f9f9;font-weight: bold;" padding>
+
+  <div padding *ngIf="oolaga_created" style="text-align: center;color:#999;margin-top: calc(50% - 50px);">
+    <div style="width: 80%;margin-left: 10%;">
+    <p style="font-size: 22px; "> Vous n'avez pas de projets terminés</p>
+    </div>
+  </div>
+    <ion-card *ngFor="let d of data" (click)="openDetails(d)" style="text-align: unset;margin:0 0 10px 0;box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.25);background-color: #fff;position: relative; width: 100%;padding: 10px;" >
+
+            <div>
+              <div>
+                <ion-label  style="float:left;margin: 5px 0 0 0;width: 70%;font-size: 14px;color: #1B4079;">
+                  <span>
+                    {{d.service}}
+                  </span>
+                </ion-label>
+                <ion-label  style="float:left;margin: 5px 0 0 0;width: 100%;font-size: 1rem;color: #1B4079;">
+                  <span style="color: #999;">ID #</span>
+                  <span style="margin-left: 10px;text-transform: uppercase;">{{d.uniccode}}</span>
+                </ion-label>
+                <ion-label *ngIf="d.service_id==7" style="width:100%;margin: 0px;float: left;margin-top: 10px;">
+                  <ion-label style="max-width: 100%;float: left;height: 20px;margin:0px;"><ion-icon name="pin" style="color: #999;font-size: 1.0em;margin-right: 5px;"></ion-icon>{{d.src_location_name}}</ion-label>
+                </ion-label>
+                <ion-label *ngIf="d.service_id!=7" style="width:100%;margin: 0px;float: left;margin-top: 10px;">
+                  <ion-label style="max-width: 48%;float: left;height: 20px;margin:0px;"><ion-icon name="pin" style="color: #999;font-size: 1.0em;margin-right: 5px;"></ion-icon>{{d.src_location_name}}</ion-label>
+                  <ion-label style="margin-left:10px;max-width: 48%;float: left;height: 20px;margin:0px;"> <span style="color: #aaa;font-size: 0.8em;margin:0 10px;">to</span> {{d.dst_location_name}}</ion-label>
+                </ion-label>
+                <ion-label  style="width:100%;color: #aaa;margin: 0px;float: left;margin-top: 5px;">
+                  <span style="width:32%;font-size: 0.8em;float: left;"> Helper assigné</span>
+                  <span style="width:20%;font-size: 0.8em;float: left;">Date</span>
+                  <span style="width:20%;font-size: 0.8em;float: left;">Heure</span>
+                  <span style="width:28%;font-size: 0.8em;float: right;">Statut</span>
+                </ion-label>
+                <ion-label style="width:100%;color: #000;margin: 0px;float: left;margin-top: 3px;">
+                  <span style="width:32%;font-size: 0.8em;float: left;text-transform: capitalize;">{{d.helper_name}}</span>
+                  <span style="width:20%;font-size: 0.8em;float: left;">{{d.date|dateConvert}}</span>
+                  <span style="width:20%;font-size: 0.8em;float: left;">{{d.first_time | timemomentformat}}<!-- {{d.time.substring(0,8) | timemomentformat}}-{{d.time.substring(9,18) | timemomentformat}} --></span>
+                  <span  style="float: right;font-size: 0.8em;overflow-wrap: break-word;white-space: normal;width: 28%;">
+                    <span *ngIf="d.payment_status==0" style="color: rgb(255, 0, 0);">EN ATTENTE</span>
+                    <span *ngIf="d.rating==0" style="color:red">LAISSER UN AVIS </span>
+                    <span *ngIf="d.rating==1" style="color:green"> TERMINÉ</span>
+                  </span>
+                </ion-label>
+              </div>     
+            </div>
+          </ion-card>
+  <!-- <div *ngIf!="oolaga_created" style="padding: 15px;">
+    <ion-card no-margin *ngFor="let d of data" style="text-align:left;margin:0 0 10px 0;box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.25);background-color: #fff;position: relative; width: 100%;height: 130px;padding: 10px;" >
+
+      <div (click)="get_detail(d)">
+
+        <div>
+          <ion-label style="color: #000;margin: 0px;width: calc(100% - 70px);font-size: 14px;color: #119DA4;text-decoration:underline; text-decoration-color:rgba(0,0,0,0.1) ">
+            <span *ngFor="let item of d.items">
+            {{item.item_name}}({{item.quantity}})
+            </span>
+          </ion-label>
+          <ion-label style="margin: 5px 0 0 0;width: 100%;font-size: 14px;color: #1B4079;">
+            <span>
+              {{d.service}}
+            </span>
+          </ion-label>
+          <ion-label style="width:100%;margin: 0px;float: left;margin-top: 10px;">
+            <ion-label style="max-width: 48%;float: left;height: 20px;margin:0px;"><ion-icon name="pin" style="color: #999;font-size: 1.0em;margin-right: 5px;"></ion-icon>{{d.src_location_name}}</ion-label>
+            <ion-label style="margin-left:10px;max-width: 48%;float: left;height: 20px;margin:0px;"> <span style="color: #aaa;font-size: 0.8em;margin-right: 10px;">to</span> {{d.dst_location_name}}</ion-label>
+          </ion-label>
+          <ion-label style="width:100%;color: #aaa;margin: 0px;float: left;margin-top: 5px;">
+            <span style="width:32%;font-size: 0.8em;float: left;">Assigned helper</span>
+            <span style="width:20%;font-size: 0.8em;float: left;">Date</span>
+            <span style="width:33%;font-size: 0.8em;float: left;">Time</span>
+            <span style="width:15%;font-size: 0.8em;float: right;">Status</span>
+          </ion-label>
+          <ion-label style="width:100%;color: #000;margin: 0px;float: left;margin-top: 3px;">
+            <span style="width:32%;font-size: 0.8em;float: left;">{{d.helper_name}}</span>
+            <span style="width:20%;font-size: 0.8em;float: left;">{{d.date}}</span>
+            <span style="width:33%;font-size: 0.8em;float: left;">{{d.time.substring(0,8) | timemomentformat}}-{{d.time.substring(9,18) | timemomentformat}}</span>
+            <span style="width:15%;font-size: 0.8em;float: right;">{{d.oolaga_status}}</span>
+          </ion-label>
+        </div>   
+        <ion-card *ngIf="d.cost" no-margin no-padding style="padding:3px;position: absolute;text-align: center;top: 5px;right: 0px;height: 25px;width: 100px;box-shadow: none;">
+          <span style="color: #555;margin-top:5px;font-size: 18px; ">${{d.cost}} Paid</span>
+        </ion-card>
+        
+        
+      </div>
+    </ion-card>
+  </div> -->
+</ion-content>

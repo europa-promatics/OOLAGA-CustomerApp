@@ -1,0 +1,101 @@
+<ion-header >
+	  <ion-navbar color="maincolor">
+       <ion-title style="text-align: center;">Étape 2 sur 6</ion-title>
+       <ion-buttons end>
+        <button ion-button style="min-width: 44px;text-transform: none;" (click)="help()">
+          Aide
+        </button>
+      </ion-buttons>
+    </ion-navbar>
+</ion-header>
+<ion-content style="position: relative;">
+
+	<ion-buttons class="location-pan" style="float:left;width: 100%;margin:0;background:rgba(0, 0, 0, 0) url('img/imgg.png') repeat scroll center top / cover;position: absolute;z-index: 2;top: 0px;" padding>
+    <div style="padding: 0px 0px 10px 0;">
+            <div style="color:#f28752;font-size: 1rem;margin: 0 0 5px 55px;height:1rem;">{{first_location_label}}</div>
+            <div style="width: 100%;height: 20px;">
+              <img *ngIf="first_location_name==null" src="assets/icon/1.png" style="margin: 0 25px 0 10px;width: 20px;float: left;">
+              <img *ngIf="first_location_name!=null" (click)="editdetail(0)" src="assets/icon/1filled.png" style="margin: 0 25px 0 10px;width: 20px;float: left;">
+              <ion-input class="location-input" style="color:#ddd;background:transparent;width:calc(100% - 110px);margin:0px;height:20px;float: left;" placeholder="Adresse" [(ngModel)]="first_location_name" (input)="updateSearch(1)">
+              </ion-input>
+              <img src="img/cancel.png" *ngIf="first_location_name!=null" (click)="clearLocation(0)" style="margin: 0 10px 0 25px;width: 15px;float: left;">
+            </div>
+
+            <hr style="background-color: #ddd;width: 75%;margin-left: 13%;">
+            <div style="background:white;position: fixed;z-index: 1;width: calc(100% - 32px);">
+                <ion-item  style="width:100%;"*ngFor="let item1 of autocompleteItems1" 
+                    (click)="chooseItem(item1,1)">
+                    {{ item1.description }}
+                </ion-item>
+            </div>
+
+            <div style="color:#f28752;font-size: 1rem;margin: 0 0 5px 55px;height:1rem;">{{second_location_label}}</div>
+            <div style="width: 100%;height: 20px;">
+              <img *ngIf="second_location_name==null" src="assets/icon/2.png" style="margin: 0 25px 0 10px;width: 20px;float: left;">
+              <img *ngIf="second_location_name!=null" (click)="editdetail(1)" src="assets/icon/2filled.png" style="margin: 0 25px 0 10px;width: 20px;float: left;">
+              <ion-input [disabled]='!_1' class="location-input" style="color:#ddd;background:transparent;width:calc(100% - 110px);margin:0px;height:20px;float: left;" placeholder="Adresse" [(ngModel)]="second_location_name" (input)="updateSearch(2)">
+              </ion-input>
+              <img src="img/cancel.png" *ngIf="second_location_name!=null" (click)="clearLocation(1)" style="margin: 0 10px 0 25px;width: 15px;float: left;">
+            </div>
+
+            <hr style="background-color: #ddd;width: 75%;margin-left: 13%;">
+            <div style="background:white;position: fixed;z-index: 1;width: calc(100% - 32px);">
+                <ion-item  style="width:100%;"*ngFor="let item2 of autocompleteItems2" 
+                    (click)="chooseItem(item2,2)">
+                    {{ item2.description }}
+                </ion-item>
+            </div>
+
+            <div *ngIf="third_location" style="color:#f28752;font-size: 1rem;margin: 0 0 5px 55px;height: 1rem;">{{third_location_label}}</div>
+            <div *ngIf="third_location" style="width: 100%;height: 20px;">
+              <img *ngIf="third_location_name==null" src="assets/icon/3.png" style="margin: 0 25px 0 10px;width: 20px;float: left;">
+              <img *ngIf="third_location_name!=null" (click)="editdetail(2)" src="assets/icon/3filled.png" style="margin: 0 25px 0 10px;width: 20px;float: left;">
+              <ion-input [disabled]='!_1 || !_2' class="location-input" style="color:#ddd;background:transparent;width:calc(100% - 110px);margin:0px;height:20px;float: left;" placeholder="Adresse" [(ngModel)]="third_location_name" (input)="updateSearch(3)">
+              </ion-input>
+              <img src="img/cancel.png" (click)="clearLocation(2)" style="margin: 0 10px 0 25px;width: 15px;float: left;">
+            </div>
+            
+
+            <hr *ngIf="third_location" style="background-color: #ddd;width: 75%;margin-left: 13%;">
+            <div style="background:white;position: fixed;z-index: 1;width: calc(100% - 32px);">
+                <ion-item  style="width:100%;"*ngFor="let item3 of autocompleteItems3" 
+                    (click)="chooseItem(item3,3)">
+                    {{ item3.description }}
+                </ion-item>
+            </div>
+
+            <div *ngIf="forth_location" style="color:#f28752;font-size: 1rem;margin: 0 0 5px 55px;height: 1rem;">{{forth_location_label}}</div>
+            <div *ngIf="forth_location" style="width: 100%;height: 20px;">
+              <img *ngIf="forth_location_name==null" src="assets/icon/4.png" style="margin: 0 25px 0 10px;width: 20px;float: left;">
+              <img *ngIf="forth_location_name!=null" (click)="editdetail(3)" src="assets/icon/4filled.png" style="margin: 0 25px 0 10px;width: 20px;float: left;">
+              <ion-input [disabled]='!_1 || !_2 || !_3' class="location-input" style="color:#ddd;background:transparent;width:calc(100% - 110px);margin:0px;height:20px;float: left;" placeholder="Adresse" [(ngModel)]="forth_location_name" (input)="updateSearch(4)">
+              </ion-input>
+              <img src="img/cancel.png" (click)="clearLocation(3)" style="margin: 0 10px 0 25px;width: 15px;float: left;">
+            </div>
+            <hr *ngIf="forth_location" style="background-color: #ddd;width: 75%;margin-left: 13%;">
+            <div style="margin-top:10px;background:white;position: fixed;z-index: 1;width: calc(100% - 32px);">
+                <ion-item  style="width:100%;"*ngFor="let item4 of autocompleteItems4" 
+                    (click)="chooseItem(item4,4)">
+                    {{ item4.description }}
+                </ion-item>
+            </div>
+
+            <div *ngIf!="forth_location" style="height:0.6rem;color:#f28752;font-size: 1rem;margin: 0 0 5px 55px;"> </div>
+            <button *ngIf!="forth_location" ion-button clear style="text-transform: none;color:#ddd;background:transparent;margin:0 0 0 0;padding:0px;height:20px;" (click)="add_next_location()">
+              <img src="assets/icon/plus.png" style="margin: 0 25px 0 10px ;width: 20px;">
+              <ion-label>Ajoutez une étape</ion-label>
+            </button>
+            
+    </div> 
+  </ion-buttons>
+  <div #map id="map"></div>
+
+</ion-content>
+<ion-footer style="background-color:#EAEAEA;border-top: 1px solid rgba(0,0,0,0.2);">
+  <button text-left ion-button clear style="color:#555;text-align:left;float: left;" (click)="submit(0)">
+   <ion-icon name="ios-arrow-back" style="margin-right: 10px;"></ion-icon> Retour
+  </button>
+  <button text-right ion-button clear style="color:#555;text-align: right;float: right;" (click)="submit(1)">
+    Suivant <ion-icon name="ios-arrow-forward" style="margin-left: 10px;"></ion-icon>
+  </button>
+</ion-footer>

@@ -1,0 +1,50 @@
+<ion-header >
+	  <ion-navbar color="maincolor">
+      <ion-title style="text-align: center;">Étape 1 sur 6</ion-title>
+      <ion-buttons end>
+        <button ion-button style="min-width: 44px;text-transform: none;" (click)="help()">
+          Aide
+        </button>
+      </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+<ion-content style="background-color: #EEE; text-align: center;" padding >
+<p style="margin: 15px;color :#1B4079;font-size: 1.2em;">CHOISISSEZ UNE CATÉGORIE</p>
+<div style="text-align: center;float: left;">
+  <div *ngFor="let s of service; let i = index" (click)="hightlightStatus=i+1;details(s.service_description)" style="width: 33%;height: 35vw;display: inline-block;border:1px solid rgba(255,255,255,0.0);text-align: center;float: left;">
+    <div id="var_{{i}}" style="width: 100%;height: 100%;color: #555;" (click)="selectcard(s.service_id,s.service_image,s.service_name,s.service_description,i)" >
+        <div style="background:transparent;width: 22vw;height: 22vw;border-radius: 10px;margin:0 auto;">
+            <div class="cardstyle" style="width: 22vw;height: 22vw;border-radius: 10px;">
+                <img [hidden]="hightlightStatus==s.service_id" style="margin-top: 10%;width:100%;" src="http://18.188.229.2/oolaga/public/frontend/img/services/{{s.bw_image}}"  />
+                <img [hidden]="hightlightStatus!=s.service_id" style="margin-top: 10%;width:100%;" src="http://18.188.229.2/oolaga/public/frontend/img/services/{{s.service_image}}"  />
+            </div>
+        </div>
+        <p style="font-size: 1rem;margin:15px 0 0 0;text-overflow: ellipsis;width: 100%;display: inline-block;overflow: hidden;max-width: 100%;color:#000;" [innerHtml]="s.service_name"></p>
+        <!-- <p *ngIf="hightlightStatus==s.service_id" style="font-size: 1rem;margin:5px 0 0 0;text-overflow: ellipsis;width: 100%;display: inline-block;overflow: hidden;max-width: 100%;color:#6E8AFF;">{{s.service_name}}</p> -->
+    </div>
+  </div> 
+</div> 
+    <div style=" color: rgb(27, 64, 121);float: left;font-size: 1em;margin-top: 30px;text-align: center;width: 100%;">{{service_description}}</div>
+   <!-- <div *ngFor="let s of service; let i = index" (click)="hightlightStatus=i+1">
+    <ion-card (click)="selectcard(s.service_id,s.service_image,s.service_name)" class="cardstyle" [class.active]="hightlightStatus==s.service_id" style="width:97%;position: relative;font-size: 18px;margin:5px;padding:10px;">
+        <div style="width: 15%;float: left; padding:5px;text-align: center;border-right: 1px solid #eee">
+          <img width="100%" src="http://gagandeepsethi.com/oolaga/public/frontend/img/services/{{s.service_image}}"  />
+        </div>
+        <div style="padding-left:3%;width: 75%;float: left;margin-top:5px;">   
+            <ion-label class="clickstyle1" [class.active]="hightlightStatus==s.service_id" style="float: left;margin:0px; ">{{s.service_name}}</ion-label><br>
+            <ion-label class="fontcolor" [class.active]="hightlightStatus==s.service_id" style="font-size: 10px;float: left;margin:0px">{{s.service_description}}
+            </ion-label>
+        </div>
+    </ion-card>
+   </div> -->
+</ion-content>
+
+<ion-footer style="background-color:#EAEAEA;border-top: 1px solid rgba(0,0,0,0.2)">
+  <button text-left ion-button clear style="color:#555;text-align:left;float: left;" navPop>
+    <ion-icon name="ios-arrow-back" style="margin-right: 10px;"></ion-icon> Retour
+  </button>
+  <button text-right ion-button clear style="color:#555;text-align: right;float: right;" (click)="nextpage()">
+    Suivant <ion-icon name="ios-arrow-forward" style="margin-left: 10px;"></ion-icon>
+  </button>
+</ion-footer>

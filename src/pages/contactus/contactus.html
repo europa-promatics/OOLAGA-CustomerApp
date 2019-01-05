@@ -1,0 +1,57 @@
+
+<ion-header>
+
+  <ion-navbar color="maincolor">
+    <ion-title style="text-align: center;margin-right: 50px;">Contactez-nous</ion-title>
+  </ion-navbar>
+
+</ion-header>
+<ion-content padding style="background-color:#f7f7f7;text-align: center;float: left">
+	<!-- <p style="color: white;padding-top:0px;"> Need help ? Contact Us.</p> -->
+	<p color="maincolor" style="font-size:1.6rem;margin:15px auto;">ENVOYEZ-NOUS VOS QUESTIONS</p>
+	<form [formGroup]="contactus">
+	<ion-item no-lines color="light" style="height:30px;margin-top: 20px;padding: 0px;">
+		<ion-label no-margin style="width:50px;color:#999;" icon-only><ion-icon style="font-size: 3.5rem;margin:0 auto;" name="ios-person-outline"></ion-icon></ion-label>
+		<ion-input formControlName="name" type="text" style="border:0px ;color: #999" placeholder="Nom"></ion-input>
+	</ion-item>	
+
+	<ion-item no-lines color="light" style="height:30px;margin-top: 15px;padding: 0px;">
+		<ion-label no-margin style="width:50px;color:#999;" icon-only><ion-icon style="font-size: 3.5rem;margin:0 auto;" name="ios-mail-outline"></ion-icon></ion-label>
+		<ion-input formControlName="email" type="text" style="text-decoration: none;color: #999" placeholder="Email"></ion-input>
+	</ion-item>	
+	
+	<ion-item no-lines color="light" style="height:30px;margin-top: 15px;padding: 0px;">
+		<ion-label no-margin style="width:50px;color:#999;" icon-only><ion-icon style="font-size: 3.5rem;margin:0 auto;" name="ios-call-outline"></ion-icon></ion-label>
+		<ion-input formControlName="phone" type="text" style="text-decoration: none;color: #999" placeholder="Tél"></ion-input>
+	</ion-item>	
+
+	<ion-item no-lines color="light" style="margin-top: 15px;padding: 0px;" padding-left>
+		<ion-textarea rows="4" type="text" style="text-decoration: none;color: #999" placeholder="Votre message" formControlName="description"></ion-textarea>
+	</ion-item>	
+	</form>
+
+	<button ion-button round color="orange_color" style="margin-top: 30px;height: 40px;width: 80%;" (click)="contect()">
+			ENVOYER
+	</button>
+
+</ion-content>
+
+
+
+<!-- <ion-content padding>
+
+<div style="text-align: center;">	
+		
+	 	<h4 color="dark" style="margin-top: 20px;"> Email or text for the quickest response.</h4>
+	  	<h6 color="dark" >SUPPORT HOURS: 8:30AM - 10PM (CT)
+	  	Our average response time is 10 minutes</h6>
+	  	<button class="button" ion-button round  full style="float:left;color:#fff; margin-top:40px;background-color:#1B4079 "  (click)="contect(1)"> <ion-icon ios="ios-mail" md="md-mail" style="padding:5px;" > </ion-icon> EMAIL SUPPORT</button>
+
+	  	<button class="button" ion-button round full style="float:left;color:#fff; margin-top:40px;background-color:#1B4079 "  (click)="contect(2)">  <ion-icon name="phone-portrait" style="padding:5px;"></ion-icon>TEXT SUPPORT</button>
+
+	  	<button class="button" ion-button round full style="float:left;color:#fff; margin-top:40px;background-color:#1B4079 "  (click)="contect(3)"> <ion-icon ios="ios-call" md="md-call" style="padding:5px;"></ion-icon>CALL SUPPORT</button>
+
+	   
+	</div>
+</ion-content>
+ -->

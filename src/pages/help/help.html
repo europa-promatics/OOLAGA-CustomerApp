@@ -1,0 +1,36 @@
+<ion-header >
+  <ion-navbar color="maincolor">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    
+    <ion-title style="text-align: center;margin-right: 50px;">
+    	Aide
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding style="height:100%;text-align: center;float: left;background-color: #f7f7f7">
+	<p style="text-align: justify;">Outre les rubriques ci-dessous, les boutons «Aide» situés en haut à droite, sont facilement accessibles dans l’application pour vous guider tout au long du processus de création d’un projet.</p>
+	<ion-buttons>
+		<button ion-button block full style="box-shadow:none;margin-top:10px;height: 35px;background-color: #fff;color:#333" [navPush]="howpage">
+			<ion-label style="text-transform: none; text-align: left;">Comment utiliser Oolaga ?</ion-label>
+			<ion-icon name="ios-arrow-forward" color="maincolor" style="float: right;"> </ion-icon></button>
+		<button ion-button block full style="box-shadow:none;margin-top:10px;height: 35px;background-color: #fff;color:#333" [navPush]="contactuspage">
+			<ion-label style="text-transform: none; text-align: left;">Contactez-nous</ion-label>
+			<ion-icon name="ios-arrow-forward" color="maincolor" style="float: right;"> </ion-icon></button>
+		<button ion-button block full style="box-shadow:none;margin-top:10px;height: 35px;background-color: #fff;color:#333" [navPush]="faq">
+			<ion-label style="text-transform: none; text-align: left;">FAQ</ion-label>
+			<ion-icon name="ios-arrow-forward" color="maincolor" style="float: right;"> </ion-icon></button>
+		<button ion-button block full style="box-shadow:none;margin-top:10px;height: 35px;background-color: #fff;color:#333" [navPush]="cancellation">
+			<ion-label style="text-transform: none; text-align: left;">Politique d’annulation</ion-label>
+			<ion-icon name="ios-arrow-forward" color="maincolor" style="float: right;"> </ion-icon></button>
+		<button ion-button block full style="box-shadow:none;margin-top:10px;height: 35px;background-color: #fff;color:#333" [navPush]="termsofservice">
+			<ion-label style="text-transform: none; text-align: left;">Politique d’annulation</ion-label>
+			<ion-icon name="ios-arrow-forward" color="maincolor" style="float: right;"> </ion-icon></button>
+		<button ion-button block full style="box-shadow:none;margin-top:10px;height: 35px;background-color: #fff;color:#333" [navPush]="privacy">
+			<ion-label style="text-transform: none; text-align: left;">Politique de confidentialité</ion-label>
+			<ion-icon name="ios-arrow-forward" color="maincolor" style="float: right;"> </ion-icon></button>
+	</ion-buttons>
+
+</ion-content>

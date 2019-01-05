@@ -1,0 +1,116 @@
+// http://ionicframework.com/docs/v2/theming/
+.scroll-content {
+    bottom: 0;
+    display: block;
+    left: 0;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    position: absolute;
+    right: 0;
+    top: 0;
+    will-change: scroll-position;
+    z-index: 1;
+}
+.picker-md .picker-prefix, .picker-md .picker-suffix, .picker-md .picker-opts {
+  min-width: 50px!important;
+}
+.picker-col , .picker-opts{
+  max-width: 50px!important;
+}
+.picker-opts-right .picker-opts , .picker-opts-right div{
+  max-width: 50px !important;
+}
+.alert-md .alert-button , .alert-ios .alert-button {
+    color:#f26419 !important;
+}
+.alert-md .alert-message, .alert-md .alert-input-group{
+    color:rgba(0,0,0,1);
+}
+.md ion-menu[type="overlay"] .menu-inner {
+    background: transparent none repeat scroll 0 0;
+}
+.item-ios[detail-push] .item-inner, button.item-ios:not([detail-none]) .item-inner, a.item-ios:not([detail-none]) .item-inner {
+    background-image: none;
+}
+.menu-items{
+    background: transparent;
+    padding-left: 0px;
+}
+.tabs-md .tab-button[aria-selected=true] {
+   // padding: 0;
+   // border-bottom: 5px solid;
+}
+.tabs-ios .tab-button[aria-selected=true] {
+   //border-bottom: 5px solid;
+}
+.text-input::-moz-placeholder {
+    color: #bbb;
+}
+.header-md::after, .tabs-md[tabsPlacement="top"] > .tabbar::after, .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before
+{
+    background-image: none;
+}
+@font-face {
+    font-family: 'MarkPro-Bold';
+    font-style: normal;
+    font-weight: 200;
+    src: local('MarkPro-Bold'), local('MarkPro-Bold'), url("../assets/fonts/MarkPro-Bold.ttf") format('truetype');
+}
+@font-face {
+    font-family: 'MarkPro-BookItalic';
+    font-style: normal;
+    font-weight: 300;
+    src: local('MarkPro-BookItalic'), local('MarkPro-BookItalic'), url("../assets/fonts/MarkPro-BookItalic.ttf") format('truetype');
+}
+@font-face {
+    font-family: 'MarkPro';
+    src: local('MarkPro'), local('MarkPro'), url("../assets/fonts/MarkPro.otf") format('opentype');
+}
+@font-face {
+    font-family: 'nexa_boldregular';
+    src: url('../assets/fonts/nexa_bold-webfont.woff2') format('woff2'),
+         url('../assets/fonts/nexa_bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'nexa_lightregular';
+    src: url('../assets/fonts/nexa_light-webfont.woff2') format('woff2'),
+         url('../assets/fonts/nexa_light-webfont.woff') format('woff');
+}
+div, body, span, button, h1, h2, h3, h4, h5, h6, p, ion-item {
+font-family: 'MarkPro' !important;
+}
+.item-md.item-input.ng-valid.input-has-value:not(.input-has-focus) .item-inner{
+    box-shadow: none!important;
+}
+.item-md.item-input.input-has-focus .item-inner {
+  border-bottom-color: transparent!important;
+  box-shadow: none !important;
+}
+	.picker-md .picker-opt {
+    margin: 0;
+    padding: 0;
+    height: 4.3rem;
+    font-size: 18px;
+    line-height: 42px;
+    color: #000;
+    background: transparent;
+    transition-timing-function: ease-out;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    pointer-events: auto;
+}
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.

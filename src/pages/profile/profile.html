@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-navbar color="maincolor">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title style="text-align: center;">Profil</ion-title>
+  	<ion-buttons end style="width: 55px;">
+      <button ion-button (click)="editprofile()" *ngIf="edit" >Modifier</button>
+  		<button ion-button (click)="editprofile()" *ngIf="!edit" >SAUVEGARDER</button>
+  	</ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content style="background-color:#F9F9F9;text-align: center; ">
+
+  <div style="background-color:#1B4079;height: 250px;">
+         	<a class="item item-avatar">
+             <img *ngIf!="pic" style="border-radius: 50%;height: 146px;margin:34px auto 0;width: 148px;border: 3px solid #fff;" src="img/man.png" (click)="changePic()">
+             <img *ngIf="pic" style="border-radius: 50%;height: 146px;margin:34px auto 0;width: 148px;border: 3px solid #fff;" src="{{profile_pic}}" (click)="changePic()">
+          </a>
+      <h2 style="color:white;font-size: 2.1rem">{{firstname}} {{lastname}}</h2>
+  </div>
+  	
+  <div padding style="text-align: left;">
+      <h2 style="color:#AEAEAE;margin-top:0px;font-size:1.5rem">Prénom</h2>
+      <div style="background-color: #ffffff;height: 44px;">
+        <ion-input class="profile" value={{this.email}} [(ngModel)]="firstname" disabled="{{this.edit}}"> </ion-input>
+      </div>
+      <h2 style="color:#AEAEAE;margin-top:10px;font-size:1.5rem">Nom de famille</h2>
+      <div style="background-color: #ffffff;height: 44px;">
+        <ion-input class="profile" value={{this.email}} [(ngModel)]="lastname" disabled="{{this.edit}}"> </ion-input>
+      </div>
+      <h2 style="color:#AEAEAE;margin-top:10px;font-size:1.5rem">Numéro de mobile</h2>
+      <div style="background-color:#ffffff;height: 44px;">
+      	<ion-input class="profile" value={{this.number}} minlength="10" maxlength="15" [(ngModel)]="number" disabled="{{this.edit}}"> </ion-input>
+      </div>
+      <h2 style="color:#AEAEAE;margin-top:10px;font-size:1.5rem">Email</h2>
+      <div style="background-color: #ffffff;height: 44px;">
+        <ion-input class="profile" value={{this.email}} [(ngModel)]="email" disabled="true"> </ion-input>
+      </div>
+      <h2 style="color:#AEAEAE;margin-top:10px;font-size:1.5rem">Mot de passe</h2>
+      <div style="background-color:#ffffff;height: 44px;">
+        <ion-input type="password" class="profile" minlength="8" maxlength="25" placeholder="***********" value={{this.password}} [(ngModel)]="password" disabled="{{this.edit}}"> </ion-input>
+      </div>
+  </div>
+
+</ion-content>
+
+<ion-footer style="background-color:#DDDDDD;" (click)="logout()">
+	<ion-label style="color:#1B4079; text-align: center;font-size:1.8rem " >DÉCONNEXION</ion-label>
+</ion-footer>

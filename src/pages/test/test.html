@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-navbar color="maincolor">
+    <ion-buttons left>
+      <button ion-button navPop color="primary" style="width: 40px;">
+        <ion-icon name="md-arrow-back" style="font-size: 2.5rem;color:#fff;"></ion-icon>
+      </button>
+    </ion-buttons>
+    <!-- <button ion-button icon-only><ion-icon name="md-arrow-back"></ion-icon></button> -->
+    <ion-title style="text-align: center">PAYMENT</ion-title>
+    <ion-buttons end>
+      <button *ngIf="pay" (click)="reset()" ion-button style="min-width: 44px;text-transform: none;color:white">
+      	RESET
+      </button>
+      <button *ngIf="!pay" ion-button style="min-width: 44px;text-transform: none;color:white">
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <div id="dropin-container"></div>
+  <div *ngIf="wait" style="text-align: center;">
+    <p>Please Wait...</p>
+  </div>
+  <button style="border-radius: 5px;" [hidden]="!submit" id="submit-button" ion-button color="primary" full>Submit Details</button>
+  <button style="border-radius: 5px;" [hidden]="!pay" (click)="payOolaga()" ion-button color="secondary" full>PAY ${{data?.cost}}</button>
+</ion-content>

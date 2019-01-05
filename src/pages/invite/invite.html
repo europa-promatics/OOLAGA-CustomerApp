@@ -1,0 +1,43 @@
+<ion-header >
+  <ion-navbar color="maincolor">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title style="text-align: center;margin-right: 55px;">Invite Friends</ion-title>	
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding style="height:100%;text-align: center;float: left;background-color: #fff">
+	<div style="text-align: center;color:#999;margin-top: calc(50% - 100px);">
+  		 <h1 color="orange_color" style="font-size: bold;margin-bottom:30px; ">Help spread the word</h1>
+  	 	 <p>Have friends in need? Use the links below to share Oolaga with them and help grow the moving “sharing economy”<br />The more users there are and the more helpers there will be making it cheaper and more convenient to move for everyone</p>
+  	   <div style="margin-top:50px;">
+          <button ion-button round outline icon-only color="orange_color" style="height: 50px;width: 50px;" (click)="share(1)">
+            <ion-icon name="logo-facebook"></ion-icon></button>
+          <button ion-button round outline icon-only color="orange_color" style="height: 50px;width: 50px;" (click)="share(2)">
+            <ion-icon name="logo-twitter"></ion-icon></button>
+          <button ion-button round outline icon-only color="orange_color" style="height: 50px;width: 50px;" (click)="share(3)">
+            <ion-icon name="logo-whatsapp"></ion-icon></button>
+          <button ion-button round outline icon-only color="orange_color" style="height: 50px;width: 50px;" (click)="share(4)">
+            <ion-icon name="share"></ion-icon></button>
+             <button ion-button round outline icon-only color="orange_color" style="height: 50px;width: 50px;" (click)="openschedule()">
+            <ion-icon name="share"></ion-icon></button>
+              <button ion-button round outline icon-only color="orange_color" style="height: 50px;width: 50px;" (click)="openthankyou()">
+            <ion-icon name="share"></ion-icon></button>
+        </div>
+    <!-- <ion-row>
+  		<ion-buttons style="margin-top:20px;margin-left: 20%; ">
+  			<button ion-button icon-only color="orange_color" style="box-shadow:-1px 3px 3px 0px rgba(0, 0, 0, 0.44), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);width:40px;height: 40px;border-radius: 50%;" (click)="share(1)">
+          <ion-icon style="text-shadow:-2px 2px 1px rgba(0,0, 0, 0.4);font-size: 20px;" name="logo-facebook"></ion-icon></button>
+  			<button ion-button icon-only color="orange_color" style="box-shadow:-1px 3px 3px 0px rgba(0, 0, 0, 0.44), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);width:40px;height: 40px;border-radius: 50%;" (click)="share(2)">
+          <ion-icon style="text-shadow:-2px 2px 1px rgba(0,0, 0, 0.4);font-size: 20px;" name="logo-twitter"></ion-icon></button>
+  			<button ion-button icon-only color="orange_color" style="box-shadow:-1px 3px 3px 0px rgba(0, 0, 0, 0.44), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);width:40px;height: 40px;border-radius: 50%;" (click)="share(3)">
+          <ion-icon style="text-shadow:-2px 2px 1px rgba(0,0, 0, 0.4);font-size: 20px;" name="mail"></ion-icon></button>
+  			<button ion-button icon-only color="orange_color" style="box-shadow:-1px 3px 3px 0px rgba(0, 0, 0, 0.44), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);width:40px;height: 40px;border-radius: 50%;" (click)="share(4)">
+          <ion-icon style="text-shadow:-2px 2px 1px rgba(0,0, 0, 0.4);font-size: 20px;" name="share"></ion-icon></button>
+  		</ion-buttons>
+  	</ion-row> -->
+  </div>
+
+  	
+</ion-content>

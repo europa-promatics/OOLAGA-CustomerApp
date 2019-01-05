@@ -1,0 +1,27 @@
+page-customer-oolaga-scheduled {
+
+	.sheduled-tick .item-md.item-block .item-inner{
+		border-bottom: transparent;
+	}
+	.text-inner-oolaga {
+    display: flex;
+    justify-content: center;
+	}
+	.sheduled-tick .item-inner .label-md {
+    margin: 13px 8px 13px 0;
+    color: #1B4079;
+    font-size: 19px;
+    font-weight: 900;
+	}
+.sheduled-tick .checkbox-md-dark .checkbox-checked {
+    border-color: #1B4079;
+    background-color: #1B4079;
+	}
+.sheduled-tick .checkbox-md .checkbox-checked {
+    border-color: #1B4079;
+    background-color: #1B4079;
+	}
+.sheduled-tick .checkbox-md .checkbox-icon {
+    border-color: #1B4079;
+   }
+}

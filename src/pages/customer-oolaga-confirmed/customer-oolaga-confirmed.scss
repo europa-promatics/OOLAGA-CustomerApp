@@ -1,0 +1,23 @@
+page-customer-oolaga-confirmed {
+.confirmed-customer{
+	width:100%;
+	float:left;
+	margin-top:20px;
+	color: #222;
+	}
+.text-div-inner{
+	display:flex;
+	flex-direction: row;
+	justify-content: center;
+	}
+.oolagas-bottom {
+    width: 100%;
+    float: left;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    /* alignment-baseline: baseline; */
+    flex: 1 1 auto;
+    align-items: flex-end;
+}	
+}

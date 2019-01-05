@@ -1,0 +1,12 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title style="text-align: center;">Select Time</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+	<div *ngFor="let t of times">
+		<button ion-button clear full style="padding:20px;border-bottom: 1px solid rgba(0,0,0,0.1)" (click)="save_time(t)">
+		{{t.start_time | timemomentformat}} - {{t.end_time | timemomentformat}}
+		</button>
+	</div>
+</ion-content>

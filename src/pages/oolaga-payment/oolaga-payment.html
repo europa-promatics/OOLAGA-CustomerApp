@@ -1,0 +1,32 @@
+<ion-header >
+	  <ion-navbar color="maincolor">
+      <ion-title style="text-align: center;">Pay</ion-title>
+      <ion-buttons end>
+        <button ion-button icon-only style="min-width: 44px;text-transform: none;" >
+          <ion-icon name="ios-timer-outline"></ion-icon>
+        </button>
+      </ion-buttons>
+    </ion-navbar>
+</ion-header>
+<ion-content style="background-color: #1B4079; text-align: center;" padding >
+	<ion-label color="light" class="headerText">
+		Thank you for choosing<br>OOLAGA
+	</ion-label>
+	<div class="circle">
+		<ion-label color="light" class="priceheader">
+			You are going<br>to pay
+		</ion-label>
+		<ion-label color="light" class="price">
+			${{appProvider.current.price}}
+		</ion-label>
+		<ion-label color="light" class="innerPriceText">
+			for
+		</ion-label>
+		<ion-label color="light" class="helper">
+			{{appProvider.current.helper_no}}
+		</ion-label>
+	</div>
+	<button ion-button round style="font-weight: bold;font-size:2.5rem;width:80%;background-color:#f26419;color:#fff;height:45px ;margin-top: 10px;box-shadow: none;" (click)="submit()" >
+		PAY
+	</button>
+</ion-content>

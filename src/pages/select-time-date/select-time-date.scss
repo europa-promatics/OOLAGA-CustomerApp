@@ -1,0 +1,190 @@
+page-select-time-date {
+	.card-md {
+    background: #fff none repeat scroll 0 0;
+    border-radius: 2px;
+    box-shadow: none;
+    font-size: 1.4rem;
+    margin:10px auto; 
+    width:250px;
+}
+
+
+
+.swiper-slide {
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  font-size: 11px;
+  height: 100% !important;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  //height:183px !important; 
+}
+// page-select-time-date .swiper-slide {
+//   align-items: center;
+//   box-sizing: border-box;
+//   display: flex;
+//   font-size: 12px;
+//   height: 262px;
+//   justify-content: center;
+//   text-align: center;
+//   width: 100%;
+// }
+.card-content-md {
+  font-size: 1.4rem;
+  line-height: 1.5;
+  padding:0px;
+}
+// .event-detail-container[_ngcontent-iaq-43] {
+//   border-top: 0px solid darkgrey;
+//   display: none;
+// }
+// .no-events-label[_ngcontent-xrr-43] {
+//   color: darkgrey;
+//   font-weight: bold;
+//   text-align: center;
+//   display: none;
+// }
+// .item-block {
+//   //display: none;
+//     font-weight: normal;
+//     justify-content: space-between;
+//     line-height: normal;
+//     margin: 0;
+//     min-height: 4.4rem;
+//     overflow: hidden;
+//     padding: 0;
+//     text-align: initial;
+//     text-decoration: none;
+//     width: 100%;
+// }
+.my_calendar calendar .monthview-container monthview div ion-item{
+  display: none!important;
+}
+ion-label {
+  flex: 1 1 0;
+  font-size: inherit;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.datetime-text:empty:not(:focus):before{
+    content: "Sélectionnez un horaire";
+    font-size: 1.3rem;
+}
+.datetime-text {
+  text-align: center;
+}
+  .card-header-md {
+  color: #222;
+  font-size: 1.6rem;
+  padding: 7px;
+}
+.swiper-container{
+  height: 178px !important;
+}
+
+// .table-bordered[_ngcontent-rhb-40] > thead[_ngcontent-rhb-40] > tr[_ngcontent-rhb-40] > th[_ngcontent-rhb-40], .table-bordered[_ngcontent-rhb-40] > tbody[_ngcontent-rhb-40] > tr[_ngcontent-rhb-40] > th[_ngcontent-rhb-40], .table-bordered[_ngcontent-rhb-40] > tfoot[_ngcontent-rhb-40] > tr[_ngcontent-rhb-40] > th[_ngcontent-rhb-40], .table-bordered[_ngcontent-rhb-40] > thead[_ngcontent-rhb-40] > tr[_ngcontent-rhb-40] > td[_ngcontent-rhb-40], .table-bordered[_ngcontent-rhb-40] > tbody[_ngcontent-rhb-40] > tr[_ngcontent-rhb-40] > td[_ngcontent-rhb-40], .table-bordered[_ngcontent-rhb-40] > tfoot[_ngcontent-rhb-40] > tr[_ngcontent-rhb-40] > td[_ngcontent-rhb-40] {
+//   border: 1px solid #ddd;
+//    background-color: #4A91F3;
+// }
+// .table[_ngcontent-rhb-40] > thead[_ngcontent-rhb-40] > tr[_ngcontent-rhb-40] > th[_ngcontent-rhb-40], .table[_ngcontent-rhb-40] > tbody[_ngcontent-rhb-40] > tr[_ngcontent-rhb-40] > th[_ngcontent-rhb-40], .table[_ngcontent-rhb-40] > tfoot[_ngcontent-rhb-40] > tr[_ngcontent-rhb-40] > th[_ngcontent-rhb-40], .table[_ngcontent-rhb-40] > thead[_ngcontent-rhb-40] > tr[_ngcontent-rhb-40] > td[_ngcontent-rhb-40], .table[_ngcontent-rhb-40] > tbody[_ngcontent-rhb-40] > tr[_ngcontent-rhb-40] > td[_ngcontent-rhb-40], .table[_ngcontent-rhb-40] > tfoot[_ngcontent-rhb-40] > tr[_ngcontent-rhb-40] > td[_ngcontent-rhb-40] {
+//   line-height: 12px;
+//   padding: 8px;
+//   vertical-align: top;
+//    background-color: #4A91F3;
+// }
+// .monthview-datetable[_ngcontent-rhb-40] td[_ngcontent-rhb-40] {
+//   cursor: pointer;
+//   text-align: center;
+//    background-color: #4A91F3;
+// }
+.swiper-slide .monthview-datetable .monthview-selected {
+  background-color: #1B4079;
+  color: white;
+}
+.swiper-slide .slide-zoom .table tbody tr td{
+    padding: 2px 0px !important;
+    border:1px solid rgba(0,0,0,0.2) !important;
+}
+.swiper-slide .slide-zoom .table thead tr th{
+    padding: 2px 0px !important;
+    border:1px solid rgba(0,0,0,0.2) !important;
+}
+//  .monthview-datetable.table[_ngcontent-rfv-40] > thead[_ngcontent-rfv-40] > tr[_ngcontent-rfv-40] > th[_ngcontent-rfv-40], .table[_ngcontent-rfv-40] > tbody[_ngcontent-rfv-40] > tr[_ngcontent-rfv-40] > th[_ngcontent-rfv-40], .table[_ngcontent-rfv-40] > tfoot[_ngcontent-rfv-40] > tr[_ngcontent-rfv-40] > th[_ngcontent-rfv-40], .table[_ngcontent-rfv-40] > thead[_ngcontent-rfv-40] > tr[_ngcontent-rfv-40] > td[_ngcontent-rfv-40], .table[_ngcontent-rfv-40] > tbody[_ngcontent-rfv-40] > tr[_ngcontent-rfv-40] > td[_ngcontent-rfv-40], .table[_ngcontent-rfv-40] > tfoot[_ngcontent-rfv-40] > tr[_ngcontent-rfv-40] > td[_ngcontent-rfv-40] {
+//   line-height: 13px;
+//   padding: 7px;
+//   vertical-align: top;
+// page-select-time-date .card-header-md {
+//   color: #222;
+//   font-size: 1.6rem;
+//    padding:-6px;
+// }
+ .swiper-slide {
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  font-size: 11px !important;
+  height: 202px;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+}
+.swiper-wrapper .swiper-slide .slide-zoom .table small
+{
+  font-size: 84%;
+}
+.slide-zoom{
+	position: relative;
+	bottom: 10px;
+}
+th {
+  text-indent: -9999px;
+  line-height: 0; /* Collapse the original line */
+}
+
+th:nth-child(1)::after {
+  content: "Lun";
+  text-indent: 0;
+  display: block;
+ 
+}
+th:nth-child(2)::after {
+  content: "Mar";
+    text-indent: 0;
+  display: block;
+ 
+}
+th:nth-child(3)::after {
+  content: "Mer";
+    text-indent: 0;
+  display: block;
+ 
+}
+th:nth-child(4)::after {
+  content: "Jeu";
+    text-indent: 0;
+  display: block;
+ 
+}
+th:nth-child(5)::after {
+  content: "Ven";
+    text-indent: 0;
+  display: block;
+ 
+}
+th:nth-child(6)::after {
+  content: "Sam";
+    text-indent: 0;
+  display: block;
+ 
+}
+th:nth-child(7)::after {
+  content: "Dim";
+    text-indent: 0;
+  display: block;
+ 
+}
+}

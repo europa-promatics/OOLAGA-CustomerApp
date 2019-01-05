@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-navbar color="maincolor">
+    <ion-title style="text-align: center;">Create an <span style="font-style: italic;position: relative;margin-right: 2px;font-family:'MarkPro-BookItalic';">
+      <p style="position: absolute;top: 20%;left: 4px;background-color: #119da4;height: 3px;width: 22px;margin: 0px;padding: 0px;"></p>oo</span><span style="font-style:normal;font-family:'MarkPro-Bold';">LAGA</span></ion-title>
+      <ion-buttons end style="margin: 0 6px;min-width: 44px;padding: 0 5px;">
+      <button ion-button clear icon-only (click)="submit(1)"><ion-icon name="arrow-forward"></ion-icon></button>
+      </ion-buttons>
+  </ion-navbar>
+  	<ion-title style="text-align: center; height: 40px;background-color: #fff;"><p color="maincolor">Optional details for your helper.</p></ion-title>
+</ion-header>
+<ion-content padding-left padding-right style="text-align: center;background-color: #eee;color: #1B4079" >
+		<div><p><ion-icon name="pin" margin-right></ion-icon>{{location.location_name}}</p>
+			<ion-item style="border-radius: 10%;color: #1B4079;margin-bottom:10px;" no-lines>
+				<ion-input placeholder="Unit Number" type="number" [(ngModel)]="unit_nu" ></ion-input>
+			</ion-item>
+			<ion-item style="border-radius: 10%;color: #1B4079;margin-bottom:10px;" no-lines>
+				<ion-input placeholder="Number of Stairs" type="number" [(ngModel)]="stairs"></ion-input>
+			</ion-item>
+			<ion-item style="border-radius: 10%;color: #1B4079;margin-bottom:10px;" no-lines>
+				<ion-label stacked>Elevator Building ( No Stairs ) </ion-label>
+				<ion-checkbox color="maincolor" [(ngModel)]="elevator"></ion-checkbox>
+			</ion-item>
+			<ion-item style="border-radius: 10%;color: #1B4079;margin-bottom:10px;" no-lines>
+				<ion-label stacked>Ride with helper to next location </ion-label>
+				<ion-checkbox color="maincolor" [(ngModel)]="ride"></ion-checkbox>
+			</ion-item>
+			<ion-item style="border-radius: 10%;color: #1B4079;margin-bottom:10px;" no-lines>
+				<ion-label stacked>Parking & Building Info</ion-label>
+				<ion-textarea rows="2" placeholder="Parking & Building Info " [(ngModel)]="parking_info"></ion-textarea>
+			</ion-item>
+		</div>
+	
+</ion-content>
+<ion-footer style="background-color:transparent;">
+
+  <button text-left ion-button color="orange_color" round style="text-align:left;float: left;box-shadow:-1px 3px 3px 0px rgba(0, 0, 0, 0.44), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);" (click)="submit(0)">
+  <span style="text-shadow:-2px 2px 1px rgba(0,0, 0, 0.4);">< Back</span>
+  </button>
+  <button text-right ion-button color="orange_color" round style="text-align: right;float: right;box-shadow:-1px 3px 3px 0px rgba(0, 0, 0, 0.44), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);" (click)="submit(1)">
+  <span style="text-shadow:-2px 2px 1px rgba(0,0, 0, 0.4);">Next ></span>
+  </button>
+
+</ion-footer>

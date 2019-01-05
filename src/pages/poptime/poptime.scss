@@ -1,0 +1,68 @@
+page-poptime {
+.time_option{
+  background: #fff;
+  border:1px solid #eee;
+  box-shadow: 0 0 5px 3px #ddd;
+  float: right;
+  height: auto;
+  width: 100%;
+  z-index: 1;
+  padding:10px;
+  text-align: center;
+}
+.time_option .selected_time{
+  min-width: 20%;
+  max-width: 70px;
+  margin: auto;
+  height: 20px;
+  border:1px solid rgba(0,0,0,0.3);
+  text-align: center;
+  overflow: hidden;
+  border-radius: 3px;
+}
+.time_option .selected_time div{
+  float: left;
+  width: 50%;
+  height: 100%;
+  background-color: #fff;
+  font-size: 1rem;
+  display: flex;
+}
+.time_option .selected_time div span{
+  margin: auto;
+}
+.time_option .selected_time .left_div.active{
+  background-color: color($colors,maincolor);
+  color:#fff;
+}
+.time_option .selected_time .right_div.active{
+  background-color: color($colors,maincolor);
+  color:#fff;
+}
+.time_selection{
+  width: 100%;
+  height: calc(100% - 20px);
+  padding-top: 10px;
+}
+.time_selection div{
+  //border:1px solid; 
+  height: 100%;
+  width: 50%;
+  float: left;
+}
+.time_selection div:nth-child(even){
+padding-left: 10px;
+}
+.time_selection div:nth-child(odd){
+padding-right: 10px;
+}
+.time_selection div ion-icon{
+  color:#999;
+  display: block;
+  font-size: 2rem;
+}
+.hm_color{
+  color: black;
+  font-size: 1.2rem;
+}
+}
