@@ -44,7 +44,7 @@ export class AddeditemsPage {
     }
     else if(value==1){
         let alert = this.alertCtrl.create({
-          message:"Gardez à l'esprit que les gros articles nécessitent au moins deux personnes. Si vous ne pouvez pas aider, vous pouvez créer un Oolaga 'Labor seulement' séparé une fois que vous avez finalisé celui-ci",
+          message:"Gardez à l’esprit que les objets volumineux nécessitent au moins deux personnes. Si vous ne pouvez pas aider votre Helper, vous pouvez créer un projet séparé en choisissant la catégorie « Main-d’œuvre uniquement ». Le Jobeur sélectionné pourra ainsi aider votre Helper à réaliser votre projet dans de bonnes conditions.",
           buttons:[
           {
             text:'CONTINUER',

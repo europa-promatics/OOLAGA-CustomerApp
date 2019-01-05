@@ -44,7 +44,7 @@
      <p style="width: 100%;color: black;font-size: 1.3rem;font-weight: 600;text-align: center;">Choisissez votre premier horaire possible</p>
 	<ion-item no-lines style="width: 100%;float: left;">
      
-      <ion-datetime (ionChange)="checktime(0)" style="border: 1px solid #5394d8;border-radius: 25px;font-size: 1.5rem;font-weight: 600;padding: 11px 14px;width: 100%;" doneText="Terminé" cancelText="Annuler" displayFormat="HH:mm" pickerFormat="HH:mm" minuteValues="0,5,10,15,20,25,30,35,40,45,50,55" hourValues="07,08,09,10,11,12,13,14,15,16,17,18, 19, 20" [(ngModel)]="firsttime">
+      <ion-datetime (ionChange)="checktime(0)" style="border: 1px solid #5394d8;border-radius: 25px;font-size: 1.5rem;font-weight: 600;padding: 11px 14px;width: 100%;" doneText="Choisir" cancelText="Annuler" displayFormat="HH:mm" pickerFormat="HH:mm" minuteValues="0,5,10,15,20,25,30,35,40,45,50,55" hourValues="07,08,09,10,11,12,13,14,15,16,17,18, 19, 20" [(ngModel)]="firsttime">
           <div class="datetime-text">{{firsttime}}</div>
       </ion-datetime>
 	  

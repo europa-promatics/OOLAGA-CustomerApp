@@ -16,12 +16,12 @@
             <form [formGroup]="log_in">
               <ion-item ion-item style="margin-bottom: 5px;background-color:transparent;height:4rem;min-height: unset;margin-bottom:5%;width: 100%;">
                 <ion-label icon-only no-margin style="width: 20px;text-align: left;"><ion-icon no-padding><img src="img/100-app-user.png" width="25px"> </ion-icon></ion-label>
-                <ion-input class="login-input" type="email" placeholder="Username" formControlName="username" style="font-size: 2rem;"></ion-input>
+                <ion-input class="login-input" type="email" placeholder="Email" formControlName="username" style="font-size: 2rem;"></ion-input>
                 
               </ion-item>
               <ion-item ion-item style="margin-bottom: 5px;background-color:transparent;height:4rem;min-height: unset;width: 100%;">
                 <ion-label icon-only no-margin style="width: 20px;text-align: left;"><ion-icon no-padding><img src="img/100-apppadlock.png" width="25px"> </ion-icon></ion-label>
-                <ion-input class="login-input" type="password" placeholder="Password"  formControlName="password" style="font-size: 2rem;" (keyup.enter)="login()"></ion-input>
+                <ion-input class="login-input" type="password" placeholder="Mot de passe"  formControlName="password" style="font-size: 2rem;" (keyup.enter)="login()"></ion-input>
               </ion-item>
             </form>
           </ion-list>

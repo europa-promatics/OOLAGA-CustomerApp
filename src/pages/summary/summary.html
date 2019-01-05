@@ -37,10 +37,8 @@
             </div>
           </div>
           <div style="background: #f7f7f7;width: 82%;height: 100%;float: right;padding: 13px 18px;">
-            <ion-label style="font-weight: 600;width: 100%;color:#000000;margin:0;">
-              <span [innerHtml]="service_name">
-                
-              </span>
+            <ion-label style="font-weight: 600;width: 100%;color:#000000;margin:0; font-size:1rem">
+              <span>{{getString(service_name)}}</span>
             </ion-label>
           </div>
       </div>
@@ -87,10 +85,10 @@
               <ion-label no-margin style="color: #A3A6A9;font-size: 1rem;padding-left: 12px;">Collection à l’intérieur avec ascenseur</ion-label>
             </div>
        <div *ngIf!="a && location.iwillbehelping=='1'" style="width: 100%;float: left;">
-              <ion-label no-margin style="color: #A3A6A9;font-size: 1rem;padding-left: 12px;">Le Helper recevra de l'aide à cette adresse</ion-label>
+              <ion-label no-margin style="color: #A3A6A9;font-size: 1rem;padding-left: 12px;">Le Helper recevra de l'aide à cette adresse<br></ion-label>
             </div>
       <div *ngIf!="a && !location.iwillbehelping" style="width: 100%;float: left;">
-              <ion-label no-margin style="color: #A3A6A9;font-size: 1rem;padding-left: 12px;">Le Helper ne recevra pas de l'aide à cette adresse</ion-label>
+              <ion-label no-margin style="color: #A3A6A9;font-size: 1rem;padding-left: 12px;">Le Helper ne recevra pas de l'aide à cette adresse<br></ion-label>
             </div>
             
             
@@ -203,7 +201,7 @@
              <td class="table_data" [innerHTML]="appProvider.current.items[selected_item].information|infoFilter"></td>
            </tr>
            <tr *ngIf="appProvider.current.locations.length>2">
-             <th class="table_data" style="text-align: left;">Pickup Location</th>
+             <th class="table_data" style="text-align: left;">Adresse de collection</th>
              <th class="table_data" style="padding: 0 5px;">:</th>
              <td class="table_data" *ngIf="appProvider.current.items[selected_item].src_item_loc==appProvider.current.src_location">{{appProvider.current.locations[0].location_name}}</td>
              <td class="table_data" *ngIf="appProvider.current.items[selected_item].src_item_loc==appProvider.current.way_point1">{{appProvider.current.locations[1].location_name}}</td>
@@ -251,8 +249,8 @@
         
         <div style="width: 50%;font-size: 1.2rem;font-weight: bold;float: left;color: #000000">{{formatDate(appProvider.current.date)}}</div>
         <div style="width: 50%;font-size: 1.2rem;font-weight: bold;float: left;color: #000000">
-        <span>{{appProvider.current.first_time | timemomentformat:'h:mm a'}}</span>
-        <span *ngIf="appProvider.current.last_time && appProvider.current.last_time!='SELECT A TIME'"> - {{appProvider.current.last_time | timemomentformat:'h:mm a'}}</span><!-- {{appProvider.current.time.substring(0,8) | timemomentformat:'h:mm a'}} - {{appProvider.current.time.substring(9,18) | timemomentformat:'h:mm a'}} --></div>
+        <span>{{getTimeFormat(appProvider.current.first_time)}}</span>
+        <span *ngIf="appProvider.current.last_time && appProvider.current.last_time!='Sélectionnez un horaire'"> - {{appProvider.current.last_time | timemomentformat:'h:mm a'}}</span><!-- {{appProvider.current.time.substring(0,8) | timemomentformat:'h:mm a'}} - {{appProvider.current.time.substring(9,18) | timemomentformat:'h:mm a'}} --></div>
       </div> 
 
       <!-- <div style="height: 15px;width: 100%;float: left;"></div>
@@ -358,8 +356,8 @@
         
         <div style="width: 50%;font-size: 1.2rem;font-weight: bold;float: left;color: #000000">{{appProvider.current.date|dateConvert}}</div>
         <div style="width: 50%;font-size: 1.2rem;font-weight: bold;float: left;color: #000000">
-        <span>{{appProvider.current.first_time | timemomentformat:'h:mm a'}}</span>
-        <span *ngIf="appProvider.current.last_time && appProvider.current.last_time!='SELECT A TIME'"> - {{appProvider.current.last_time | timemomentformat:'h:mm a'}}</span><!-- {{appProvider.current.time.substring(0,8) | timemomentformat:'h:mm a'}} - {{appProvider.current.time.substring(9,18) | timemomentformat:'h:mm a'}} --></div>
+        <span>{{getTimeFormat(appProvider.current.first_time)}}</span>
+        <span *ngIf="appProvider.current.last_time && appProvider.current.last_time!='Sélectionnez un horaire'"> - {{getTimeFormat(appProvider.current.last_time)}}</span><!-- {{appProvider.current.time.substring(0,8) | timemomentformat:'h:mm a'}} - {{appProvider.current.time.substring(9,18) | timemomentformat:'h:mm a'}} --></div>
       </div>
     </div>
 </ion-content>

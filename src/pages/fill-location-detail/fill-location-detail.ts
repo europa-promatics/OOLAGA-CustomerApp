@@ -190,7 +190,7 @@ export class FillLocationDetailPage {
                  handler:()=>{},
                }]
           });
-                confirm.present();
+                //confirm.present();
     }
   }
 

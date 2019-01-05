@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar color="light">
-    <ion-title text-center style="margin-right: 55px;">Profile</ion-title>
+    <ion-title text-center style="margin-right: 55px;">Profil</ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content>
@@ -16,7 +16,7 @@
 			</div>
 			<div style="float: left; width: calc(100% - 120px); height: 100px; padding: 0px 10px;">
 				<h3 style="width: 100%; float: left; margin: 0px;text-transform: initial;" *ngIf="helper_data.user.lastname">{{titleCase(helper_data.user.firstname)}} {{titleCase(helper_data.user.lastname[0].split()[0])}}</h3>
-				<button ion-button round outline color="dark" style="background:white; width:70%;float: left;height: 25px;font-size: 1rem" *ngIf="helper_data.user.helper_type==0">Helper with truck</button>
+				<button ion-button round outline color="dark" style="background:white; width:70%;float: left;height: 25px;font-size: 1rem" *ngIf="helper_data.user.helper_type==0">Helper Avec Véhicule</button>
 				<button ion-button round outline color="dark" style="background:white; width:70%;float: left;height: 25px;font-size: 1rem" *ngIf="helper_data.user.helper_type==1">Jobeur</button>
 				<div style="float: left; width: 100%;height: 25px;">
 					<ion-label style="width: 100%;margin:0;font-size: 1.5rem" *ngIf="helper_data.user.average_rating!=null">
@@ -44,13 +44,13 @@
 				<div style="float: left; width: 100%;height: 25px;">
 					<div style="float: left;">
 						<ion-label no-margin style="width: 100%;font-size: 1rem;color:#555">
-							Offer
+							Offre
 						</ion-label>
 						<ion-label style="width: 100%;margin:0;font-size: 1.7rem;color:#004574" >
-							${{helper_data.bid_amount}}
+							{{helper_data.bid_amount}}€
 						</ion-label>
 					</div>
-					<button style="float: right;font-size: 1.2rem;padding: 0px 10px;height: 30px;" ion-button round color="orange_color" (click)="submit(helper_data.id)">ACCEPT OFFER</button>
+					<button style="float: right;font-size: 1.2rem;padding: 0px 10px;height: 30px;" ion-button round color="orange_color" (click)="submit(helper_data.id)">Acceptez l'offree</button>
 				</div>
 			</div>
 		</div>
@@ -129,9 +129,9 @@
 		<table style="width: 100%">
 			<tbody style="width: 100%; text-align:center;">
 				<tr style="width: 100%;font-size: 1rem;color: #555 "> 
-					<td style="width: 37%">Vehicle</td>
-					<td style="width: 25%">Color</td>
-					<td style="width: 38%">Total Oolagas</td>
+					<td style="width: 37%">Véhicule</td>
+					<td style="width: 25%">Couleur</td>
+					<td style="width: 38%">Projets terminés</td>
 					
 				</tr>
 				<tr style="width: 100% ; font-weight: bold;margin-top: 10px;">
@@ -146,7 +146,7 @@
 		</table>
 		</div>
 		<div style="padding:0 15px 15px 15px;float: left;width: 100%;">
-		<ion-label no-margin style="margin: 3px 0;text-align: center;">Recent Review</ion-label>
+		<ion-label no-margin style="margin: 3px 0;text-align: center;">Évaluations récentes</ion-label>
 		<div *ngFor="let review of helper_data.user.recent_ratings" style="float:left;background: #fff;border: 1px solid rgba(0, 0, 0, 0.2);margin-bottom: 15px;width: 100%;">
 			<div *ngIf="review.customer">
 				
@@ -168,7 +168,7 @@
 					  	<ion-icon *ngIf="((review.punchuality + review.friendliness + review.prepardness)/3) < 5" name="ios-star-outline"></ion-icon>
 					</ion-label>
 					<div style="float: left; width: 33%;height: 25px;">
-						<ion-label no-margin style="width: 100%;font-size: 1rem;">Punchuality</ion-label>
+						<ion-label no-margin style="width: 100%;font-size: 1rem;">Pnctualité</ion-label>
 						<ion-label style="width: 100%;margin:0;font-size: 0.8rem" >
 						  	<ion-icon *ngIf="review.punchuality >= 1" name="ios-star"></ion-icon>
 						  	<ion-icon *ngIf="review.punchuality < 1" name="ios-star-outline"></ion-icon>
@@ -183,7 +183,7 @@
 						</ion-label>
 					</div>
 					<div style="float: left; width: 33%;height: 25px;">
-					<ion-label no-margin style="width: 100%;font-size: 1rem;">Friendliness</ion-label>
+					<ion-label no-margin style="width: 100%;font-size: 1rem;">Courtoisie</ion-label>
 						<ion-label style="width: 100%;margin:0;font-size: 0.8rem" >
 						  	<ion-icon *ngIf="review.friendliness >= 1" name="ios-star"></ion-icon>
 						  	<ion-icon *ngIf="review.friendliness < 1" name="ios-star-outline"></ion-icon>
@@ -198,7 +198,7 @@
 						</ion-label>
 					</div>
 					<div style="float: left; width: 33%;height: 25px;">
-						<ion-label no-margin style="width: 100%;font-size: 1rem;">Preparedness</ion-label>
+						<ion-label no-margin style="width: 100%;font-size: 1rem;">Préparation</ion-label>
 						<ion-label style="width: 100%;margin:0;font-size: 0.8rem" >
 						  	<ion-icon *ngIf="review.prepardness >= 1" name="ios-star"></ion-icon>
 						  	<ion-icon *ngIf="review.prepardness < 1" name="ios-star-outline"></ion-icon>

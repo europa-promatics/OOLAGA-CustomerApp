@@ -450,9 +450,9 @@ export class DraftOolagaPage {
             console.log(b>a)
             if(b>a){
              let alert = this.alertCtrl.create({
-                        message:'Auction will be live for 24hrs after submission',
+                        message:"Les enchères resteront ouvertes jusqu'à ce que <br />vous acceptiez une offre.<br />vous retiriez votre annonce.<br />la date du projet arrive à échéance.",
                         buttons:[{
-                                  text:'Cancel',
+                                  text:'ANNULER',
                                   handler:()=>{
                                     this.navCtrl.popToRoot();
                                   }},
@@ -662,4 +662,17 @@ export class DraftOolagaPage {
      return image
     }
   }
+  getServiceName(string){
+		return string.replace(/<[^>]*>/g, '');
+	}
+	formatDate(date){
+	  var date_parts=date.split('-');
+	  return date_parts[0]+'/'+date_parts[1]+'/'+'20'+date_parts[2];
+	  
+  }
+   formatTime(time){
+	 if(time){
+		 return time.replace(":", "h");
+	 }
+}
 }

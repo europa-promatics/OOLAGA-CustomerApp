@@ -39,7 +39,7 @@
         Catégorie
       </ion-label>
       <ion-label style="float:right;text-align: right;height:20px;width:50%;margin:0;color:#727272;font-size: 1.5rem;">
-        <span style="color: #1B4079;">Prix <span style="color: black;">{{data?.cost}}</span></span>
+        <span style="color: #1B4079;">Prix <span style="color: black;">{{chageToEuro(data?.cost)}}</span></span>
       </ion-label>
     </div>
     <div style="position:relative;background-color:#f7f7f7;height: 45px;border: 1px solid rgba(0,0,0,0.1);float: left;width: 100%;">
@@ -48,10 +48,10 @@
             <img src="http://18.188.229.2/oolaga/public/frontend/img/services/{{data?.service_image}}" style="align-self: center;height:80%;margin:0 auto;">
           </div>
         </div>
-        <div style="background: #f7f7f7;width: 82%;height: 100%;float: right;padding: 13px 18px;">
+        <div style="background: #f7f7f7;width: 82%;height: 100%;float: right;padding: 13px 18px;font-size:1rem">
           <ion-label style="font-weight: 600;width: 100%;color:#000000;margin:0;">
             <span>
-              {{data?.service}}
+              {{getString(data?.service)}}
             </span>
           </ion-label>
         </div>
@@ -155,7 +155,8 @@
           <div style="font-weight: 600;height:100%;position: relative;margin:0 auto">
             <span style="color: #fff;font-size: 1.2em;position: absolute;top: 5px;left: 0;right: 0;">
             {{item_quantity}}</span>
-            <span style="color: #fff;font-size: 0.8em;position: absolute;bottom: 5px;left: 0;right: 0;">items</span>
+            <span style="color: #fff;font-size: 0.8em;position: absolute;bottom: 5px;left: 0;right: 0;" *ngIf="item_quantity > 1">Objets</span>
+            <span style="color: #fff;font-size: 0.8em;position: absolute;bottom: 5px;left: 0;right: 0;" *ngIf="item_quantity <= 1">Objet</span>
           </div>
         </div>
         <div style="background: #f7f7f7;width: 82%;height: 100%;float: right;padding: 13px 18px;">
@@ -223,9 +224,9 @@
     <ion-label style="height:auto;width:100%;margin:0;color:#727272;font-size: 1.5rem;">Date et Heure</ion-label>
     
     <div *ngIf="data" style="position:relative;background-color:#f7f7f7;width:100%;border: 1px solid rgba(0,0,0,0.1);float: left;" padding margin-bottom>
-      <div style="width: 50%;font-size: 1.2rem;font-weight: bold;float: left;color: #000000">{{data.date|dateConvert}}</div>
+      <div style="width: 50%;font-size: 1.2rem;font-weight: bold;float: left;color: #000000">{{formatDate(data.date)}}</div>
       <div style="width: 50%;font-size: 1.2rem;font-weight: bold;float: left;color: #000000">
-      <span>{{data.first_time | timemomentformat}}</span>
+      <span>{{formatTime(data.first_time)}}</span>
       </div> 
     </div>
   </div>
@@ -255,7 +256,7 @@
         Catégorie
       </ion-label>
       <ion-label style="float:right;text-align: right;height:20px;width:50%;margin:0;color:#727272;font-size: 1.5rem;">
-        <span style="color: #1B4079;">Prix <span style="color: black;">{{data?.cost}}</span></span>
+        <span style="color: #1B4079;">Prix <span style="color: black;">{{chageToEuro(data?.cost)}}</span></span>
       </ion-label>
     </div>
     <div style="position:relative;background-color:transparent;width:100%;border: 1px solid rgba(0,0,0,0.1);float: left;">
@@ -264,7 +265,7 @@
               <img style="width: 40px;margin:1px 10px;" src="http://18.188.229.2/oolaga/public/frontend/img/services/{{data?.service_image}}">
             </div>
             <div style="height:45px;float:left;width: calc(100% - 140px);" padding>
-              <div style="font-size: 1.2rem;font-weight: bold;float: left;color: #000000">{{data?.service}}</div>
+              <div style="font-size: 1rem;font-weight: bold;float: left;color: #000000">{{getString(data?.service)}}</div>
             </div>
             <div style="padding:16px 10px;height:45px;float:left;width:70px;border:1px solid rgba(0,0,0,0.1);background: rgba(0,0,0,0.1);">
               <div style="font-size: 1rem;font-weight: bold;float: left;color: #000000;position: relative;">{{data?.hours}}hrs<div style="position: absolute;top: -10px;left: 0px;font-size: 0.7rem;">Time</div></div>
@@ -289,9 +290,9 @@
     <ion-label style="height:auto;width:100%;margin:0;color:#727272;font-size: 1.5rem;float: left;">Date et Heure</ion-label>
     
     <div style="position:relative;background-color:#f7f7f7;width:100%;border: 1px solid rgba(0,0,0,0.1);float: left;" padding margin-bottom>
-      <div style="width: 50%;font-size: 1.2rem;font-weight: bold;float: left;color: #000000">{{data.date|dateConvert}}</div>
+      <div style="width: 50%;font-size: 1.2rem;font-weight: bold;float: left;color: #000000">{{formatDate(data.date)}}</div>
       <div style="width: 50%;font-size: 1.2rem;font-weight: bold;float: left;color: #000000">
-      <span>{{data.first_time | timemomentformat}}</span>
+      <span>{{formatTime(data.first_time)}}</span>
       </div> 
     </div>
   </div>
@@ -321,7 +322,7 @@
         Catégorie
       </ion-label>
       <ion-label style="float:right;text-align: right;height:20px;width:50%;margin:0;color:#727272;font-size: 1.5rem;">
-        <span style="color: #1B4079;">Prix <span style="color: black;">{{data?.cost}}</span></span>
+        <span style="color: #1B4079;">Prix <span style="color: black;">{{chageToEuro(data?.cost)}}</span></span>
       </ion-label>
     </div>
     <div style="position:relative;background-color:#f7f7f7;height: 45px;border: 1px solid rgba(0,0,0,0.1);float: left;width: 100%;">
@@ -330,10 +331,10 @@
             <img src="http://18.188.229.2/oolaga/public/frontend/img/services/{{data.service.image}}" style="align-self: center;height:80%;margin:0 auto;">
           </div>
         </div>
-        <div style="background: #f7f7f7;width: 82%;height: 100%;float: right;padding: 13px 18px;">
+        <div style="background: #f7f7f7;width: 82%;height: 100%;float: right;padding: 13px 18px; font-size:1rem">
           <ion-label style="font-weight: 600;width: 100%;color:#000000;margin:0;">
             <span>
-              {{data.service.service}}
+              {{getString(data.service.service)}}
             </span>
           </ion-label>
         </div>
@@ -436,8 +437,8 @@
           <div style="font-weight: 600;height:100%;position: relative;margin:0 auto">
             <span style="color: #fff;font-size: 1.2em;position: absolute;top: 5px;left: 0;right: 0;">
             {{item_quantity}}</span>
-            <span style="color: #fff;font-size: 0.8em;position: absolute;bottom: 5px;left: 0;right: 0;" *ngIf="item_quantity >1">items</span>
-            <span style="color: #fff;font-size: 0.8em;position: absolute;bottom: 5px;left: 0;right: 0;" *ngIf="item_quantity <=1">item</span>
+            <span style="color: #fff;font-size: 0.8em;position: absolute;bottom: 5px;left: 0;right: 0;" *ngIf="item_quantity >1">Objets</span>
+            <span style="color: #fff;font-size: 0.8em;position: absolute;bottom: 5px;left: 0;right: 0;" *ngIf="item_quantity <=1">Objet</span>
           </div>
         </div>
         <div style="background: #f7f7f7;width: 82%;height: 100%;float: right;padding: 13px 18px;">
@@ -505,9 +506,9 @@
     <ion-label style="height:auto;width:100%;margin:0;color:#727272;font-size: 1.5rem;">Date et Heure</ion-label>
     
     <div *ngIf="data" style="position:relative;background-color:#f7f7f7;width:100%;border: 1px solid rgba(0,0,0,0.1);float: left;" padding margin-bottom>
-      <div style="width: 50%;font-size: 1.2rem;font-weight: bold;float: left;color: #000000">{{data.date|dateConvert}}</div>
+      <div style="width: 50%;font-size: 1.2rem;font-weight: bold;float: left;color: #000000">{{formatDate(data.date)}}</div>
       <div style="width: 50%;font-size: 1.2rem;font-weight: bold;float: left;color: #000000">
-      <span>{{data.first_time | timemomentformat}}</span>
+      <span>{{formatTime(data.first_time)}}</span>
       </div> 
     </div>
   </div>
@@ -537,7 +538,7 @@
         Catégorie
       </ion-label>
       <ion-label style="float:right;text-align: right;height:20px;width:50%;margin:0;color:#727272;font-size: 1.5rem;">
-        <span style="color: #1B4079;">Prix <span style="color: black;">{{data?.cost}}</span></span>
+        <span style="color: #1B4079;">Prix <span style="color: black;">{{chageToEuro(data?.cost)}}</span></span>
       </ion-label>
     </div>
     <div style="position:relative;background-color:transparent;width:100%;border: 1px solid rgba(0,0,0,0.1);float: left;">
@@ -546,7 +547,7 @@
               <img style="width: 40px;margin:1px 10px;" src="http://18.188.229.2/oolaga/public/frontend/img/services/{{data?.service_image}}">
             </div>
             <div style="height:45px;float:left;width: calc(100% - 140px);" padding>
-              <div style="font-size: 1.2rem;font-weight: bold;float: left;color: #000000">{{data?.service}}</div>
+              <div style="font-size: 1.2rem;font-weight: bold;float: left;color: #000000">{{getString(data?.service)}}</div>
             </div>
             <div style="padding:16px 10px;height:45px;float:left;width:70px;border:1px solid rgba(0,0,0,0.1);background: rgba(0,0,0,0.1);">
               <div style="font-size: 1rem;font-weight: bold;float: left;color: #000000;position: relative;">{{data?.hours}}hrs<div style="position: absolute;top: -10px;left: 0px;font-size: 0.7rem;">Time</div></div>
@@ -571,9 +572,9 @@
     <ion-label style="height:auto;width:100%;margin:0;color:#727272;font-size: 1.5rem;float: left;">Date et Heure</ion-label>
     
     <div style="position:relative;background-color:#f7f7f7;width:100%;border: 1px solid rgba(0,0,0,0.1);float: left;" padding margin-bottom>
-      <div style="width: 50%;font-size: 1.2rem;font-weight: bold;float: left;color: #000000">{{data.date|dateConvert}}</div>
+      <div style="width: 50%;font-size: 1.2rem;font-weight: bold;float: left;color: #000000">{{formatDate(data.date)}}</div>
       <div style="width: 50%;font-size: 1.2rem;font-weight: bold;float: left;color: #000000">
-      <span>{{data.first_time | timemomentformat}}</span>
+      <span>{{formatTime(data.first_time)}}</span>
       </div> 
     </div>
   </div>
@@ -619,10 +620,10 @@
           <img src="http://18.188.229.2/oolaga/public/frontend/img/services/{{data?.service_image}}" style="align-self: center;height:80%;margin:0 auto;">
         </div>
       </div>
-      <div style="background: #f7f7f7;width: 82%;height: 100%;float: right;padding: 13px 18px;">
+      <div style="background: #f7f7f7;width: 82%;height: 100%;float: right;padding: 13px 18px; font-size: 1rem">
         <ion-label style="font-weight: 600;width: 100%;color:#000000;margin:0;">
-         <span [innerHtml]="data?.service">
-            
+         <span>
+          {{  getString(data?.service) }}
           </span>
         </ion-label>
       </div>
@@ -726,7 +727,8 @@
         <div style="font-weight: 600;height:100%;position: relative;margin:0 auto">
           <span style="color: #fff;font-size: 1.2em;position: absolute;top: 5px;left: 0;right: 0;">
           {{item_quantity}}</span>
-          <span style="color: #fff;font-size: 0.8em;position: absolute;bottom: 5px;left: 0;right: 0;">items</span>
+          <span style="color: #fff;font-size: 0.8em;position: absolute;bottom: 5px;left: 0;right: 0;" *ngIf="item_quantity > 1">Objets</span>
+          <span style="color: #fff;font-size: 0.8em;position: absolute;bottom: 5px;left: 0;right: 0;" *ngIf="item_quantity <= 1">Objet</span>
         </div>
       </div>
       <div style="background: #f7f7f7;width: 82%;height: 100%;float: right;padding: 13px 18px;">
@@ -806,7 +808,7 @@
     <!-- <ion-icon (click)="editDateTime()" *ngIf!="editenable" name="create" style="position: absolute;top: 0;right: 0;color: #999999;font-size: 1.5rem;"></ion-icon> -->
     <div style="width: 50%;font-size: 1.2rem;font-weight: bold;float: left;color: #000000">{{formatDate(data.date)}}</div>
     <div style="width: 50%;font-size: 1.2rem;font-weight: bold;float: left;color: #000000">
-    <span>{{data.first_time | timemomentformat}}</span>
+    <span>{{formatTime(data.first_time)}}</span>
     <!-- <span *ngIf="appProvider.current.last_time"> - {{appProvider.current.last_time}}</span> --><!-- {{appProvider.current.time.substring(0,8) | timemomentformat:'h:mm a'}} - {{appProvider.current.time.substring(9,18) | timemomentformat:'h:mm a'}} --> </div>
   </div> 
 

@@ -244,8 +244,18 @@ export class SummaryPage {
 	  return date_parts[0]+'/'+date_parts[1]+'/'+'20'+date_parts[2];
 	  
   }
+  getString(string){
+	  if(string){
+	  return string.replace(/<\/?[^>]+(>|$)/g, "");
+	  }
+  }
   
   edit(){
     this.editenable=!this.editenable;
+  }
+  getTimeFormat(time){
+	  if(time){
+		  return time.replace(":", "h");
+	  }
   }
 }

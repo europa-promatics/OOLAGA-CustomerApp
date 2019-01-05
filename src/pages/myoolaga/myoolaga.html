@@ -4,7 +4,7 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title style="text-align: center;">
-      Mes Oolagas
+      Mes projets
     </ion-title>
     <ion-buttons end>
       <button color="light" ion-button icon-only (click)="createoolaga()" style="min-width: 44px;">
@@ -72,9 +72,9 @@
                   <span style="width:30%;font-size: 0.8em;float: left;">Heure</span>
                 </ion-label>
                 <ion-label style="width:100%;color: #000;margin: 0px;float: left;margin-top: 3px;">
-                  <span style="width:30%;font-size: 0.8em;float: left;" *ngIf="d.date!=null">{{d.date|dateConvert}}</span>
+                  <span style="width:30%;font-size: 0.8em;float: left;" *ngIf="d.date!=null">{{formatDate(d.date)}}</span>
                   <span style="width:30%;font-size: 0.8em;float: left;color:red" *ngIf="d.date==null">&nbsp;</span>
-                  <span style="width:30%;font-size: 0.8em;float: left;" *ngIf="d.first_time!=null">{{d.first_time | timemomentformat:'h:mm a'}}</span>
+                  <span style="width:30%;font-size: 0.8em;float: left;" *ngIf="d.first_time!=null">{{formatTime(d.first_time)}}</span>
                   <span style="width:30%;font-size: 0.8em;float: left;color: red" *ngIf="d.first_time==null">&nbsp;</span>
                 </ion-label>
               </div>     
@@ -142,8 +142,8 @@ d.service=='No van, Labor only'
                 </ion-label>
                 <ion-label style="width:100%;color: #000;margin: 0px;float: left;margin-top: 3px;">
                   <!-- <span style="width:32%;font-size: 0.8em;float: left;">{{d.helper_name}}</span> -->
-                  <span style="width:30%;font-size: 0.8em;float: left;">{{d.date|dateConvert}}</span>
-                  <span style="width:30%;font-size: 0.8em;float: left;">{{d.first_time | timemomentformat:'h:mm a'}}<!-- {{d.time.substring(0,8) | timemomentformat:'h:mm a'}}-{{d.time.substring(9,18) | timemomentformat:'h:mm a'}} --></span>
+                  <span style="width:30%;font-size: 0.8em;float: left;">{{formatDate(d.date)}}</span>
+                  <span style="width:30%;font-size: 0.8em;float: left;">{{formatTime(d.first_time)}}<!-- {{d.time.substring(0,8) | timemomentformat:'h:mm a'}}-{{d.time.substring(9,18) | timemomentformat:'h:mm a'}} --></span>
                   <span style="width:23%;font-size: 0.8em;float: right;color:#119DA4">{{d | objectTimer}}</span>
                 </ion-label>
               </div>     
@@ -210,19 +210,19 @@ d.service=='No van, Labor only'
                   <ion-label style="margin-left:10px;max-width: 48%;float: left;height: 20px;margin:0px;"> <span style="color: #aaa;font-size: 0.8em;margin:0 10px;">à</span> {{d.dst_location_name}}</ion-label>
                 </ion-label>
                 <ion-label (click)="active_oolaga_detail(d)" style="width:100%;color: #aaa;margin: 0px;float: left;margin-top: 5px;">
-                  <span style="width:32%;font-size: 0.8em;float: left;">Assigned helper</span>
+                  <span style="width:32%;font-size: 0.8em;float: left;">Helper</span>
                   <span style="width:20%;font-size: 0.8em;float: left;">Date</span>
                   <span style="width:25%;font-size: 0.8em;float: left;">Heure</span>
                   <span *ngIf="d.cancel_status!='cancel_by_helper'" style="width:23%;font-size: 0.8em;float: right;">
-                    <span *ngIf="d.track_status=='pending'">Starting in</span>
+                    <span *ngIf="d.track_status=='pending'">Temps restant</span>
                     <span *ngIf="d.track_status!='pending'">Status</span>
                   </span>
                   <span *ngIf="d.cancel_status=='cancel_by_helper'" style="width:23%;font-size: 0.8em;float: right;">Status</span>
                 </ion-label>
                 <ion-label (click)="active_oolaga_detail(d)" style="width:100%;color: #000;margin: 0px;float: left;margin-top: 3px;">
                   <span style="width:32%;font-size: 0.8em;float: left;text-transform: capitalize;">{{titleCase(d.helper_name.split(' ').slice(0, -1).join(' '))}} {{titleCase(d.helper_name.split(' ').slice(-1).join(' ')[0])}}</span>
-                  <span style="width:20%;font-size: 0.8em;float: left;">{{d.date|dateConvert}}</span>
-                  <span style="width:25%;font-size: 0.8em;float: left;">{{d.first_time | timemomentformat:'h:mm a'}}<!-- {{d.time.substring(0,8) | timemomentformat:'h:mm a'}}-{{d.time.substring(9,18) | timemomentformat:'h:mm a'}} --></span>
+                  <span style="width:20%;font-size: 0.8em;float: left;">{{formatDate(d.date)}}</span>
+                  <span style="width:25%;font-size: 0.8em;float: left;">{{formatTime(d.first_time)}}<!-- {{d.time.substring(0,8) | timemomentformat:'h:mm a'}}-{{d.time.substring(9,18) | timemomentformat:'h:mm a'}} --></span>
                   <span *ngIf="d.cancel_status!='cancel_by_helper'" style="width:23%;font-size: 0.8em;float: right;color:#119DA4">
                     <span *ngIf="d.track_status=='pending'">{{(d.date+'|'+d.first_time) | startingTime}}</span>
                     <span *ngIf="d.track_status!='pending'">STARTED</span>

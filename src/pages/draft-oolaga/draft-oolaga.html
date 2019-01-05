@@ -4,11 +4,11 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title style="text-align: center;">
-      Draft
+      Brouillon
     </ion-title>
     <ion-buttons end>
       <button color="light" ion-button clear style="text-transform: none;min-width: 44px;" (click)="deleteDraft()">
-        Delete
+        Supprimer
       </button>
     </ion-buttons>
   </ion-navbar>
@@ -19,13 +19,13 @@
         <!-- Catogory selection -->
       <div style="float: left;width: 100%;">
         <ion-label style="float:left;height:20px;width:50%;margin:0;color:#727272;font-size: 1.5rem;">
-          Cotegory
+          Catégorie
           <ion-icon name="create" style="color: #999999;font-size: 1.5rem;" (click)="edit_Cotegory()"></ion-icon>
         </ion-label>
         <ion-label *ngIf="value.max_price!=null" (click)="edit_Price()" style="float:right;text-align: right;height:20px;width:50%;margin:0;color:#727272;font-size: 1.5rem;">
           <span style="color: #1B4079;">
             Budget 
-            <span style="color: black;">${{value.max_price}}
+            <span style="color: black;">{{value.max_price}}€
               <ion-icon name="create" style="color: #999999;font-size: 1.5rem;"></ion-icon>
             </span>
           </span>
@@ -34,7 +34,7 @@
           <span style="color: #1B4079;">
             Budget 
             <span style="color: red;">
-              $___<ion-icon name="create" style="color: #999999;font-size: 1.5rem;"></ion-icon>
+              <ion-icon name="create" style="color: #999999;font-size: 1.5rem;"></ion-icon>___€
             </span>
           </span>
         </ion-label>
@@ -48,7 +48,7 @@
           <div style="background: #f7f7f7;width: 82%;height: 100%;float: right;padding: 13px 18px;">
             <ion-label style="font-weight: 600;width: 100%;color:#000000;margin:0;">
               <span>
-                {{appProvider.current.service_name}}
+                {{getServiceName(appProvider.current.service_name)}}
               </span>
             </ion-label>
           </div>
@@ -58,34 +58,34 @@
       <div style="float:left;height: 15px;width: 100%;"></div>
 
       <ion-label (click)="openNextStep('location')" *ngIf="!appProvider.current.locations" style="height:20px;width:100%;margin:0;color:#727272;font-size: 1.5rem;">
-        Locations
+        Adresses
         <ion-icon name="create" style="color: #999999;font-size: 1.5rem;" ></ion-icon>
       </ion-label>
       <div *ngIf="!appProvider.current.locations" (click)="openNextStep('location')" style="position:relative;background-color:#f7f7f7;width:100%;border: 2px solid red;float: left;border-radius: 3px;height: 50px;" padding>
       </div> 
 
       <ion-label *ngIf="appProvider.current.locations" style="height:20px;width:100%;margin:0;color:#727272;font-size: 1.5rem;">
-        Locations
+        Adresses
         <ion-icon name="create" style="color: #999999;font-size: 1.5rem;" (click)="edit_locations()"></ion-icon>
       </ion-label>
       <div (click)="edit_locations()"  *ngIf="appProvider.current.locations" style="position:relative;background-color:#f7f7f7;width:100%;border: 1px solid rgba(0,0,0,0.1);float: left;padding:5px">
         <div style="width: 100%;float: left;">
-          <p no-margin style="color: #999999;float: left;">Pickup</p>
+          <p no-margin style="color: #999999;float: left;">Adresse(s) de collection</p>
           <div style="float:left;width: 100%;padding-left: 15px" *ngFor="let location of appProvider.current.locations ; let a = last ; let i = index ">
             <ion-label *ngIf!="a" no-margin style="float:left;width:100%;white-space: unset;color: #000000;font-weight: bold;font-size: 1.2rem;"><span *ngIf="appProvider.current.locations.length>2">{{i+1}}. </span>{{location.location_name}}</ion-label>
             <table style="margin-left:10px;font-size: 1rem;color: #555" >
                 <tr *ngIf!="a && location.unit_nu">
-                  <th style="text-align: left;vertical-align: top;">Unit No</th>
+                  <th style="text-align: left;vertical-align: top;">Complément d'adresse</th>
                   <td style="padding: 0 5px;vertical-align: top;">:</td>
                   <td style="vertical-align: top;">{{location.unit_nu}}</td>
                 </tr>
                 <tr *ngIf!="a && location.stairs!='0' && location.elevator=='0' && location.inhome=='1'">
-                  <th style="text-align: left;vertical-align: top;">Stairs</th>
+                  <th style="text-align: left;vertical-align: top;">Etage</th>
                   <td style="padding: 0 5px;vertical-align: top;">:</td>
                   <td style="vertical-align: top;">{{location.stairs}}</td>
                 </tr>
                 <tr *ngIf!="a && location.parking_info">
-                  <th style="text-align: left;vertical-align: top;">Additional Info</th>
+                  <th style="text-align: left;vertical-align: top;">Information additionnelle</th>
                   <td style="padding: 0 5px;vertical-align: top;">:</td>
                   <td style="vertical-align: top;" [innerHTML]="location.parking_info|infoFilter"></td>
                 </tr>
@@ -95,34 +95,34 @@
             <ion-label *ngIf!="a && location.parking_info" style="float:left;width:100%;white-space: unset;color:#555555;font-size: 0.9rem;padding-left: 10px" no-margin><span style="font-weight: bold">Additional Info:</span> {{location.parking_info}}</ion-label> -->
 
             <div *ngIf!="a && location.curbside=='1'" style="width: 50%;float: left;">
-              <ion-label no-margin style="color: #A3A6A9;font-size: 1.5rem;padding-left: 12px;">Curbside</ion-label>
+              <ion-label no-margin style="color: #A3A6A9;font-size: 1.5rem;padding-left: 12px;">Collection au Pas-de-porte</ion-label>
             </div>
             <div *ngIf!="a && location.inhome=='1' && location.elevator!='1'" style="width: 50%;float: left;">
-              <ion-label no-margin style="color: #A3A6A9;font-size: 1.5rem;padding-left: 12px;">Inhome</ion-label>
+              <ion-label no-margin style="color: #A3A6A9;font-size: 1.5rem;padding-left: 12px;">Collection à l’intérieur sans ascenseu</ion-label>
             </div>
             <div *ngIf!="a && location.elevator=='1' && location.inhome=='1'" style="width: 100%;float: left;">
-              <ion-label no-margin style="color: #A3A6A9;font-size: 1.5rem;padding-left: 12px;">Inhome delivery with Elevator</ion-label>
+              <ion-label no-margin style="color: #A3A6A9;font-size: 1.5rem;padding-left: 12px;">Collection à l’intérieur avec ascenseur</ion-label>
             </div>
           </div>
         </div>
         <div style="width: 100%;float: left;margin-top: 10px">
-          <p no-margin style="color: #999999;float: left;">Drop-off</p>
+          <p no-margin style="color: #999999;float: left;">Adresse de livraison</p>
           <div style="width: 100%;padding-left: 15px;float: left;" *ngFor="let location of appProvider.current.locations ; let a = last ; let i = index ">
             <ion-label *ngIf="a" no-margin style="float:left;width:100%;color: #000000;font-weight: bold;font-size: 1.2rem;">
             {{location.location_name}}</ion-label>
             <table style="margin-left:10px;font-size: 1rem;color: #555" >
                 <tr *ngIf="a && location.unit_nu">
-                  <th style="text-align: left;vertical-align: top;">Unit No</th>
+                  <th style="text-align: left;vertical-align: top;">Complément d'adresse</th>
                   <td style="padding: 0 5px;vertical-align: top;">:</td>
                   <td style="vertical-align: top;">{{location.unit_nu}}</td>
                 </tr>
                 <tr *ngIf="a && location.stairs!='0' && location.elevator=='0' && location.inhome=='1'">
-                  <th style="text-align: left;vertical-align: top;">Stairs</th>
+                  <th style="text-align: left;vertical-align: top;">Etage</th>
                   <td style="padding: 0 5px;vertical-align: top;">:</td>
                   <td style="vertical-align: top;">{{location.stairs}}</td>
                 </tr>
                 <tr *ngIf="a && location.parking_info">
-                  <th style="text-align: left;vertical-align: top;">Additional Info</th>
+                  <th style="text-align: left;vertical-align: top;">Information additionnelle</th>
                   <td style="padding: 0 5px;vertical-align: top;">:</td>
                   <td style="vertical-align: top;" [innerHTML]="location.parking_info|infoFilter"></td>
                 </tr>
@@ -132,13 +132,13 @@
             <ion-label *ngIf="a && location.parking_info" style="float:left;width:100%;white-space: unset;color:#555555;font-size: 0.9rem;font-weight: bold;padding-left: 10px" no-margin><span style="font-weight: bold">Additional Info:</span> {{location.parking_info}}</ion-label> -->
 
             <div *ngIf="a && location.curbside=='1'" style="width: 50%;float: left;">
-              <ion-label no-margin style="color: #A3A6A9;font-size: 1.5rem;margin-left: 12px;width: 80%;">Curbside</ion-label>
+              <ion-label no-margin style="color: #A3A6A9;font-size: 1.5rem;margin-left: 12px;width: 80%;">Livraison au Pas-de-porte</ion-label>
             </div>
             <div *ngIf="a && location.inhome=='1' && location.elevator!='1'" style="width: 50%;float: left;">
-              <ion-label no-margin style="color: #A3A6A9;font-size: 1.5rem;margin-left: 12px;width: 80%;">Inhome</ion-label>
+              <ion-label no-margin style="color: #A3A6A9;font-size: 1.5rem;margin-left: 12px;width: 80%;">Livraison à l’intérieur sans ascenseur</ion-label>
             </div>
             <div *ngIf="a && location.elevator=='1' && location.inhome=='1'" style="width: 100%;float: left;">
-              <ion-label no-margin style="color: #A3A6A9;font-size: 1.5rem;margin-left: 12px;width: 80%;">Inhome delivery with Elevator</ion-label>
+              <ion-label no-margin style="color: #A3A6A9;font-size: 1.5rem;margin-left: 12px;width: 80%;">Livraison à l’intérieur avec présence d’un ascenseur</ion-label>
             </div>
           </div>
         </div>
@@ -148,7 +148,7 @@
       <div style="height: 15px;width: 100%;float: left;"></div>
 
       <ion-label *ngIf="appProvider.current.locations && appProvider.current.items " style="height:20px;width:100%;margin:0;color:#727272;font-size: 1.5rem;">
-        Items
+        Objets
         <ion-icon name="create" style="color: #999999;font-size: 1.5rem;" (click)="edit_items()"></ion-icon>
       </ion-label>
 
@@ -157,7 +157,8 @@
             <div style="font-weight: 600;height:100%;position: relative;margin:0 auto">
               <span style="color: #fff;font-size: 1.2em;position: absolute;top: 5px;left: 0;right: 0;">
               {{item_quantity}}</span>
-              <span style="color: #fff;font-size: 0.8em;position: absolute;bottom: 5px;left: 0;right: 0;">items</span>
+              <span style="color: #fff;font-size: 0.8em;position: absolute;bottom: 5px;left: 0;right: 0;" *ngIf="item_quantity > 1">Objets</span>
+              <span style="color: #fff;font-size: 0.8em;position: absolute;bottom: 5px;left: 0;right: 0;" *ngIf="item_quantity <= 1">Objet</span>
             </div>
           </div>
           <div style="background: #f7f7f7;width: 82%;height: 100%;float: right;padding: 13px 18px;">
@@ -170,7 +171,7 @@
       </div>
 
       <ion-label (click)="openNextStep('items')" *ngIf="!appProvider.current.items" style="height:20px;width:100%;margin:0;color:#727272;font-size: 1.5rem;">
-        Items
+        Objets
         <ion-icon name="create" style="color: #999999;font-size: 1.5rem;" ></ion-icon>
       </ion-label>
       <div (click)="openNextStep('items')" *ngIf="!appProvider.current.items" style="position:relative;background-color:#f7f7f7;width:100%;border: 2px solid red;float: left;border-radius: 3px;height: 50px;" padding>
@@ -178,11 +179,11 @@
         <!-- Pics selection -->
       <div style="float:left;height: 15px;width: 100%;"></div>
       <ion-label (click)="openNextStep('items')" *ngIf="!appProvider.current.items" style="height:20px;width:100%;margin:0;color:#727272;font-size: 1.5rem;">
-        Pics
+        Description
         <ion-icon name="create" style="color: #999999;font-size: 1.5rem;" ></ion-icon>
       </ion-label>
       <ion-label *ngIf="appProvider.current.items" style="height:20px;width:100%;margin:0;color:#727272;font-size: 1.5rem;">
-        Pics
+        Description
         <ion-icon name="create" style="color: #999999;font-size: 1.5rem;" ></ion-icon>
       </ion-label>
       <div *ngIf="!appProvider.current.items" (click)="openNextStep('items')" style="position:relative;background-color:#f7f7f7;width:100%;border: 2px solid red;float: left;border-radius: 3px;height: 50px;" padding>
@@ -196,17 +197,17 @@
         </div>
         <table style="color: black; font-size: 1rem">
            <tr>
-             <th class="table_data" style="text-align: left;">Quantity</th>
+             <th class="table_data" style="text-align: left;">Quantité</th>
              <th class="table_data" style="padding: 0 5px;">:</th>
              <td class="table_data" >{{appProvider.current.items[selected_item].quantity}}</td>
            </tr>
            <tr *ngIf="appProvider.current.items[selected_item].information!=null && appProvider.current.items[selected_item].information!=''">
-             <th class="table_data" style="text-align: left;">Information</th>
+             <th class="table_data" style="text-align: left;">Détails</th>
              <th class="table_data" style="padding: 0 5px;">:</th>
              <td class="table_data" [innerHTML]="appProvider.current.items[selected_item].information|infoFilter"></td>
            </tr>
            <tr *ngIf="appProvider.current.locations.length>2">
-             <th class="table_data" style="text-align: left;">Pickup Location</th>
+             <th class="table_data" style="text-align: left;">Adresse de collection</th>
              <th class="table_data" style="padding: 0 5px;">:</th>
              <td class="table_data" *ngIf="appProvider.current.items[selected_item].src_item_loc==appProvider.current.src_location">{{appProvider.current.locations[0].location_name}}</td>
              <td class="table_data" *ngIf="appProvider.current.items[selected_item].src_item_loc==appProvider.current.way_point1">{{appProvider.current.locations[1].location_name}}</td>
@@ -280,22 +281,22 @@
       <div style="height: 15px;width: 100%;float: left;"></div>
 
       <ion-label *ngIf="appProvider.current.locations && appProvider.current.items && appProvider.current.date && appProvider.current.first_time!='SELECT A TIME'" style="height:20px;width:100%;margin:0;color:#727272;font-size: 1.5rem;">
-      Date & Time
+      Date et Heure
         <ion-icon (click)="edit_datetime()" name="create" style="color: #999999;font-size: 1.5rem;"></ion-icon>
       </ion-label>
       
       <div (click)="edit_datetime()" *ngIf="appProvider.current.locations && appProvider.current.items && appProvider.current.date && appProvider.current.first_time!='SELECT A TIME'" style="position:relative;background-color:#f7f7f7;width:100%;border: 1px solid rgba(0,0,0,0.1);float: left;margin-bottom: 15px;" padding>
-         <div *ngIf="appProvider.current.date" style="width: 50%;font-size: 1.2rem;font-weight: bold;float: left;color: #000000">{{appProvider.current.date|dateConvert}}</div>
+         <div *ngIf="appProvider.current.date" style="width: 50%;font-size: 1.2rem;font-weight: bold;float: left;color: #000000">{{formatDate(appProvider.current.date)}}</div>
         <div style="width: 50%;font-size: 1.2rem;font-weight: bold;float: left;color: #000000">
-        <span>{{appProvider.current.first_time | timemomentformat:'h:mm a'}}</span>
-        <span *ngIf="appProvider.current.last_time!='SELECT A TIME'"> - {{appProvider.current.last_time | timemomentformat:'h:mm a'}}</span><!-- {{appProvider.current.first_time}} --><!-- {{appProvider.current.time.substring(0,8) | timemomentformat:'h:mm a'}} - {{appProvider.current.time.substring(9,18) | timemomentformat:'h:mm a'}} --></div>
+        <span>{{formatTime(appProvider.current.first_time)}}</span>
+        <span *ngIf="appProvider.current.last_time!='Sélectionnez un horaire'"> - {{formatTime(appProvider.current.last_time)}}</span><!-- {{appProvider.current.first_time}} --><!-- {{appProvider.current.time.substring(0,8) | timemomentformat:'h:mm a'}} - {{appProvider.current.time.substring(9,18) | timemomentformat:'h:mm a'}} --></div>
       </div> 
 
-      <ion-label (click)="openNextStep('datetime')" *ngIf="!(appProvider.current.date && appProvider.current.first_time!='SELECT A TIME')" style="height:20px;width:100%;margin:0;color:#727272;font-size: 1.5rem;">
-        Date & Time
+      <ion-label (click)="openNextStep('datetime')" *ngIf="!(appProvider.current.date && appProvider.current.first_time!='Sélectionnez un horaire')" style="height:20px;width:100%;margin:0;color:#727272;font-size: 1.5rem;">
+        Date et Heure
         <ion-icon name="create" style="color: #999999;font-size: 1.5rem;" ></ion-icon>
       </ion-label>
-      <div (click)="openNextStep('datetime')" *ngIf="!(appProvider.current.date && appProvider.current.first_time!='SELECT A TIME')" style="position:relative;background-color:#f7f7f7;width:100%;border: 2px solid red;float: left;border-radius: 3px;height: 50px;margin-bottom: 15px;" padding>
+      <div (click)="openNextStep('datetime')" *ngIf="!(appProvider.current.date && appProvider.current.first_time!='Sélectionnez un horaire')" style="position:relative;background-color:#f7f7f7;width:100%;border: 2px solid red;float: left;border-radius: 3px;height: 50px;margin-bottom: 15px;" padding>
       </div>
 
 
@@ -307,13 +308,13 @@
     <div *ngIf="dataLoaded && appProvider.current.service_id == 7 "> 
         <div style="float: left;width: 100%;">
           <ion-label style="float:left;height:20px;width:50%;margin:0;color:#727272;font-size: 1.5rem;">
-            Cotegory
+            Catégorie
             <ion-icon name="create" style="color: #999999;font-size: 1.5rem;" (click)="edit_Cotegory()"></ion-icon>
           </ion-label>
           <ion-label *ngIf="value.max_price!=null" (click)="edit_Price()" style="float:right;text-align: right;height:20px;width:50%;margin:0;color:#727272;font-size: 1.5rem;">
             <span style="color: #1B4079;">
               Budget 
-              <span style="color: black;">${{value.max_price}}
+              <span style="color: black;">{{value.max_price}}
                 <ion-icon name="create" style="color: #999999;font-size: 1.5rem;"></ion-icon>
               </span>
             </span>
@@ -322,7 +323,7 @@
             <span style="color: #1B4079;">
               Budget 
               <span style="color: red;">
-                $___<ion-icon name="create" style="color: #999999;font-size: 1.5rem;"></ion-icon>
+                <ion-icon name="create" style="color: #999999;font-size: 1.5rem;"></ion-icon>___€
               </span>
             </span>
           </ion-label>
@@ -333,7 +334,7 @@
               <img style="width: 40px;margin:1px 10px;" src="http://18.188.229.2/oolaga/public/frontend/img/services/{{appProvider.current.service_image}}">
             </div>
             <div (click)="edit_Cotegory()" style="height:45px;float:left;width: calc(100% - 140px);" padding>
-              <div style="font-size: 1.2rem;font-weight: bold;float: left;color: #000000">{{appProvider.current.service_name}}</div>
+              <div style="font-size: 1.2rem;font-weight: bold;float: left;color: #000000">{{getServiceName(appProvider.current.service_name)}}</div>
             </div>
             <div *ngIf="appProvider.current.laborHours" (click)="edit_locations()" style="padding:16px 10px;height:45px;float:left;width:70px;border:1px solid rgba(0,0,0,0.1);background: rgba(0,0,0,0.1);">
               <div style="font-size: 1rem;font-weight: bold;float: left;color: #000000;position: relative;">{{appProvider.current.laborHours}}hrs<div style="position: absolute;top: -10px;left: 0px;font-size: 0.7rem;">Time</div></div>
@@ -403,12 +404,12 @@
 </ion-content>
 <ion-footer style="background-color:#EAEAEA;border-top: 1px solid rgba(0,0,0,0.2);">
   <button text-left ion-button clear style="font-weight: 600;color:#555;text-align:left;float: left;" navPop>
-   <ion-icon name="ios-arrow-back" style="margin-right: 10px;" ></ion-icon> Back
+   <ion-icon name="ios-arrow-back" style="margin-right: 10px;" ></ion-icon> RETOUR
   </button>
   <button *ngIf="nextpage!=true" text-right ion-button clear style="font-weight: 600;color:#555;text-align: right;float: right;" (click)="submit()">
-    Continue <ion-icon name="ios-arrow-forward" style="margin-left: 10px;"></ion-icon>
+    CONTINUER <ion-icon name="ios-arrow-forward" style="margin-left: 10px;"></ion-icon>
   </button>
   <button *ngIf="nextpage==true" text-right ion-button clear style="font-weight: 600;color:#555;text-align: right;float: right;" (click)="submit()">
-    Submit <ion-icon name="ios-arrow-forward" style="margin-left: 10px;"></ion-icon>
+    SOUMETTRE <ion-icon name="ios-arrow-forward" style="margin-left: 10px;"></ion-icon>
   </button>
 </ion-footer>

@@ -170,11 +170,14 @@ export class OolagaSummaryPage implements OnInit{
     }
   }
   getString(object){
-	  return JSON.stringify(object);
+	  if(object){
+	  return object.replace(/<\/?[^>]+(>|$)/g, "");
+	  }
   }
   ionViewDidLoad() {
    
   }
+
  openPic(pic){
     pic=this.my+'/public/frontend/img/addImage/'+pic;
     let model = this.modalCtrl.create(OpenItemPicPage,{pic:pic})
@@ -183,6 +186,19 @@ export class OolagaSummaryPage implements OnInit{
  formatDate(date){
 	  var date_parts=date.split('-');
 	  return date_parts[0]+'/'+date_parts[1]+'/'+'20'+date_parts[2];
+	  
+  }
+   formatTime(time){
+	 if(time){
+		 return time.replace(":", "h");
+	 }
+	  
+  }   
+  chageToEuro(cost){
+	 if(cost){
+		 cost=cost.replace("$", "");
+		 return cost+"€";
+	 }
 	  
   }
 }
