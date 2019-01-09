@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar >
     <ion-title color="maincolor" style="color:#1B4079;text-align: center;margin-right: 55px;font-weight: 600;">
-      <span style="color:#fff">Feedback</span>
+      <span style="color:#fff">Évaluation</span>
     </ion-title>
   </ion-navbar>
 </ion-header>
@@ -16,12 +16,12 @@
 	   		 </ion-item>
    		  </div>
    		  <div class="name" *ngIf='helper_name'>{{helper_name}}</div>
-        <ion-label color="maincolor">Has Successfully delivered your Oolaga</ion-label>
-        <ion-label style="color:#999">Rate your experience with no of stars</ion-label>
+        <ion-label color="maincolor">A terminé votre projet avec succès !</ion-label>
+        <ion-label style="color:#999">Cliquez sur les étoiles afin de noter chaque aspect de votre transaction.</ion-label>
    		  <div class="spacer" style="width: 100%; height: 15px;"></div>
         <table style="width: 100%;">
           <tr style="width: 100%">
-            <td style="padding-bottom:10px;padding-left: 10%;text-align: left;width: 50%;">Punctuality</td>
+            <td style="padding-bottom:10px;padding-left: 10%;text-align: left;width: 50%;">Ponctualité</td>
             <td style="padding-bottom:10px;width: 50%">
               <ion-icon (click)="star1=1" *ngIf="star1 < 1 " name="ios-star-outline" class="star-size"></ion-icon>
               <ion-icon (click)="star1=1" *ngIf="star1 >= 1 " name="ios-star" class="star-size"></ion-icon>
@@ -36,7 +36,7 @@
             </td>
           </tr>
           <tr style="width: 100%">
-            <td style="padding-bottom:10px;padding-left: 10%;text-align: left;width: 50%;">Friendliness</td>
+            <td style="padding-bottom:10px;padding-left: 10%;text-align: left;width: 50%;">Courtoisie</td>
             <td style="padding-bottom:10px;width: 50%">
               <ion-icon (click)="star2=1" *ngIf="star2 < 1 " name="ios-star-outline" class="star-size"></ion-icon>
               <ion-icon (click)="star2=1" *ngIf="star2 >= 1 " name="ios-star" class="star-size"></ion-icon>
@@ -51,7 +51,7 @@
             </td>
           </tr>
           <tr style="width: 100%">
-            <td style="padding-bottom:10px;padding-left: 10%;text-align: left;width: 50%;">Preparedness</td>
+            <td style="padding-bottom:10px;padding-left: 10%;text-align: left;width: 50%;">Professionnalisme</td>
             <td style="padding-bottom:10px;width: 50%">
               <ion-icon (click)="star3=1" *ngIf="star3 < 1 " name="ios-star-outline" class="star-size"></ion-icon>
               <ion-icon (click)="star3=1" *ngIf="star3 >= 1 " name="ios-star" class="star-size"></ion-icon>
@@ -66,30 +66,30 @@
             </td>
           </tr>
         </table>
-        <ion-label style="color:#1B4079;font-size:21px;font-weight:900" *ngIf="disabled!=1">Add a Tip</ion-label>
+        <ion-label style="color:#1B4079;font-size:21px;font-weight:900" *ngIf="disabled!=1">Laisser un pourboire</ion-label>
         <table  style="width: 100%;" *ngIf="disabled!=1">
           <tr style="width: 100%;">
-            <td  class="feedback-table feedback-2 {{btn1}}" (click)="select(1,0)" >No Tip</td>
+            <td  class="feedback-table feedback-2 {{btn1}}" (click)="select(1,0)" >Rien</td>
 
-            <td  class="feedback-table feedback-2 {{btn2}}"   (click)="select(2,2)" >€2</td>
+            <td  class="feedback-table feedback-2 {{btn2}}"   (click)="select(2,2)" >2€</td>
 
-            <td  class="feedback-table feedback-2 {{btn3}}"   (click)="select(3,5)" >€5</td>
+            <td  class="feedback-table feedback-2 {{btn3}}"   (click)="select(3,5)" >5€</td>
 
             <!-- <td #tip4 class="feedback-table feedback-2"  style="background-color: ,color:" (click)="select(tip4,tip1,tip2,tip3,tip5);set_tip(10)" [ngStyle]="{'color': buttonColor}">$10</td> -->
  
             <td  class="feedback-table2 feedback-2 {{btn4}}"   (click)="select(4,0)">
 
-              <ion-input style="" [(ngModel)]="tip_value" (input)="set_tip(tip_value)" class="tip_input" placeholder="Enter" type="tel" min=3 [ngStyle]="{'color': buttonColor}"></ion-input>
+              <ion-input style="" [(ngModel)]="tip_value" (input)="set_tip(tip_value)" class="tip_input" placeholder="Autre" type="tel" min=3 [ngStyle]="{'color': buttonColor}"></ion-input>
 			
 		   </td>
           </tr>
 		  
         </table>
 		 <div class="spacer" style="width: 100%; height: 15px;" *ngIf="disabled!=1"></div>
-		<div style="color:red;width: 100%;" *ngIf="disabled!=1 && no_tip==0">
+		<!--div style="color:red;width: 100%;" *ngIf="disabled!=1 && no_tip==0">
 		     <div>Payment gateway charge: €{{tax}}</div>
 			 <div>Total Amount Due: €{{total}}</div>
-	     </div>
+	     </div-->
    		  <div class="spacer" style="width: 100%; height: 15px;"></div>
-   		  <button ion-button round style="background-color: #1B4079;width: 80%;font-weight: 600;" (click)="submit()">SUBMIT</button>
+   		  <button ion-button round style="background-color: #1B4079;width: 80%;font-weight: 600;" (click)="submit()">SOUMETTRE</button>
 </ion-content>

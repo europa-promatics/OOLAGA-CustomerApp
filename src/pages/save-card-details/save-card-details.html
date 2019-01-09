@@ -2,7 +2,7 @@
   <ion-navbar color="maincolor">
     
     <ion-title style="text-align: center;">
-      Add Payment Method
+      Ajouter une carte
     </ion-title>
     <ion-buttons end>
       <button color="light" ion-button icon-only (click)="deleteAll()" style="min-width: 44px;">
@@ -82,13 +82,13 @@
           <ion-list inset style="margin-bottom: 0px;">
             <form  #paymentForm="ngForm">
               
-              <ion-item ion-item>
+              <!--ion-item ion-item>
                 <ion-label floating>Name on card</ion-label>
                 <ion-input class="signup-input" type="text" id="nameOnCard" name="nameOnCard" [(ngModel)]='PaymentDetails.nameOnCard' (keyup)=onNameChange(PaymentDetails.nameOnCard) #nameOnCard="ngModel"></ion-input>
-              </ion-item>
+              </ion-item-->
 
               <ion-item ion-item>
-                <ion-label floating>Card #</ion-label>
+                <ion-label floating>Numéro de carte</ion-label>
                 <ion-input id="cardNumber" class="signup-input" name="cardNumber" type="number" minlength="15" maxlength="16"  [(ngModel)]='PaymentDetails.number' #cardNumber="ngModel" required (keyup)="cardCheck(PaymentDetails.number)" ></ion-input>
               </ion-item>
               <!-- <div *ngIf="cardNumber.invalid && (cardNumber.dirty || cardNumber.touched)" style="color:red">
@@ -106,7 +106,7 @@
               <div class="three-flex">
                 <div class="three-column">
                   <ion-item ion-item class="input-has-focus">
-                    <ion-label floating>MM/YY</ion-label>
+                    <ion-label floating>Date d’expiration (MM/AA)</ion-label>
                     <ion-input id="expireDate" name="expireDate" type="text" minlength="5" maxlength="5"  [(ngModel)]='PaymentDetails.expireDate' #expireDate="ngModel" required (keyup)="dateCheck(PaymentDetails.expireDate)"></ion-input>
                   </ion-item>
                 </div>
@@ -121,17 +121,17 @@
                   </div> -->
                 <div class="three-column">
                   <ion-item ion-item class="input-has-focus">
-                    <ion-label floating>CVV</ion-label>
+                    <ion-label floating>Cryptogramme (CVC)</ion-label>
                     <ion-input id="CVC" name="CVC" type="number" maxlength="4" minlength="3" [(ngModel)]='PaymentDetails.cvc' #CVC="ngModel" required ></ion-input>
                   </ion-item>
                 </div>
 
-                <div class="three-column">
+                <!--div class="three-column">
                   <ion-item ion-item class="input-has-focus">
                     <ion-label floating>Zip Code</ion-label>
                     <ion-input class="signup-input" type="text" type="number" id="zipCode" name="zipCode" [(ngModel)]='PaymentDetails.zipcode' #zipCode="ngModel" maxlength="8"></ion-input>
                   </ion-item>
-                </div>
+                </div-->
               </div>
 
               <!-- <div *ngIf="CVC.invalid && (CVC.dirty || CVC.touched)" style="color:red">
@@ -150,14 +150,14 @@
 
         <div class="select-term">
             <ion-item>
-                <ion-label>Set As a Default Card</ion-label>
+                <ion-label>Enregistrer cette carte par défaut</ion-label>
                 <ion-checkbox color="dark" checked="true" class="select-box-color" [(ngModel)]='PaymentDetails.status' ></ion-checkbox>
             </ion-item>
         </div>
 
       <ion-row>
         <ion-col class="colspace">
-          <button ion-button style="height:4rem;margin-bottom: 5px; border-radius: 30px; padding-left: 10px;background-color:#1B4079;width: 90%;height: 42px;margin-top: 1px;box-shadow: none;" (click)="onSaveCard()" >save card details</button>
+          <button ion-button style="height:4rem;margin-bottom: 5px; border-radius: 30px; padding-left: 10px;background-color:#1B4079;width: 90%;height: 42px;margin-top: 1px;box-shadow: none;" (click)="onSaveCard()" >ENREGISTRER MA CARTE</button>
         </ion-col>
       </ion-row>
   </div>

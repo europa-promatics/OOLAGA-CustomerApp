@@ -20,11 +20,11 @@
               <div>
                 <ion-label  style="float:left;margin: 5px 0 0 0;width: 70%;font-size: 14px;color: #1B4079;">
                   <span>
-                    {{d.service}}
+                    {{getServiceName(d.service)}}
                   </span>
                 </ion-label>
                 <ion-label  style="float:left;margin: 5px 0 0 0;width: 100%;font-size: 1rem;color: #1B4079;">
-                  <span style="color: #999;">ID #</span>
+                  <span style="color: #999;">Référence</span>
                   <span style="margin-left: 10px;text-transform: uppercase;">{{d.uniccode}}</span>
                 </ion-label>
                 <ion-label *ngIf="d.service_id==7" style="width:100%;margin: 0px;float: left;margin-top: 10px;">
@@ -32,7 +32,7 @@
                 </ion-label>
                 <ion-label *ngIf="d.service_id!=7" style="width:100%;margin: 0px;float: left;margin-top: 10px;">
                   <ion-label style="max-width: 48%;float: left;height: 20px;margin:0px;"><ion-icon name="pin" style="color: #999;font-size: 1.0em;margin-right: 5px;"></ion-icon>{{d.src_location_name}}</ion-label>
-                  <ion-label style="margin-left:10px;max-width: 48%;float: left;height: 20px;margin:0px;"> <span style="color: #aaa;font-size: 0.8em;margin:0 10px;">to</span> {{d.dst_location_name}}</ion-label>
+                  <ion-label style="margin-left:10px;max-width: 48%;float: left;height: 20px;margin:0px;"> <span style="color: #aaa;font-size: 0.8em;margin:0 10px;">À</span> {{d.dst_location_name}}</ion-label>
                 </ion-label>
                 <ion-label  style="width:100%;color: #aaa;margin: 0px;float: left;margin-top: 5px;">
                   <span style="width:32%;font-size: 0.8em;float: left;"> Helper assigné</span>
@@ -42,9 +42,9 @@
                 </ion-label>
                 <ion-label style="width:100%;color: #000;margin: 0px;float: left;margin-top: 3px;">
                   <span style="width:32%;font-size: 0.8em;float: left;text-transform: capitalize;">{{d.helper_name}}</span>
-                  <span style="width:20%;font-size: 0.8em;float: left;">{{d.date|dateConvert}}</span>
-                  <span style="width:20%;font-size: 0.8em;float: left;">{{d.first_time | timemomentformat}}<!-- {{d.time.substring(0,8) | timemomentformat}}-{{d.time.substring(9,18) | timemomentformat}} --></span>
-                  <span  style="float: right;font-size: 0.8em;overflow-wrap: break-word;white-space: normal;width: 28%;">
+                  <span style="width:20%;font-size: 0.8em;float: left;">{{formatDate(d.date)}}</span>
+                  <span style="width:20%;font-size: 0.8em;float: left;">{{formatTime(d.first_time)}}<!-- {{d.time.substring(0,8) | timemomentformat}}-{{d.time.substring(9,18) | timemomentformat}} --></span>
+                  <span  style="float: right;font-size: 0.6em;overflow-wrap: break-word;white-space: normal;width: 28%;">
                     <span *ngIf="d.payment_status==0" style="color: rgb(255, 0, 0);">EN ATTENTE</span>
                     <span *ngIf="d.rating==0" style="color:red">LAISSER UN AVIS </span>
                     <span *ngIf="d.rating==1" style="color:green"> TERMINÉ</span>

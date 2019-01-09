@@ -19,6 +19,8 @@ export class CancelOolagaPage {
 	_2nd:boolean=false;
 	_3rd:boolean=false;
 	_4th:boolean=false;
+	_5th:boolean=false;
+	_6th:boolean=false;
 	data;
   constructor(public appProvider:AppProvider,public http:Http,public loadingCtrl:LoadingController,public alertCtrl:AlertController,public navCtrl: NavController, public navParams: NavParams) {
   	this.reasons=[]

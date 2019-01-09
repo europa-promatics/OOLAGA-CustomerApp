@@ -134,8 +134,8 @@ if(str){
     },(err)=>{
       loader.dismiss()
       let a= this.alertCtrl.create({
-         title:'oops..',
-         message:'please check your Internet connection',
+         title:'Oups',
+         message:'S\'il vous plait, vérifiez votre connexion internet',
          buttons:['Ok']
        })
        a.present();

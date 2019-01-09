@@ -76,6 +76,7 @@ import { AppProvider } from '../providers/app-provider';
 import { Draft} from '../providers/draft';
 import { FileChooser } from '@ionic-native/file-chooser';
 import { ImagePicker } from '@ionic-native/image-picker';
+import { InAppBrowser } from "@ionic-native/in-app-browser";
 //--------------------pipes------------------------------
 import {InfoFilter,TimeMomentFormat,DateConvert} from '../pipes/time-moment-format';
 import {Timer,StartingTime, ObjectTimer} from '../pipes/timer';
@@ -231,6 +232,7 @@ import { SaveCardDetailsPage} from '../pages/save-card-details/save-card-details
               AppProvider,
               FileChooser,
 			  ImagePicker,
+			  InAppBrowser,
 			  LocalNotifications]
 })
 export class AppModule {}

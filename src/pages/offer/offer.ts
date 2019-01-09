@@ -67,8 +67,8 @@ if(str){
 	  
 	  if(this.time<2){
 		 let alert=this.alertCtrl.create({
-        title:'Alert',
-        message:'Offer Cannot Be Accepted Now!',
+        title:'Oups',
+        message:'Offre ne peut être acceptée maintenant',
         buttons:['Ok']
       })
       alert.present();

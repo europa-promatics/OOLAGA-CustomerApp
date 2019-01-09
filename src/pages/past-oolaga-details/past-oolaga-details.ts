@@ -94,4 +94,30 @@ export class PastOolagaDetailsPage {
         })
         payment.present();
   }
+  
+  formatAmount(amount){
+	  if(amount){
+		  amount=amount.toString();
+		  amount=amount.replace('$', '');
+		  return amount+'€';
+	  }
+	  
+  }
+  
+  getServiceName(string){
+		return string.replace(/<[^>]*>/g, '');
+	}  
+	getString(string){
+		return string.replace(/<[^>]*>/g, '');
+	}
+	formatDate(date){
+	  var date_parts=date.split('-');
+	  return date_parts[0]+'/'+date_parts[1]+'/'+'20'+date_parts[2];
+	  
+  }
+   formatTime(time){
+	 if(time){
+		 return time.replace(":", "h");
+	 }
+}
 }

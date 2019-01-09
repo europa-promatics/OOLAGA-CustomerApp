@@ -49,4 +49,17 @@ export class PastoolagaPage {
   get_detail(value){
     //this.navCtrl.push(OolagaDetailsPage,{data:value})
   }
+    getServiceName(string){
+		return string.replace(/<[^>]*>/g, '');
+	}
+	formatDate(date){
+	  var date_parts=date.split('-');
+	  return date_parts[0]+'/'+date_parts[1]+'/'+'20'+date_parts[2];
+	  
+  }
+   formatTime(time){
+	 if(time){
+		 return time.replace(":", "h");
+	 }
+}
 }

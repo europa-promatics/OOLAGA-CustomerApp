@@ -9,10 +9,9 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title style="text-align: center;">Sheduled</ion-title>
+    <ion-title style="text-align: center;">Projet confirmé</ion-title>
   </ion-navbar>
 </ion-header>
-
 
 <ion-content padding>
 	<div style="width:100%;float:left;margin:5px 0">
@@ -21,7 +20,7 @@
 				<ion-icon style="float:left;">
 					<img src="assets/icon/tick-inside-circle.png" height="30">
 				</ion-icon>
-				<p color="maincolor" style="margin:2px 0 0 0;float: left;font-weight:700;font-size:18px; ">Oolaga Scheduled!</p>
+				<p color="maincolor" style="margin:2px 0 0 0;float: left;font-weight:700;font-size:18px; ">Projet confirmé avec :</p>
 			</div>	
 		</div>
 		<div style="width:100%;float:left;text-align:center">
@@ -31,15 +30,15 @@
 			<p style="width:100%;float:left;text-align:center">
 				<span style="padding:5px; color:#fff;background:#1B4079;width:180px;display:inline-block;text-align:center;border-radius:3px;font-weight:900;font-size:22px;">{{titleCase(helper_data?.user.firstname)}} {{titleCase(helper_data?.user.lastname[0].split()[0])}}.</span>
 			</p>
-			<p style="color:green;text-align:center;width:100%;font-size:18px;font-weight:700">Hired</p>
+			<!--p style="color:green;text-align:center;width:100%;font-size:18px;font-weight:700">Hired</p-->
 			<div class="sheduled-tick" style="width:100%;float:left;text-align:center">
 				<div style="width:100%;float:left;text-align:center">
 					<ion-item style="width:100%">
-						<ion-label>Background Checked</ion-label>
+						<ion-label>Antécédents vérifiés</ion-label>
 						<ion-checkbox color="dark" checked="true"></ion-checkbox>
 					</ion-item>
 					<ion-item style="width:100%">
-						<ion-label>Trained</ion-label>
+						<ion-label>Formation réussie</ion-label>
 						<ion-checkbox color="dark" checked="true"></ion-checkbox>
 					</ion-item>
 				</div>	
@@ -47,19 +46,19 @@
 		</div>
 
 		<div style="width:100%;float:left;text-align:left; margin-top:2px;color: #222">
-			<p color="maincolor" style="font-size: 1.3rem;font-weight:700">What Happens Next?</p>
-			<p style="font-size: 1rem;">Your assigned helper will perform the assigned job. you will be informed when he is on his way</p>
+			<p color="maincolor" style="font-size: 1.3rem;font-weight:700">Quelques conseils pour vous préparer à la prochaine étape :</p>
+			<p style="font-size: 1rem;">À partir de maintenant et jusqu’au démarrage de votre projet, utilisez la fonction de messagerie intégrée à l’application pour rester en contact avec votre Helper.</p>
 		</div>
 
 		<div style="width:100%;float:left;text-align:left; margin-top:2px;color: #222">
-			<p color="maincolor" style="font-size: 1.3rem;font-weight:700">Oolagas Do's & Don'ts</p>
-			<p style="font-size: 1rem;">Do: Measure your doorways</p>
-			<p style="font-size: 1rem;">Do: Make a clear path for your helper</p>
-			<p style="font-size: 1rem;">Do: Wrap & pack any small items</p>
-			<p style="font-size: 1rem; color:red">Don’t: Pay or tip with cash! </p>
+			<p color="maincolor" style="font-size: 1.3rem;font-weight:700">Important:</p>
+			<p style="font-size: 1rem;">Mesurez vos portes et assurez-vous que vos objets passent sans difficulté</p>
+			<p style="font-size: 1rem;">Assurez-vous que vos objets soient prêts à être transporter et que rien n'entrave le chemin</p>
+			<p style="font-size: 1rem;">Assurez-vous que tous vos objets soient correctement emballés</p>
+			<p style="font-size: 1rem; color:red">Ne laissez pas de pourboire en espèce</p>
 		</div>
 		<div style="width:100%;float:left;text-align:right; margin-top:2px;color: #222" (click)="onMyoolaga()">
-			<p color="maincolor" style="font-size: 1.3rem;font-weight:700">GO TO MY OOLAGAS</p>
+			<p color="maincolor" style="font-size: 1.3rem;font-weight:700">RETOUR DANS MES PROJETS</p>
 		</div>
 		
 		

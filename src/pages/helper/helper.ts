@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { InAppBrowser } from "@ionic-native/in-app-browser";
+
 
 /*
   Generated class for the Helper page.
@@ -13,10 +15,14 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class HelperPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  constructor(public navCtrl: NavController, public navParams: NavParams, private iab: InAppBrowser) {}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad HelperPage');
+  }
+  
+  openPage(){
+	  this.iab.create('http://18.188.229.2/oolaga-french/applyashelper');
   }
 
 }

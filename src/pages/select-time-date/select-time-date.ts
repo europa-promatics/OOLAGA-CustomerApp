@@ -284,7 +284,7 @@ export class SelectTimeDatePage {
           }
         }else{
           let alert =this.alertCtrl.create({
-            subTitle:'Please select future time',
+            subTitle:'Veuillez sélectionner une heure ultérieure',
             buttons:['Ok']
           })
           alert.present()
@@ -292,7 +292,7 @@ export class SelectTimeDatePage {
       } 
       else{
         let alert =this.alertCtrl.create({
-          subTitle:'Enter valid Time and Date',
+          subTitle:'Veuillez sélectionner une date ultérieure',
           buttons:['Ok']
         })
         alert.present()
@@ -371,7 +371,11 @@ export class SelectTimeDatePage {
         this.appProvider.current.fullDate=someday;
         console.log(ev.selectedTime.getFullYear(), ev.selectedTime.getMonth(), ev.selectedTime.getDate())
         if (someday < today) {
-          alert("Please Enter valid Date");
+          let alert =this.alertCtrl.create({
+          subTitle:'Veuillez sélectionner une date ultérieure',
+          buttons:['Ok']
+        })
+        alert.present()
           this.enablenext=false;
         }
         else{

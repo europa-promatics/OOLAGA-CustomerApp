@@ -488,8 +488,8 @@ if(str){
     if(offer!=0 || offer!='0'){
 		if(time<1){
 			 let alert=this.alertCtrl.create({
-        title:'Sorry',
-        message:'Offers cannot be accepted if your Oolaga is scheduled in less than one hour.',
+        title:'Pardon',
+        message:'Les offres ne peuvent être acceptées si votre Oolaga est programmé dans moins d\'une heure.',
         buttons:['Ok']
       })
       alert.present();
@@ -499,9 +499,9 @@ if(str){
     }
     else{
       let alert=this.alertCtrl.create({
-        title:'Alert',
-        message:'No Offers',
-        buttons:['Ok']
+        title:'Oups',
+        message:'Pas d\'offre',
+        buttons:['OK']
       })
       alert.present();
     }

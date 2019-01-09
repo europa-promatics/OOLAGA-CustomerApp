@@ -81,9 +81,13 @@ export class OolagaSummaryPage implements OnInit{
         this.data=this.navParams.get('data');
         this.page=this.navParams.get('page');
         console.log(this.page,this.data)
+		try{
         for(let i=0;i<this.data.items.length;i++){
           this.item_quantity += parseInt(this.data.items[i].quantity)  
         }
+		}catch(err){
+			alert('tesr');
+		}
         if(this.data.source && this.data.source!=null){
           this.locations.push(this.data.source);
         }
@@ -99,27 +103,31 @@ export class OolagaSummaryPage implements OnInit{
         // this.locations.push({location_name:this.data.src_location_name});
         // this.locations.push({location_name:this.data.dst_location_name});
         console.log(this.locations)
-        console.log(this.data.items.length)
+       // console.log(this.data.items.length)
+	   try {
         for(let i=0;i<this.data.items.length;i++){
           if(this.data.items[i].image!=null){
             let a = this.data.items[i].image.split(",")
               this.data.items[i].image ?  this.pics.push(ENV.api + '/public/frontend/img/addImage/' + a[0]):'';
             }
           }
+	   }catch(err){
+		   alert('error');
+	   }
     }
   }
 
   cancelOolaga(){
     let confirm=this.alertCtrl.create({
-          subTitle:'Are you sure you want to cancel your oolaga',
+          subTitle:'Êtes-vous sûr de vouloir annuler votre projet ?',
           buttons:[ {
-                     text:'NO',
+                     text:'NON',
                      handler:()=>
                      {
                      }
                     }
                     ,{ 
-                     text:'YES',
+                     text:'OUI',
                      handler:()=>
                      {
                       this.navCtrl.push(CancelOolagaPage,{data:this.data})
@@ -131,15 +139,15 @@ export class OolagaSummaryPage implements OnInit{
 
   withdrawAuction(id){
     let confirm=this.alertCtrl.create({
-          subTitle:'Are you want to Withdraw​ Auction',
+          subTitle:'Êtes-vous certain de vouloir supprimer votre projet?',
           buttons:[ {
-                     text:'Cancel',
+                     text:'ANNULER',
                      handler:()=>
                      {
                      }
                     }
                     ,{ 
-                     text:'Yes',
+                     text:'OUI',
                      handler:()=>
                      {
                       let loader = this.LoadingController.create()
@@ -162,8 +170,8 @@ export class OolagaSummaryPage implements OnInit{
     }
     else{
       let alert=this.alertCtrl.create({
-        title:'Alert',
-        message:'No Offers',
+        title:'Oups',
+        message:'Pas d\'offre',
         buttons:['Ok']
       })
       alert.present();

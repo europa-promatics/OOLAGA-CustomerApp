@@ -175,7 +175,7 @@ page-chat {
     overflow-x: scroll;
   }
   .form-control:empty:not(:focus)::before{
-    content:'Type Something...';
+    content:'Votre message...';
     color:#999;
   }
 // .chat-bubble{

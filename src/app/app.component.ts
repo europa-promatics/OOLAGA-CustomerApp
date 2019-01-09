@@ -70,7 +70,7 @@ export class MyApp {
       // { title: 'Test Payment', component:TestPage , logo: 'assets/icon/Payment-Ico.png', color:'gray_color'},
     ];
 
-    this.initializeAppDuplicate();
+    this.initializeApp();
     this.http=http;
   }
 
@@ -95,7 +95,7 @@ export class MyApp {
                 title:JSON.parse(a).title,
                 message:JSON.parse(a).body,
                 buttons:[{
-                  text:'Open',
+                  text:'OUVRIR',
                   handler:()=>{
                     this.nav.push(OfferPage,{id:JSON.parse(a).oolaga_id})
                   }
@@ -107,7 +107,7 @@ export class MyApp {
                 title:JSON.parse(a).title,
                 message:JSON.parse(a).body,
                 buttons:[{
-                  text:'Open',
+                  text:'OUVRIR',
                   handler:()=>{
                       this.nav.push(FeedbackPage,{
                     helperWalletId:JSON.parse(a).wallet_id,
@@ -353,7 +353,7 @@ export class MyApp {
                 title:JSON.parse(a).title,
                 message:JSON.parse(a).body,
                 buttons:[{
-                  text:'Open',
+                  text:'OUVRIR',
                   handler:()=>{
                     this.nav.push(OfferPage,{id:JSON.parse(a).oolaga_id})
                   }
@@ -365,7 +365,7 @@ export class MyApp {
                 title:JSON.parse(a).title,
                 message:JSON.parse(a).body,
                 buttons:[{
-                  text:'Open',
+                  text:'OUVRIR',
                   handler:()=>{
                       this.nav.push(FeedbackPage,{
                     helperWalletId:JSON.parse(a).wallet_id,
@@ -384,7 +384,7 @@ export class MyApp {
                 title:JSON.parse(a).title,
                 message:JSON.parse(a).body,
                 buttons:[{
-                  text:'Show',
+                  text:'OUVRIR',
                   handler:()=>{
                    this.nav.push(ChatPage,
 				   {receiver_id:JSON.parse(a).user_id,
