@@ -7,6 +7,7 @@ import { AlertController,ModalController } from 'ionic-angular';
 import { FCM } from '@ionic-native/fcm';
 import { Events } from 'ionic-angular';
 import { Http } from '@angular/http';
+import { AppVersion } from '@ionic-native/app-version';
 
 //-----side menu------------
 import { ProfilePage } from '../pages/profile/profile';
@@ -53,9 +54,10 @@ export class MyApp {
   notificationcount:number=0;
   pendingRatingsCount:number=0;
   http;
+  version;
   track;
 
-  constructor(public modalCtrl:ModalController,http: Http,public device:Device,public localNotifications: LocalNotifications, private fcm: FCM,public alertCtrl:AlertController,public events: Events,public platform: Platform) {
+  constructor(public modalCtrl:ModalController,http: Http,public device:Device,public localNotifications: LocalNotifications, private fcm: FCM,public alertCtrl:AlertController,public events: Events,public platform: Platform, private appVersion: AppVersion) {
     
 	this.pages = [
       { title: 'Mes Projets', component:MyoolagaPage , logo: 'assets/icon/Post-Ico.png', color:'red_color',notificationCount:0},
@@ -72,6 +74,7 @@ export class MyApp {
 
     this.initializeApp();
     this.http=http;
+	this.version=this.appVersion.getVersionNumber();
   }
 
   notification(data){

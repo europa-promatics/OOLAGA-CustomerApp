@@ -3,6 +3,7 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { Device } from '@ionic-native/device';
 import { FCM } from '@ionic-native/fcm'
 import {LocalNotifications} from 'ionic-native'
+import { AppVersion } from '@ionic-native/app-version';
 //-------------------------calendar----------------------------------
 import { NgCalendarModule  } from 'ionic2-calendar';
 import 'intl';
@@ -233,6 +234,7 @@ import { SaveCardDetailsPage} from '../pages/save-card-details/save-card-details
               FileChooser,
 			  ImagePicker,
 			  InAppBrowser,
+			  AppVersion,
 			  LocalNotifications]
 })
 export class AppModule {}
