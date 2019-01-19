@@ -7,6 +7,8 @@ export class AppProvider {
   current:Current;
   constructor(public http: Http) {
   	this.current = new Current();
+	
+	this.consoleData();
   }
   createNew(){
     this.current = null;
@@ -14,6 +16,7 @@ export class AppProvider {
     console.log('New Data!');
   }
   consoleData(){
+	  console.log('Heree');
   	console.log(this.current)
   }
 

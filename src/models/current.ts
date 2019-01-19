@@ -51,6 +51,7 @@ export class Current {
         elevator?:any,
         stairs?:any,
         ride?:any,
+		iwillbehelping?:any,
         parking_info?:any,
         store_name?:any,
         purchaser?:any,

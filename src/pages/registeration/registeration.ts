@@ -189,94 +189,101 @@ return null;
           console.log('else')
           if(this.register.controls["firstname"].value==null || this.register.controls["firstname"].value==''){
             let alert = this.alertCtrl.create({
-                 title: 'Oopss....!',
-                 subTitle: 'Please enter first name',
+                 title: 'Oups!',
+                 subTitle: 'Veuillez saisir un prénom',
                  buttons: ['OK']
                  });
                  alert.present();
           }
           else if(!this.register.controls["firstname"].valid){
             let alert = this.alertCtrl.create({
-                 title: 'Oopss....!',
-                 subTitle: 'Please verify first name',
+                 title: 'Oups!',
+                 subTitle: 'Veuillez saisir un nom de famille',
                  buttons: ['OK']
                  });
                  alert.present();
           }
           else if(this.register.controls["lastname"].value==null || this.register.controls["lastname"].value==''){
             let alert = this.alertCtrl.create({
-                 title: 'Oopss....!',
-                 subTitle: 'Please enter last name',
+                 title: 'Oups!',
+                 subTitle: 'Veuillez saisir une adresse email valide',
                  buttons: ['OK']
                  });
                  alert.present();
           }
           else if(!this.register.controls["lastname"].valid){
             let alert = this.alertCtrl.create({
-                 title: 'Oopss....!',
-                 subTitle: 'Please verify last name',
+                 title: 'Oups!',
+                 subTitle: 'Veuillez saisir un nom de famille',
                  buttons: ['OK']
                  });
                  alert.present();
           }
           else if(this.register.controls["email"].value==null || this.register.controls["email"].value==''){
             let alert = this.alertCtrl.create({
-                 title: 'Oopss....!',
-                 subTitle: 'Please enter email',
+                 title: 'Oups!',
+                 subTitle: 'Veuillez saisir une adresse email valide',
                  buttons: ['OK']
                  });
                  alert.present();
           }
           else if(!this.register.controls["email"].valid){
             let alert = this.alertCtrl.create({
-                 title: 'Oopss....!',
-                 subTitle: 'Please verify email',
+                 title: 'Oups!',
+                 subTitle: 'Veuillez saisir une adresse email valide',
                  buttons: ['OK']
                  });
                  alert.present();
           }
           else if(this.register.controls["password"].value==null || this.register.controls["password"].value==''){
             let alert = this.alertCtrl.create({
-                 title: 'Oopss....!',
-                 subTitle: 'Please enter password',
+                 title: 'Oups!',
+                 subTitle: 'Le mot de passe doit être de 8 caractères minimum et contenir au moins 1 chiffre',
                  buttons: ['OK']
                  });
                  alert.present();
           }
           else if(!this.register.controls["password"].valid){
             let alert = this.alertCtrl.create({
-                 title: 'Oopss....!',
-                 subTitle: 'Please enter minimum 8 character password',
+                 title: 'Oups!',
+                 subTitle: 'Le mot de passe doit être de 8 caractères minimum et contenir au moins 1 chiffre',
                  buttons: ['OK']
                  });
                  alert.present();
-          }
-          else if(this.register.controls["phone"].value==null || this.register.controls["phone"].value==''){
+          }else if(!this.hasNumber(this.register.controls["password"].value)){
+			  let alert = this.alertCtrl.create({
+                 title: 'Oups!',
+                 subTitle: 'Le mot de passe doit être de 8 caractères minimum et contenir au moins 1 chiffre',
+                 buttons: ['OK']
+                 });
+                 alert.present();
+		  }
+          else if(this.register.controls["phone"].value==null || this.register.controls["phone"].value=='' || this.register.controls["phone"].length <10){
             let alert = this.alertCtrl.create({
-                 title: 'Oopss....!',
-                 subTitle: 'Please enter Phone no.',
+                 title: 'Oups!',
+                 subTitle: 'Veuillez saisir un numéro de mobile valide',
                  buttons: ['OK']
                  });
                  alert.present();
           }
           else if(!this.register.controls["phone"].valid){
             let alert = this.alertCtrl.create({
-                 title: 'Oopss....!',
-                 subTitle: 'Please verify Phone no.',
+                 title: 'Oups!',
+                 subTitle: 'Veuillez saisir un numéro de mobile valide',
                  buttons: ['OK']
                  });
                  alert.present();
           }else if(!this.register.controls["dob"].valid){
             let alert = this.alertCtrl.create({
-                 title: 'Oopss....!',
-                 subTitle: 'Please verify Date of birth',
+                 title: 'Oups!',
+                 subTitle: 'Veuillez saisir une date de naissance valide',
                  buttons: ['OK']
                  });
                  alert.present();
           }else if(!this.register.controls["hearDetailsFrom"].valid){
             let alert = this.alertCtrl.create({
-                 title: 'Oopss....!',
-                 subTitle: 'Please verify hearing details',
+                 title: 'Oups!',
+                 subTitle: 'Veuillez choisir la façon dont vous avez entendu parler de nous',
                  buttons: ['OK']
                  });
                  alert.present();
@@ -285,7 +292,11 @@ return null;
         }
  }
   
-
+hasNumber(myString) {
+	console.log(myString);
+	console.log(/\d/.test(myString));
+  return /\d/.test(myString);
+}
   submitt(id:number){
        //alert(id);
           FileTransfer = new Transfer();

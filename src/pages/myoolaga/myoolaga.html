@@ -15,13 +15,13 @@
     <ion-toolbar>
   <ion-segment color="primary" class="home_segment" (ionChange)="tabChange()" [(ngModel)]="activeSec">
     <ion-segment-button value="draft">
-      <span style="font-size: 1.6rem;font-family: nexa_boldregular !important;">Brouillon</span>
+      <span style="font-size: 1.6rem;font-family: nexa_boldregular !important;">Brouillons</span>
     </ion-segment-button>
     <ion-segment-button value="auction">
       <span style="font-size: 1.6rem;font-family: nexa_boldregular !important;">Offres</span>
     </ion-segment-button>
     <ion-segment-button value="active">
-      <span style="font-size: 1.6rem;font-family: nexa_boldregular !important;">Confirmé(s)</span>
+      <span style="font-size: 1.6rem;font-family: nexa_boldregular !important;">Confirmés</span>
     </ion-segment-button>
   </ion-segment>
       
@@ -41,7 +41,7 @@
       <div id="a">
         <div padding *ngIf="draft_oolaga_enable" style="text-align: center;color:#999;margin-top: calc(50% - 50px);">
           <div style="width: 80%;margin-left: 10%;">
-          <p style="font-size: 22px; ">Vous n’avez aucun Oolaga de confirmé</p>
+          <p style="font-size: 18px; ">Vous n’avez aucun brouillon</p>
           </div>
         </div>
         <div *ngIf!="draft_oolaga_enable" style="padding: 0 15px;">
@@ -88,7 +88,7 @@
       <div >
         <div *ngIf="oolaga_created" padding style="text-align: center;color:#999;margin-top: calc(50% - 50px);">
           <div style="width: 80%;margin-left: 10%;">
-          <p style="font-size: 22px; ">Vous n’avez aucun Oolaga de Offres</p>
+          <p style="font-size: 18px; ">Vous n’avez aucun projet</p>
           </div>
         </div>
         <div *ngIf!="oolaga_created" style="padding: 0 15px;">
@@ -137,9 +137,9 @@ d.service=='No van, Labor only'
                 </ion-label>
                 <ion-label style="width:100%;color: #aaa;margin: 0px;float: left;margin-top: 5px;">
                   <!-- <span style="width:32%;font-size: 0.8em;float: left;">Assigned helper</span> -->
-                  <span style="width:30%;font-size: 0.8em;float: left;">Date</span>
-                  <span style="width:30%;font-size: 0.8em;float: left;">Heure</span>
-                  <span style="width:23%;font-size: 0.8em;float: right;">Temps restant</span>
+                  <span style="width:28%;font-size: 0.8em;float: left;">Date</span>
+                  <span style="width:28%;font-size: 0.8em;float: left;">Heure</span>
+                  <span style="width:27%;font-size: 0.8em;float: right;">Temps restant</span>
                 </ion-label>
                 <ion-label style="width:100%;color: #000;margin: 0px;float: left;margin-top: 3px;">
                   <!-- <span style="width:32%;font-size: 0.8em;float: left;">{{d.helper_name}}</span> -->
@@ -158,7 +158,7 @@ d.service=='No van, Labor only'
       <div >
         <div padding *ngIf="!assigned_oolaga_enable" style="text-align: center;color:#999;margin-top: calc(50% - 50px);">
           <div style="width: 80%;margin-left: 10%;">
-          <p style="font-size: 22px; ">Vous n’avez aucun Oolaga de Confirmé</p>
+          <p style="font-size: 18px; ">Vous n'avez aucun<br />projet confirmé</p>
           <img src="assets/icon/add.png" width="50px" (click)="createoolaga()">
           <p style="margin:3px;" color="maincolor" (click)="createoolaga()">Nouveau</p>
           </div>
@@ -215,10 +215,10 @@ d.service=='No van, Labor only'
                   <span style="width:22%;font-size: 0.8em;float: left;">Date</span>
                   <span style="width:25%;font-size: 0.8em;float: left;">Heure</span>
                   <span *ngIf="d.cancel_status!='cancel_by_helper'" style="width:23%;font-size: 0.8em;float: right;">
-                    <span *ngIf="d.track_status=='pending'">Temps restant</span>
-                    <span *ngIf="d.track_status!='pending'">Status</span>
+                    <span *ngIf="d.track_status=='pending'">Débute dans</span>
+                    <span *ngIf="d.track_status!='pending'">Statut</span>
                   </span>
-                  <span *ngIf="d.cancel_status=='cancel_by_helper'" style="width:23%;font-size: 0.8em;float: right;">Status</span>
+                  <span *ngIf="d.cancel_status=='cancel_by_helper'" style="width:23%;font-size: 0.8em;float: right;">Statut</span>
                 </ion-label>
                 <ion-label (click)="active_oolaga_detail(d)" style="width:100%;color: #000;margin: 0px;float: left;margin-top: 3px;">
                   <span style="width:30%;font-size: 0.8em;float: left;text-transform: capitalize;">{{titleCase(d.helper_name.split(' ').slice(0, -1).join(' '))}} {{titleCase(d.helper_name.split(' ').slice(-1).join(' ')[0])}}</span>
@@ -226,10 +226,10 @@ d.service=='No van, Labor only'
                   <span style="width:25%;font-size: 0.8em;float: left;">{{formatTime(d.first_time)}}<!-- {{d.time.substring(0,8) | timemomentformat:'h:mm a'}}-{{d.time.substring(9,18) | timemomentformat:'h:mm a'}} --></span>
                   <span *ngIf="d.cancel_status!='cancel_by_helper'" style="width:23%;font-size: 0.8em;float: right;color:#119DA4">
                     <span *ngIf="d.track_status=='pending'">{{(d.date+'|'+d.first_time) | startingTime}}</span>
-                    <span *ngIf="d.track_status!='pending'">STARTED</span>
+                    <span *ngIf="d.track_status!='pending'">DEBUTÉ</span>
                   </span>
                   <span *ngIf="d.cancel_status=='cancel_by_helper'" style="width:23%;font-size: 0.8em;float: right;color:#ff0000">
-                    CANCELED
+                    ANNULÉ
                   </span>
                 </ion-label>
               </div>     

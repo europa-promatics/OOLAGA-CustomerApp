@@ -1,18 +1,18 @@
 <ion-header >
   <ion-navbar color="maincolor">
-    <ion-title style="text-align: center;">Forgot Password</ion-title>
+    <ion-title style="text-align: center;">Mot de passe oublié</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content *ngIf="mailsend" class="forgot" padding style="background-color:#fff;text-align: center;">
 
-<p style="margin: 100px 0 50px 0;color: white;font-size: 2rem;color:#000">Enter your email to reset your password</p>
+<p style="margin: 100px 0 50px 0;color: white;font-size: 2rem;color:#000"> Votre adresse e-mail</p>
 <form [formGroup]="forget">
 	<ion-item no-lines color="light" style="overflow:hidden;margin: 20px auto; border-radius: 30px; padding-left: 10px;background-color:#f7f7f7;width: 80%;min-height:unset;height:4rem;border:1px solid rgba(0,0,0,0.4); ">
 		<ion-input class="forget-input" type="email" placeholder="email@mail.com" formControlName="email"></ion-input>
 	</ion-item>	
 </form>
-<button ion-button round style="font-size:2rem;width:80%;background-color:#f26419;color:#fff;height:45px ;margin-top: 10px;box-shadow: none;text-transform: none;" (click)="submit()" >Reset Password</button>
+<button ion-button round style="font-size:2rem;width:80%;background-color:#f26419;color:#fff;height:45px ;margin-top: 10px;box-shadow: none;text-transform: none;" (click)="submit()" >Réinitialiser mon mot de passe</button>
 
 </ion-content>
 
@@ -21,11 +21,11 @@
 	<div class="forgot-form">
 		<form [formGroup]="forget">
 			<ion-item ion-item>
-		        <ion-label class="center-input" floating>Enter your email</ion-label>
+		        <ion-label class="center-input" floating>Votre adresse e-mail</ion-label>
 				<ion-input class="forget-input" type="email" formControlName="email"></ion-input>
 		    </ion-item>
 		</form>
-		<button ion-button style="height:4rem;margin-bottom: 5px;padding-left: 10px;background-color:#1B4079;width: 100%;height: 42px;box-shadow: none;" (click)="submit()" >Reset Your Password</button>
+		<button ion-button style="height:4rem;margin-bottom: 5px;padding-left: 10px;background-color:#1B4079;width: 100%;height: 42px;box-shadow: none;" (click)="submit()" >Réinitialiser mon mot de passe</button>
 	</div>
 
 </ion-content>

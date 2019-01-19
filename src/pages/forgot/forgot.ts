@@ -67,15 +67,15 @@ export class ForgotPage {
   	if(this.forget.controls["email"].value=='' || this.forget.controls["email"].value==null)
   	{
 		let alert = this.alertCtrl.create({
-	          title: 'Oops..!',
-	          subTitle: 'Enter Email address',
+	          title: 'Oups!',
+	          subTitle: "Veuillez saisir une adresse email valide",
 	          buttons: ['OK']
 	      });
 	      alert.present();
   	}else if(!this.forget.valid){
   		let alert = this.alertCtrl.create({
-	          title: 'Oops..!',
-	          subTitle: 'Enter valid email id',
+	          title: 'Oups!',
+	          subTitle: "Veuillez saisir une adresse email valide",
 	          buttons: ['OK']
 	      });
 	      alert.present();
@@ -92,8 +92,8 @@ export class ForgotPage {
 	                  this.otp=JSON.parse(data._body).data.otp;
 	                  this.user_id=JSON.parse(data._body).data.user_id
 	                  let alert = this.alertCtrl.create({
-		                    title: 'Password Reset',
-		                    subTitle: 'A new password has been sent to your email.You can update password on your profile page.',
+		                    title: 'Réinitialisation de votre mot de passe',
+		                    subTitle: 'Nous venons d\'envoyer sur votre adresse email un lien permettant de réinitialiser votre mot de passe.',
 		                    buttons: [{
 		                      	text:'OK',
 		                      	handler:data=>{
@@ -105,8 +105,8 @@ export class ForgotPage {
 	              }
 	              else if(JSON.parse(data._body).response==false){
 	                  let alert = this.alertCtrl.create({
-	                      title: 'Error!',
-	                      subTitle: message,
+	                      title: '',
+	                      subTitle: 'Saisie erronée ou email absent de notre base. Veuillez renseigner une adresse email valide',
 	                      buttons: ['OK']
 	                  });
 	                  alert.present();

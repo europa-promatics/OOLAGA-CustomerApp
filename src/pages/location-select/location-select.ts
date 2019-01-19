@@ -806,7 +806,12 @@ export class LocationSelectPage  implements OnInit{
           this.nextSubmit();
         }
         else{
-          alert('Enter locations properly')
+          let alert= this.alertCtrl.create({
+               title:'Oups',
+               message:'Veuillez saisir une adresse',
+               buttons:['Ok']
+             })
+             alert.present();
         }
       }else if(this.first_location_name != null && this.second_location_name != null && this.third_location_name != null && this.third_location==true && this.forth_location==false){
         if(this.locations_details.length==3 && 
@@ -826,7 +831,12 @@ export class LocationSelectPage  implements OnInit{
           this.nextSubmit();
         }
         else{
-          alert('Enter locations properly')
+        let alert= this.alertCtrl.create({
+               title:'Oups',
+               message:'Veuillez saisir une adresse',
+               buttons:['Ok']
+             })
+             alert.present();
         }
       }else if(this.first_location_name != null && this.second_location_name != null && this.third_location_name != null && this.forth_location_name != null && this.third_location==true && this.forth_location==true){
         if(this.locations_details.length==4 && 
@@ -850,11 +860,21 @@ export class LocationSelectPage  implements OnInit{
           this.nextSubmit();
         }
         else{
-          alert('Enter locations properly')
+          let alert= this.alertCtrl.create({
+               title:'Oups',
+               message:'Veuillez saisir une adresse',
+               buttons:['Ok']
+             })
+             alert.present();
         }
       }
       else{
-        alert('Enter locations')
+        let alert= this.alertCtrl.create({
+               title:'Oups',
+               message:'Veuillez saisir une adresse',
+               buttons:['Ok']
+             })
+             alert.present();
       }  
     }
   }

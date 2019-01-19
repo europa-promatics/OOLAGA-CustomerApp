@@ -70,7 +70,7 @@ export class OolagaSummaryPage implements OnInit{
             }
             
           }, error => {
-            alert(error)
+           // alert(error)
           });
         
     }
@@ -86,7 +86,7 @@ export class OolagaSummaryPage implements OnInit{
           this.item_quantity += parseInt(this.data.items[i].quantity)  
         }
 		}catch(err){
-			alert('tesr');
+			//alert('tesr');
 		}
         if(this.data.source && this.data.source!=null){
           this.locations.push(this.data.source);
@@ -112,7 +112,7 @@ export class OolagaSummaryPage implements OnInit{
             }
           }
 	   }catch(err){
-		   alert('error');
+		   //alert('error');
 	   }
     }
   }
@@ -121,16 +121,17 @@ export class OolagaSummaryPage implements OnInit{
     let confirm=this.alertCtrl.create({
           subTitle:'Êtes-vous sûr de vouloir annuler votre projet ?',
           buttons:[ {
-                     text:'NON',
-                     handler:()=>
-                     {
-                     }
-                    }
-                    ,{ 
                      text:'OUI',
                      handler:()=>
                      {
-                      this.navCtrl.push(CancelOolagaPage,{data:this.data})
+						this.navCtrl.push(CancelOolagaPage,{data:this.data})
+                     }
+                    }
+                    ,{ 
+                     text:'NON',
+                     handler:()=>
+                     {
+                     console.log('no clicked');
                      }
                     }]
                  })
@@ -141,16 +142,10 @@ export class OolagaSummaryPage implements OnInit{
     let confirm=this.alertCtrl.create({
           subTitle:'Êtes-vous certain de vouloir supprimer votre projet?',
           buttons:[ {
-                     text:'ANNULER',
-                     handler:()=>
-                     {
-                     }
-                    }
-                    ,{ 
                      text:'OUI',
                      handler:()=>
                      {
-                      let loader = this.LoadingController.create()
+					  let loader = this.LoadingController.create()
                       loader.present()
                       this.http.get(ENV.api+"/webservicesdeactivedraft/"+id).subscribe(data=>{
                         this.navCtrl.popToRoot();
@@ -158,6 +153,13 @@ export class OolagaSummaryPage implements OnInit{
                       },err=>{
                         loader.dismiss()
                       })
+                     }
+                    }
+                    ,{ 
+                     text:'ANNULER',
+                     handler:()=>
+                     {
+                     
                      }
                     }]
                  })
@@ -171,7 +173,7 @@ export class OolagaSummaryPage implements OnInit{
     else{
       let alert=this.alertCtrl.create({
         title:'Oups',
-        message:'Pas d\'offre',
+        message:'Vous n\'avez pas encore reçu d\'offre',
         buttons:['Ok']
       })
       alert.present();
@@ -204,7 +206,7 @@ export class OolagaSummaryPage implements OnInit{
   }   
   chageToEuro(cost){
 	 if(cost){
-		 cost=cost.replace("$", "");
+		 cost=cost.toString().replace("$", "");
 		 return cost+"€";
 	 }
 	  

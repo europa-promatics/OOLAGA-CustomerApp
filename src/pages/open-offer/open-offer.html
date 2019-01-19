@@ -50,11 +50,11 @@
 							{{helper_data.bid_amount}}€
 						</ion-label>
 					</div>
-					<button style="float: right;font-size: 1.2rem;padding: 0px 10px;height: 30px;" ion-button round color="orange_color" (click)="submit(helper_data.id)">Acceptez l'offree</button>
+					<button style="float: right;font-size: 1.2rem;padding: 0px 10px;height: 30px;" ion-button round color="orange_color" (click)="submit(helper_data.id)">ACCEPTEZ L’OFFRE</button>
 				</div>
 			</div>
 		</div>
-		<ion-label text-wrap style="float:left;padding:10px 0;width: 100%;text-align: center;">
+		<ion-label text-wrap style="float:left;padding:10px 0;width: 100%;text-align: center;margin-top:30px">
 			<div style="float: left; width: 33%">
 				<ion-label no-margin style="width: 100%;font-size: 1.3rem;color:#555">Pnctualité</ion-label>
 				<ion-label style="width: 100%;margin:0;font-size: 1.3rem;color:#004574" *ngIf="helper_data.user.average_rating!=null">
@@ -168,7 +168,7 @@
 					  	<ion-icon *ngIf="((review.punchuality + review.friendliness + review.prepardness)/3) < 5" name="ios-star-outline"></ion-icon>
 					</ion-label>
 					<div style="float: left; width: 33%;height: 25px;">
-						<ion-label no-margin style="width: 100%;font-size: 1rem;">Pnctualité</ion-label>
+						<ion-label no-margin style="width: 100%;font-size: 1rem;">Ponctualité</ion-label>
 						<ion-label style="width: 100%;margin:0;font-size: 0.8rem" >
 						  	<ion-icon *ngIf="review.punchuality >= 1" name="ios-star"></ion-icon>
 						  	<ion-icon *ngIf="review.punchuality < 1" name="ios-star-outline"></ion-icon>

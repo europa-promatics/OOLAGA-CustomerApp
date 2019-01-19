@@ -11,11 +11,11 @@ import { AppProvider } from '../../providers/app-provider'
 import { Device } from '@ionic-native/device';
 import { Events } from 'ionic-angular';
 import { Validators, FormBuilder} from '@angular/forms';
-const FileTransfer = new Transfer(); //---------mobile code
-//declare var FileTransfer //-------browser code
+//const FileTransfer = new Transfer(); //---------mobile code
+declare var FileTransfer //-------browser code
 
 @Component({
-  selector: 'page-profile',
+  selector: 'page-profile', 
   templateUrl: 'profile.html'
 })
 export class ProfilePage {
@@ -48,8 +48,8 @@ export class ProfilePage {
    else{this.pic=true}
    this.http=http;
   }
-  picOption(value){
-   //FileTransfer = new Transfer();
+   picOption(value){
+  FileTransfer = new Transfer();
 	//------------browser code
     let data={
       id:this.id,
@@ -118,10 +118,10 @@ export class ProfilePage {
     if(this.edit){
     }else{
       const actionSheet = this.actionSheetCtrl.create({
-         title: 'Upload Option',
+         title: 'Photo de profil',
          buttons: [
            {
-             text: 'Camera',
+             text: 'Caméra',
              icon:'ios-camera-outline',
              role: 'destructive',
              handler: () => {
@@ -129,7 +129,7 @@ export class ProfilePage {
              }
            },
            {
-             text: 'Gallery',
+             text: 'Galerie',
              icon:'ios-image-outline',
              role: 'destructive',
              handler: () => {
@@ -137,7 +137,7 @@ export class ProfilePage {
              }
            },
            {
-             text: 'Cancel',
+             text: 'Annuler',
              icon:'md-close',
              role: 'cancel',
              handler: () => {
@@ -158,17 +158,31 @@ export class ProfilePage {
      }
    }
    saveprofile(){
+	 var regExp = /(.)*(\\d)(.)*/;
+	
      this.password==''?this.password=null:'';
      if(this.password && this.password.length<8 && this.password.length!=0)
      {
+		 
       let alert = this.alertCtrl.create({
-                                          title: 'Oops..!',
-                                          subTitle: 'Please enter minimum 8 character password',
+                                          title: '',
+                                          subTitle: 'Le mot de passe doit être de 8 caractères minimum et contenir au moins 1 chiffre',
                                           buttons: ['OK']
                                         });
           alert.present();
      }
      else{
+		
+	  if(this.password && !this.hasNumber(this.password)){
+      let alert = this.alertCtrl.create({
+                                          title: '',
+                                          subTitle: 'Le mot de passe doit être de 8 caractères minimum et contenir au moins 1 chiffre',
+                                          buttons: ['OK']
+                                        });
+          alert.present();
+		 }
+		 else{
+		 
           let loader = this.loadingCtrl.create();
               loader.present();
 
@@ -185,7 +199,7 @@ export class ProfilePage {
                   var message=JSON.parse(data._body).message;
                   if(JSON.parse(data._body).response==true){
                       let alert = this.alertCtrl.create({
-                          title: 'Profile updated successfully',
+                          title: 'Mise à jour du profil réussie',
                           buttons: ['OK']
                       });
                       alert.present();
@@ -210,30 +224,34 @@ export class ProfilePage {
           }, error => {
               console.log(error);
           });
+	 }
      }
    }
-
+hasNumber(myString) {
+  return /\d/.test(myString);
+}
   doFbLogout(){
   }
    logout() {
-    let confirm = this.alertCtrl.create({ title: 'Logout',
-      message: "Are you sure?.",
+    let confirm = this.alertCtrl.create({ title: 'Confirmation',
+      message: "Etes-vous sûr de vouloir quitter l’application?",
         buttons: [
           {
-            text: 'No',
+            text: 'OUI',
             handler: () => {
-              console.log('Disagree clicked');
-            }
-          },
-          {
-            text: 'Yes',
-            handler: () => {
-              let loading = this.loadingCtrl.create()
+				  let loading = this.loadingCtrl.create()
                   loading.present();
                   localStorage.clear();
                   this.navCtrl.setRoot(LoginPage);
                   this.http.post(ENV.api+'/webservicelogout',({device_id:this.device.uuid})).subscribe(data => {},err=>{})
               loading.dismiss();
+              
+            }
+          },
+          {
+            text: 'NON',
+            handler: () => {
+            console.log('Disagree clicked');
             }
           }
         ]

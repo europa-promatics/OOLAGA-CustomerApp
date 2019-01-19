@@ -20,6 +20,7 @@ export class InvitePage {
       this.navCtrl.push(CustomerThankYouPage, {});
   }
   share(a){
+	  //alert(a);
         if(a==1){
         SocialSharing.shareViaFacebook(this.name,null,this.url).then(() => {
         }).catch(()=>{alert("Something Went Wrong...")})
@@ -28,11 +29,11 @@ export class InvitePage {
         SocialSharing.shareViaTwitter(this.name,null,this.url).then(()=>{
         }).catch(()=>{alert("Something Went Wrong...")})
         }
-        else if(a==3){
+        else if(a==4){
         SocialSharing.shareViaWhatsApp(this.name,null,this.url).then(() => {
         }).catch(() => {alert("Something Went Wrong...")})
         }
-        else if(a==4){
+        else if(a==3){
         SocialSharing.share(this.msg,this.name,null, this.url).then(()=>{
         }).catch(()=>{alert("Something Went Wrong...")})
         }

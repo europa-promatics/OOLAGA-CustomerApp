@@ -188,7 +188,8 @@ export class DraftOolagaPage {
                                                  elevator:this.value.source.elevator,
                                                  stairs:this.value.source.stairs,
                                                  ride:this.value.source.ride,
-                                                 parking_info:this.value.source.parking_info
+                                                 parking_info:this.value.source.parking_info,
+												 iwillbehelping:this.value.source.iwillbehelping
                                                 })
         if(this.value.way_point1 != null){
           this.appProvider.current.way_point1=this.value.way_point1.id;
@@ -203,6 +204,7 @@ export class DraftOolagaPage {
                                                   unit_nu:this.value.way_point1.unit_nu,
                                                   elevator:this.value.way_point1.elevator,
                                                   stairs:this.value.way_point1.stairs,
+												  iwillbehelping:this.value.way_point1.iwillbehelping,
                                                   ride:this.value.way_point1.ride,
                                                   parking_info:this.value.way_point1.parking_info
                                                 })
@@ -220,6 +222,7 @@ export class DraftOolagaPage {
                                                     elevator:this.value.way_point2.elevator,
                                                     stairs:this.value.way_point2.stairs,
                                                     ride:this.value.way_point2.ride,
+													iwillbehelping:this.value.way_point2.iwillbehelping,
                                                     parking_info:this.value.way_point2.parking_info
                                                   })
           }
@@ -237,6 +240,7 @@ export class DraftOolagaPage {
                                                     unit_nu:this.value.destination.unit_nu,
                                                     elevator:this.value.destination.elevator,
                                                     stairs:this.value.destination.stairs,
+													iwillbehelping:this.value.destination.iwillbehelping,
                                                     ride:this.value.destination.ride,
                                                     parking_info:this.value.destination.parking_info
                                                   })
@@ -385,11 +389,11 @@ export class DraftOolagaPage {
   deleteDraft(){
     console.log('DeleteEnable');
     let confirm=this.alertCtrl.create({
-          title:'Do you want to delete',
+          title:'Êtes-vous certain de vouloir supprimer ce brouillon ?',
           message:`<ion-icon name="ios-arrow-forward" style="color: #999999"></ion-icon>`,
           buttons:[ 
                     { 
-                     text:'Yes',
+                     text:'OUI',
                      handler:()=>
                      {
                        let loading=this.loadingCtrl.create()
@@ -426,7 +430,7 @@ export class DraftOolagaPage {
                      },
                     },
                     {
-                     text:'No',
+                     text:'NON',
                      handler:()=>
                      {
 

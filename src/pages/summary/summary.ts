@@ -183,12 +183,7 @@ export class SummaryPage {
              let alert = this.alertCtrl.create({
                   message:"Les enchères resteront ouvertes jusqu'à ce que vous acceptiez une offre ou retiriez votre annonce",
                   buttons:[{
-                            text:'Annuler',
-                            handler:()=>{
-                              this.navCtrl.popToRoot();
-                            }},
-                            {
-                            text:'OK',
+                            text:'OUI',
                             handler:()=>{
                               let loader = this.loadingCtrl.create()
                               loader.present();
@@ -223,7 +218,12 @@ export class SummaryPage {
                                          buttons:['Ok']
                                        })
                                        a.present();
-                                   })
+                                   }) 
+                            }},
+                            {
+                            text:'NON',
+                            handler:()=>{
+                             this.navCtrl.popToRoot();
                             }}]
                 })
                 alert.present();

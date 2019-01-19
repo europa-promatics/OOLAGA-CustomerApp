@@ -389,10 +389,10 @@ if(str){
     // this.http.get(ENV.api + '/webservicedeleteDraft/'+value.id)
     console.log('DeleteEnable');
     let confirm=this.alertCtrl.create({
-          title:'Do you want to delete',
+          title:'Souhaitez-vous supprimer votre brouillon ?',
           buttons:[ 
                     { 
-                     text:'Yes',
+                     text:'OUI',
                      handler:()=>
                      {
                        let loading=this.loadingCtrl.create()
@@ -420,7 +420,7 @@ if(str){
                               }
                               loading.dismiss();
                               let alert = this.alertCtrl.create({
-                                  title:'Draft Deleted',
+                                  title:'Votre brouillon a été supprimé',
                                   buttons:[{
                                     text:'Ok'
                                   }]
@@ -443,7 +443,7 @@ if(str){
                      },
                     },
                     {
-                     text:'No',
+                     text:'NON',
                      handler:()=>
                      {
 
@@ -500,7 +500,7 @@ if(str){
     else{
       let alert=this.alertCtrl.create({
         title:'Oups',
-        message:'Pas d\'offre',
+        message:'Vous n\'avez pas encore reçu d\'offre',
         buttons:['OK']
       })
       alert.present();

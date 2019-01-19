@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { MyoolagaPage } from '../myoolaga/myoolaga'
+import { InAppBrowser } from "@ionic-native/in-app-browser";
 
 /*
   Generated class for the CustomerThankYou page.
@@ -14,7 +15,7 @@ import { MyoolagaPage } from '../myoolaga/myoolaga'
 })
 export class CustomerThankYouPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  constructor(public navCtrl: NavController, public navParams: NavParams, private iab: InAppBrowser) {}
 
 
   ionViewDidLoad() {
@@ -25,5 +26,7 @@ export class CustomerThankYouPage {
   onMyOolaga(){
   	this.navCtrl.setRoot(MyoolagaPage);
   }
-
+	openPlaystore(){
+	 	this.iab.create('https://play.google.com/store?hl=en');
+	}
 }

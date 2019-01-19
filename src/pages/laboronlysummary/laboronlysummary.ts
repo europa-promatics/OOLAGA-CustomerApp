@@ -46,16 +46,10 @@ export class LaboronlysummaryPage {
     let confirm=this.alertCtrl.create({
           subTitle:'Are you want to Withdraw​ Auction',
           buttons:[ {
-                     text:'Cancel',
+                     text:'OUI',
                      handler:()=>
                      {
-                     }
-                    }
-                    ,{ 
-                     text:'Yes',
-                     handler:()=>
-                     {
-                      let loader = this.loadingController.create()
+						  let loader = this.loadingController.create()
                       loader.present()
                       this.http.get(ENV.api+"/webservicesdeactivedraft/"+id).subscribe(data=>{
                         this.navCtrl.popToRoot();
@@ -63,6 +57,13 @@ export class LaboronlysummaryPage {
                       },err=>{
                         loader.dismiss()
                       })
+                     }
+                    }
+                    ,{ 
+                     text:'NON',
+                     handler:()=>
+                     {
+                     
                      }
                     }]
                  })

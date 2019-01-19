@@ -153,32 +153,32 @@ export class LoginPage {
           message:'Please enter your Username and Password',
           buttons:['OK']
         })
-        alert.present();
+       // alert.present();
       }else if(this.log_in.controls["username"].value==null||this.log_in.controls["username"].value==''){
         let alert = this.alertCtrl.create({
           title:'Oopss..',
           message:'Please enter your Username',
           buttons:['OK']
         })
-        alert.present();
+       // alert.present();
       }else if(!this.log_in.controls["username"].valid){
         let alert = this.alertCtrl.create({
           title:'Oopss..',
           message:'Please check your Username',
           buttons:['OK']
         })
-        alert.present();
+        //alert.present();
       }else if(this.log_in.controls["password"].value==null||this.log_in.controls["password"].value==''){
         let alert = this.alertCtrl.create({
-          title:'Oopss..',
-          message:'Please enter your Password',
+          title:'Oups',
+          message:'Le mot de passe doit être de 8 caractères minimum et contenir au moins 1 chiffre',
           buttons:['OK']
         })
-        alert.present();
+       alert.present();
       }else if(!this.log_in.controls["password"].valid){
         let alert = this.alertCtrl.create({
-          title:'Oopss..',
-          message:'Please enter minimum 8 character password',
+          title:'Oups',
+          message:'Le mot de passe doit être de 8 caractères minimum et contenir au moins 1 chiffre',
           buttons:['OK']
         }) 
         alert.present();

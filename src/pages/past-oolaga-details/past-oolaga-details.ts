@@ -4,6 +4,7 @@ import {ENV} from '../../app/env';
 import { TestPage} from '../test/test';
 import { Http } from '@angular/http';
 import { FeedbackPage } from '../feedback/feedback';
+//import { CustomerThankYouPage } from '../customer-thank-you/customer-thank-you'
 @Component({
   selector: 'page-past-oolaga-details',
   templateUrl: 'past-oolaga-details.html'
@@ -20,7 +21,7 @@ export class PastOolagaDetailsPage {
 	      this.http = http;
   	this.locations=[]
   	this.my=ENV.api
-
+//this.navCtrl.push(CustomerThankYouPage);
 	
   }
   

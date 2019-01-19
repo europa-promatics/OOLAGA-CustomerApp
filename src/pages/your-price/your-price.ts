@@ -222,7 +222,7 @@ export class YourPricePage {
 			}
 			else {
 					let a= this.alertCtrl.create({
-						title:"Price cannot be less than 25€",
+						title:"Merci de saisir un budget supérieur à 25€",
 						buttons:['ok']
 					})
 					a.present()

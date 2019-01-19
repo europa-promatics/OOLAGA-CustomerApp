@@ -11,7 +11,7 @@ declare var google;
   templateUrl: 'laboronly.html'
 })
 export class LaboronlyPage {
-	timeValues=['01:00','01:30','02:00','02:30','03:00','03:30','04:00','04:30','05:00','05:30','06:00','06:30','07:00','07:30','08:00','08:30','09:00','09:30','10:00'];
+	timeValues=['01H00','01H30','02H00','02H30','03H00','03H30','04H00','04H30','05H00','05H30','06H00','06H30','07H00','07H30','08H00','08H30','09H00','09H30','10H00'];
 	value=0;
 	locationData=[];
 	acService:any
@@ -107,13 +107,23 @@ export class LaboronlyPage {
               loader.dismiss()
             }
             else if (data.json().response==false){
+				if(data.json().field==1){
               loader.dismiss()
               let alert = this.alertCtrl.create({
-                title: 'Oops!',
-                subTitle: 'Please Fill All Entries',
+                title: 'Oups!',
+                subTitle: 'Merci de bien vouloir décrire votre projet dans la zone de texte.',
                 buttons: ['OK']
               });
               alert.present();
+				}else{
+					  loader.dismiss()
+              let alert = this.alertCtrl.create({
+                title: 'Oups!',
+                subTitle: 'Merci de bien vouloir saisir une adresse valide',
+                buttons: ['OK']
+              });
+              alert.present();
+				}
             }
           },err=>{
             console.log(err);

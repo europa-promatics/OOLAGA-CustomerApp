@@ -1,6 +1,6 @@
 <ion-header >
   <ion-navbar color="maincolor">
-    <ion-title style="text-align: center;">S'inscrire</ion-title>
+    <ion-title style="margin-left: 26%;">S'inscrire</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -42,7 +42,7 @@
               </ion-item>
 
               <ion-item ion-item class="dob">
-                <ion-label floating>Mot de passe</ion-label>
+                <ion-label floating >Mot de passe <span style="font-size:1rem">(8 caractères minimum et au moins 1 chiffre)</span></ion-label>
                 <ion-input class="signup-input" type="password" formControlName="password"></ion-input>
               </ion-item>
 			  
@@ -64,7 +64,7 @@
 
               <ion-item ion-item class="cus-select select_p_0">
                 <ion-label class="select_label" floating>Comment avez-vous entendu parler de nous ?</ion-label>
-                <ion-select formControlName="hearDetailsFrom">
+                <ion-select formControlName="hearDetailsFrom" cancelText="ANNULER">
                   <ion-option value="" selected disabled>Choisir</ion-option>
                   <ion-option value="Le Bon Coin">Le Bon Coin</ion-option>
                   <ion-option value="Google">Google</ion-option>

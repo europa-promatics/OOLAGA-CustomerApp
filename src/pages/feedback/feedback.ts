@@ -134,7 +134,7 @@ disabled:number=0;
                 console.log(data.json());
                 if(data.json().response){
                    let alert = this.alertCtrl.create({
-                                subTitle: data.json().message,
+                                subTitle: "Merci d’avoir laissé votre avis!",
                                 buttons: ['OK']
                             });
                             alert.present();
@@ -169,7 +169,7 @@ disabled:number=0;
         console.log(data.json());
         if(data.json().response){
            let alert = this.alertCtrl.create({
-                        subTitle: data.json().message,
+                        subTitle: "Merci d’avoir laissé votre avis!",
                         buttons: ['OK']
                     });
                     alert.present();
@@ -209,9 +209,9 @@ disabled:number=0;
         console.log(data);
         if(JSON.parse(data['_body']).response){
            let a= this.alertCtrl.create({
-             title:'Success',
-             message:"Tip successfully given!",
-             buttons:['Ok']
+             title:'Confirmation',
+             message:"Merci d’avoir récompensé votre helper !",
+             buttons:['OK']
           })
           a.present();
         }else{

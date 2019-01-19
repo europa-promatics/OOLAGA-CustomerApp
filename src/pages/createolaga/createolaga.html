@@ -25,7 +25,7 @@
     </div>
   </div> 
 </div> 
-    <div style=" color: rgb(27, 64, 121);float: left;font-size: 1em;margin-top: 30px;text-align: center;width: 100%;">{{service_description}}</div>
+    <div style=" color: rgb(27, 64, 121);float: left;font-size: 1em;margin-top: 30px;text-align: center;width: 100%;" [innerHtml]="service_description"></div>
    <!-- <div *ngFor="let s of service; let i = index" (click)="hightlightStatus=i+1">
     <ion-card (click)="selectcard(s.service_id,s.service_image,s.service_name)" class="cardstyle" [class.active]="hightlightStatus==s.service_id" style="width:97%;position: relative;font-size: 18px;margin:5px;padding:10px;">
         <div style="width: 15%;float: left; padding:5px;text-align: center;border-right: 1px solid #eee">

@@ -188,7 +188,50 @@ export class SelectTimeDatePage {
     //  timeModal.present();
   }
   submit(value){
-	 //alert(this.firsttime);
+	  console.log('bumba');
+	  var date_parts=this.appProvider.current.date.split('-');
+	  console.log(this.appProvider.current.date);
+	  var current_month;
+		if(this.viewTitle.indexOf('JANVIER')!=-1){
+		current_month="01";
+		}
+			if(this.viewTitle.indexOf('FEVRIER')!=-1){
+			current_month="02";
+		}
+			if(this.viewTitle.indexOf('MARS')!=-1){
+			current_month="03";
+		}
+			if(this.viewTitle.indexOf('AVRIL')!=-1){
+			current_month="04";
+		}
+			if(this.viewTitle.indexOf('MAI')!=-1){
+			current_month="05";
+		}
+			if(this.viewTitle.indexOf('JUIN')!=-1){
+			current_month="06";
+		}
+			if(this.viewTitle.indexOf('JUILLET')!=-1){
+			current_month="07";
+		}
+			if(this.viewTitle.indexOf('AOÛT')!=-1){
+			current_month="08";
+		}
+			if(this.viewTitle.indexOf('SEPTEMBRE')!=-1){
+			current_month="09";
+		}
+			if(this.viewTitle.indexOf('OCTOBRE')!=-1){
+			current_month="10";
+		}
+			if(this.viewTitle.indexOf('NOVEMBRE')!=-1){
+			current_month="11";
+		}
+			if(this.viewTitle.indexOf('DECEMBRE')!=-1){
+			current_month="12";
+		}
+	console.log('Modified Date');
+	var complete_date=date_parts[0]+'-'+current_month+'-'+date_parts[2];
+	this.appProvider.current.date=complete_date;
+	console.log(this.appProvider.current.date);
     let enable=false
     console.log(this.firsttime,this.lasttime)
     if(this.firsttime!='Select A Time' && this.firsttime!='SELECT A TIME'){
@@ -214,9 +257,10 @@ export class SelectTimeDatePage {
         (new Date().getDate()).toString().length==1?x=x+'-0'+(new Date().getDate()):x=x+'-'+new Date().getDate();
         (new Date().getHours()).toString().length==1?x=x+'T0'+(new Date().getHours()):x=x+'T'+new Date().getHours();
         (new Date().getMinutes()).toString().length==1?x=x+':0'+(new Date().getMinutes())+':00.000Z':x=x+':'+new Date().getMinutes()+':00.000Z';
-        let time = '20'+this.appProvider.current.date.split('-')[2]+'-'+this.appProvider.current.date.split('-')[1]+'-'+this.appProvider.current.date.split('-')[0]
+        let time = '20'+this.appProvider.current.date.split('-')[2]+'-'+current_month+'-'+this.appProvider.current.date.split('-')[0]
         let y    = time+'T'+this.appProvider.current.first_time+':00.000Z';
 		//console.log(this.appProvider.current.first_time+':00.000Z');
+		
         let a    = Date.parse(x)//+24*60*60*1000;
         let b    = Date.parse(y);
 		console.log(b);
@@ -360,7 +404,7 @@ export class SelectTimeDatePage {
     }
     onTimeSelected(ev) {
         console.log('Selected time: ' + ev.selectedTime + ', hasEvents: ' +
-            (ev.events !== undefined && ev.events.length !== 0) + ', disabled: ' + ev.disabled);
+           (ev.events !== undefined && ev.events.length !== 0) + ', disabled: ' + ev.disabled);
         localStorage['select']=ev.selectedTime;
         this.SelectedTime=localStorage['select']
         let text=ev.selectedTime.getDate();
@@ -383,7 +427,8 @@ export class SelectTimeDatePage {
         } 
         console.log(text);
         var m;
-          switch (this.SelectedTime.substring(4,7)) {
+         switch (this.SelectedTime.substring(4,7)) {
+       
             case "Dec":
               m='12'
             break;
@@ -423,6 +468,7 @@ export class SelectTimeDatePage {
             default:
               break;
           }
+		   
         var date = this.SelectedTime.substring(8,10)+'-'+m+'-'+this.SelectedTime.substring(11,15).toString().substr(-2)
         localStorage['select']=date;
         this.myDate=date;

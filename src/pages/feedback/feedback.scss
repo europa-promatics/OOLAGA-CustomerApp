@@ -32,10 +32,13 @@ ion-avatar img {
     margin-left: calc(50% - 55px);
 }
 .star-size {
-    color: #1b4079;
     display: inline-block;
     font-size: 1.5em;
+	color:#1B4079;
     letter-spacing: -3px;
+}
+.star-size.icon.icon-md.ion-ios-star{
+color:#FF8700 !important;
 }
 .my-icon{
 	width: 100%;

@@ -70,12 +70,11 @@ export class MyApp {
       // { title: 'Test Payment', component:TestPage , logo: 'assets/icon/Payment-Ico.png', color:'gray_color'},
     ];
 
-    this.initializeApp();
+    this.initializeAppDuplicate();
     this.http=http;
   }
 
   notification(data){
-    //alert(JSON.stringify(data))
     if(data.type=='msg'){
       this.nav.push(ChatPage,{receiver_id:data.user_id,image:data.user_image,name:data.user_name, oolaga:data.oolaga_id})
     }else if(data.type=='bid'){
