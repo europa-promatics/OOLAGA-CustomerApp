@@ -72,7 +72,7 @@ export class MyApp {
       // { title: 'Test Payment', component:TestPage , logo: 'assets/icon/Payment-Ico.png', color:'gray_color'},
     ];
 
-    this.initializeApp();
+    this.initializeAppDuplicate();
     this.http=http;
 	this.version=this.appVersion.getVersionNumber();
   }
