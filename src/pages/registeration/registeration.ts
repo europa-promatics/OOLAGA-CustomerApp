@@ -162,8 +162,8 @@ return null;
                   if(this.pic == "img/man.png"){
                    this.loader.dismiss();
                    let alert = this.alertCtrl.create({
-                        title: 'Thank you!',
-                        subTitle: 'Registration Successful please check your email to verify your email address.',
+                        title: 'Merci pour votre inscription!',
+                        subTitle: 'Un email vous a été envoyé avec des conseils sur la manière d’utiliser Oolaga',
                         buttons: ['OK']
                    });
                      alert.present();
