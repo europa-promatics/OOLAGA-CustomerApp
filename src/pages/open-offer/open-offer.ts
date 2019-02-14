@@ -47,12 +47,11 @@ export class OpenOfferPage {
   submit(id){
     console.log(id)
     let alert=this.alertCtrl.create({
-      //message:'Your credit card will be charged $'+this.helper_data.bid_amount+'. We Will hold the funds until the Oolaga has been completed.',
-      message:'A hold of $' + this.helper_data.bid_amount +' will be put on your credit card and paid out when the oolaga has been completed. You will have the opportunity to tip the helper later.',
+      message:'Une Pré-autorisation de '+this.helper_data.bid_amount+'€ a été effectuée sur votre carte bancaire. Les fonds seront transférés une fois le projet terminé.',
       buttons:[{
-                text:'CANCEL'
+                text:'ANNULER'
                 },{
-                text:'ACCEPT',
+                text:'ACCEPTER',
                 handler:()=>{
                   this.payHelper()
                   // this.hire(id);

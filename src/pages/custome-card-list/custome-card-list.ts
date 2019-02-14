@@ -4,7 +4,11 @@ import { Http } from '@angular/http';
 import { Camera } from 'ionic-native';
 import { AlertController } from 'ionic-angular';
 import {ENV} from '../../app/env'
+import { PopoverController } from 'ionic-angular';
+import { PopOver } from '../pop-over/pop-over';
 import { AppProvider }from '../../providers/app-provider';
+import { SaveCardDetailsPage } from '../save-card-details/save-card-details'
+
 /*
   Generated class for the CustomeCardList page.
 
@@ -18,7 +22,7 @@ import { AppProvider }from '../../providers/app-provider';
 export class CustomeCardListPage {
 http
 CardData
-  constructor(public navCtrl: NavController, public navParams: NavParams, private loadingCtrl: LoadingController, http:Http, private alertController: AlertController ) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private loadingCtrl: LoadingController, http:Http, private alertController: AlertController, public popoverCtrl: PopoverController ) {
     this.http=http;	
 	this.getCardList();
 	
@@ -26,6 +30,7 @@ CardData
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CustomeCardListPage');
+	this.getCardList();
   }
   
   getCardList(){
@@ -38,29 +43,8 @@ CardData
   	        console.log("card successfully registered");
 			console.log(JSON.parse(data._body).data.card_detail)
 			  this.CardData=JSON.parse(data._body).data.card_detail;
-  	       // console.log(data.res);
   	          loader.dismiss();
-			
-          /*     if(JSON.parse(data._body).response==true){
-                  let alert = this.alertController.create({
-                   title: 'Success',
-                   subTitle: 'Card successfully added',
-                   buttons:[ 
-                    { 
-                       text:'ok',
-                       handler:()=>
-                       {
-                        if (localStorage['loginStatus']=='true') {
-                         this.navCtrl.setRoot(MyoolagaPage);
-                        }else{
-                          this.navCtrl.setRoot(LoginPage);
-                        }
-                       }
-                    }]
-                   });
-                 alert.present();
-              	
-              } */
+		
   	    },err=>{
   	       	console.log(err);
   	    })
@@ -106,6 +90,20 @@ CardData
   	       	console.log(err);
   	    })
       }
+	  
+	  onAddCard(){
+     this.navCtrl.push(SaveCardDetailsPage,{'user_id':localStorage['user_id'],'mangoUserId':1})
+   }
+	presentPopover(myEvent, data){
+    let popover = this.popoverCtrl.create(PopOver, {ev:data});
+    popover.present({
+      ev: myEvent
+    });
+	
+	popover.onDidDismiss(() => {
+	this.getCardList();
+});
+  }
   }
 
 

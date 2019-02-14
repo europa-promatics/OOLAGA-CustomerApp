@@ -67,9 +67,9 @@ if(str){
 	  
 	  if(this.time<2){
 		 let alert=this.alertCtrl.create({
-        title:'Oups',
-        message:'Offre ne peut être acceptée maintenant',
-        buttons:['Ok']
+        title:'Offre expirée',
+        message:'Le temps ne permettant pas au Helper d\'arriver à l\'heure, nous vous suggérons de soumettre de nouveau votre projet avec une heure de collection qui permet au Helper d’y arriver à l’heure.',
+        buttons:['OK']
       })
       alert.present();
 	  return false;

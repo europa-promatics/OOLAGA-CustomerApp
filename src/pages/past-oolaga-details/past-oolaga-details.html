@@ -5,6 +5,18 @@
 </ion-header>
 <ion-content style="text-align:left;background-color: #f7f7f7;color:#1B4079" padding>
     <div *ngIf="data && data.service_id!=7">
+<div style="position:relative;background-color:#f7f7f7;height: 45px;border: 1px solid rgba(0,0,0,0.1);float: left;width: 100%;" *ngIf="data?.cancel_status=='cancel_by_helper'">
+        <div style="background: #fff;width: 100%;height: 100%;float: left;padding: 13px 18px;">
+          <ion-label style="font-weight: 600;width: 100%;color:red;margin:0;text-align: center;">
+           
+            <span>
+            ANNULÉ
+            </span>
+          </ion-label>
+        </div>
+    </div>
+    <div style="height: 15px;width: 100%;float: left;" *ngIf="data?.cancel_status=='cancel_by_helper'"></div>
+	
       <div style="float: left;width: 100%;">
         <ion-label style="float:left;height:20px;width:50%;margin:0;color:#727272;font-size: 1.5rem;">
           Catégorie
@@ -20,7 +32,7 @@
             </div>
           </div>
           <div style="background: #f7f7f7;width: 82%;height: 100%;float: right;padding: 13px 18px;">
-            <ion-label style="font-weight: 600;width: 100%;color:#000000;margin:0;">
+            <ion-label style="font-weight: 600;width: 100%;color:#000000;margin:0; font-size:1.2rem">
               <span>
                 {{getServiceName(data?.service)}}
               </span>
@@ -133,7 +145,7 @@
             </div>
           </div>
           <div style="background: #f7f7f7;width: 82%;height: 100%;float: right;padding: 13px 18px;">
-            <ion-label style="font-weight: 600;width: 100%;color:#000000;margin:0;">
+            <ion-label style="font-weight: 600;width: 100%;color:#000000;margin:0;font-size:1.2rem">
               <span *ngFor="let item of data.items;let a = last ;let i = index ">
                 {{item.quantity}} {{item.item_name}}<span *ngIf="i+1!=data.items.length">, </span>
               </span>
@@ -201,7 +213,17 @@
       </div>
     </div>
     <div *ngIf="data && data.service_id==7 ">
-
+<div style="position:relative;background-color:#f7f7f7;height: 45px;border: 1px solid rgba(0,0,0,0.1);float: left;width: 100%;" *ngIf="data?.cancel_status=='cancel_by_helper'">
+        <div style="background: #fff;width: 100%;height: 100%;float: left;padding: 13px 18px;">
+          <ion-label style="font-weight: 600;width: 100%;color:red;margin:0;text-align: center;">
+           
+            <span>
+            ANNULÉ
+            </span>
+          </ion-label>
+        </div>
+    </div>
+    <div style="height: 15px;width: 100%;float: left;" *ngIf="data?.cancel_status=='cancel_by_helper'"></div>
       <ion-label style="float:left;height:auto;width:50%;margin:0;color:#727272;font-size: 1.5rem;">Catégorie</ion-label>
       <ion-label style="text-align:right;float:right;height:auto;width:50%;margin:0;color:#727272;font-size: 1.5rem; ">Budget <span color="maincolor">{{data.cost}}€</span></ion-label>
 
@@ -246,7 +268,9 @@
       </div>
     </div> 
     <button *ngIf="data && data?.payment_status==0" ion-button color="orange_color" round style="width: 250px;margin-left: calc(50% - 125px);margin-bottom: 50px;" (click)="pay()">PROCEED TO PAYMENT</button>
-    <button *ngIf="data && data?.payment_status==1 && rating==0" ion-button color="orange_color" round style="width: 250px;margin-left: calc(50% - 125px);margin-bottom: 50px;" (click)="feedback()" >LAISSEZ UNE ÉVALUATION</button>
-	<button *ngIf="data && data?.payment_status==1 && rating > 0" ion-button  round style="width: 250px;margin-left: calc(50% - 125px);margin-bottom: 50px;background-color:gray" disabled >LAISSEZ UNE ÉVALUATION</button>
+    <button *ngIf="data && data?.payment_status==1 && rating==0 && data.cancel_status!='cancel_by_helper'" ion-button color="orange_color" round style="width: 250px;margin-left: calc(50% - 125px);margin-bottom: 50px;" (click)="feedback()" >LAISSEZ UNE ÉVALUATION</button>
+	<button *ngIf="data && data?.payment_status==1 && rating > 0 && data.cancel_status!='cancel_by_helper'" ion-button  round style="width: 250px;margin-left: calc(50% - 125px);margin-bottom: 50px;background-color:gray" disabled >LAISSEZ UNE ÉVALUATION</button>
+	<!--button *ngIf="data &&  data?.cancel_status=='cancel_by_helper' && data.reopen_status==0" ion-button  round style="width: 250px;margin-left: calc(50% - 125px);margin-bottom: 50px;" color="orange_color" (click)="relist(data.oolaga_id)">REMETTRE EN LIGNE</button-->
+	<!--button disabled *ngIf="data &&  data?.cancel_status=='cancel_by_helper'" ion-button  round style="width: 250px;margin-left: calc(50% - 125px);margin-bottom: 50px;background-color:gray" >ANNULÉ</button-->
 
 </ion-content>

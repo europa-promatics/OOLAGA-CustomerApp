@@ -42,7 +42,7 @@
 			<button (click)="delete_item(item.item_id)" ion-button icon-only clear color="maincolor" style="float: right;"><ion-icon name="close"></ion-icon></button>
 		</ion-list>  -->
 		<div style="width:100%;height:46px;float: left;position: relative;margin-bottom: 10px;" no-padding>
-			<ion-input style="height:46px;float:left;width:70%;background-color:#fff;color: #1B4079;border: 1px solid rgba(0,0,0,0.1);" placeholder="Entrez un seul objet ex. canapé" type="textbox" [(ngModel)]="item_name" (input)="updateSearch()"></ion-input>
+			<ion-input style="height:46px;float:left;width:70%;background-color:#fff;color: #1B4079;border: 1px solid rgba(0,0,0,0.1);" placeholder="Entrez un seul objet ex. canapé" type="textbox" [(ngModel)]="item_name" (input)="updateSearch()" #input></ion-input>
 			<div style="text-align:center;position:absolute;right:0;background:#fff;float: right;width: 31%;height:46px;border: 1px solid rgba(0,0,0,0.1);border-radius: 5px 0 0 5px;">
 				<button ion-button clear icon-only (click)="remove()" style="padding-left:5px;padding-right:5px;z-index:10;float: left; "><ion-icon (click)="remove()" style="color: #F26419;font-size:1.2em;" name="remove" ></ion-icon></button>
 				<span style="position: absolute;top: 12px;left: 0;right: 0;">{{item_quantity}}</span>

@@ -3,6 +3,7 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { Device } from '@ionic-native/device';
 import { FCM } from '@ionic-native/fcm'
 import {LocalNotifications} from 'ionic-native'
+import { PopOver}from '../pages/pop-over/pop-over';
 import { AppVersion } from '@ionic-native/app-version';
 //-------------------------calendar----------------------------------
 import { NgCalendarModule  } from 'ionic2-calendar';
@@ -47,6 +48,7 @@ import {FeedbackPage} from '../pages/feedback/feedback';
 import {HireHelperPage} from '../pages/hire-helper/hire-helper';
 import {SummaryPage} from '../pages/summary/summary';
 import { SelectTimePage }from '../pages/select-time/select-time';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PrivacyPolicyPage}from '../pages/privacy-policy/privacy-policy';
 import { ItemDetailHelpPage} from '../pages/item-detail-help/item-detail-help';
 import { CancellationPage} from '../pages/cancellation/cancellation';
@@ -89,6 +91,7 @@ import { SaveCardDetailsPage} from '../pages/save-card-details/save-card-details
     MyApp,
     FAQPage,
     PricequotePage,
+	PopOver,
     PastOolagaDetailsPage,
     EditItemDetailPage,
     CancellationPage,
@@ -157,14 +160,16 @@ import { SaveCardDetailsPage} from '../pages/save-card-details/save-card-details
 	CustomeCardListPage
   ],
   imports: [NgCalendarModule,
+  
     IonicModule.forRoot(MyApp,{
         pageTransition: 'ios-transition'
-    },{}),
+    },{})
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,FAQPage,
     PastOolagaDetailsPage,
+	PopOver,
     ChatPage,
     EditItemDetailPage,
     EditLocationDetailPage,

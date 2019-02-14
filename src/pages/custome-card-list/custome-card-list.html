@@ -9,7 +9,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title style="text-align: center;margin-right: 55px;">Saved Cards</ion-title>
+    <ion-title style="text-align: center;margin-right: 55px;">Cartes enregistrées</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -72,19 +72,25 @@
 
 <ion-content  style="background-color:#fff;">
 <ion-list *ngFor="let card of CardData">
-
-  <ion-item>
-    <ion-label>{{card.card_type}}</ion-label>
-	 <ion-toggle [(ngModel)]="card.card_status" (ngModelChange)="setCardStatus(card.id)" ></ion-toggle>
-	</ion-item>
 	<ion-item>
-    <ion-label *ngIf="card.card_number">{{card.card_number}}</ion-label>
-    <ion-label *ngIf="!card.card_number">Card Number Not Available!</ion-label>
-   
-  </ion-item>  
+    <ion-label *ngIf="card.card_number && card.card_number!=null">{{card.card_number}} 	<ion-badge *ngIf="card.card_status" color="primary">Carte par défaut</ion-badge> <ion-icon name="more" *ngIf="!card.card_status" (click)="presentPopover($event, card)" style="float:right"></ion-icon></ion-label>
+	</ion-item>  
   
-  
- 
-
 </ion-list>
+
+
+		<button round ion-button color="orange_color" style="width: 70%;margin-left: 51px;" (click)="onAddCard()" >
+		<ion-label style="margin-left: 10px;" >Ajouter une carte</ion-label>
+		</button>
+		
+		<!--div style="text-align:left;color: #222">
+			<p color="maincolor" style="font-size: 1.7rem;">When do i get billed?</p>
+			<p style="font-size: 1.4rem;">When you book your OOLAGA, a hold is placed on your credit card for the full amount of the OOLAGA. Once your OOLAGA is completed, we charge the card for the total amount. In the event that your cancel your OOLAGA with more than 24 hours notice, your hold is released. If you cancel with less than 24 notice, a 20% cancellation fee is applied.</p>
+
+			<p color="maincolor" style="font-size: 1.7rem;">Can I cancel w/o being charged?</p>
+			<p style="font-size: 1.4rem;margin:0;">Yes, if your OOLAGA has not been scheduled, you can cancel at any time.</p>
+		</div-->
+
+
+
 </ion-content>

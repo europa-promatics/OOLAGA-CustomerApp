@@ -47,9 +47,15 @@ refreasherEnabled:boolean=false;
     this.http = http;
     this.menu=menuCtrl;
     this.menu.enable(true,"mymenu");
+	if(this.navParams.get('activeSec')){
+		this.activeSec=this.navParams.get('activeSec');
+	}
 		setInterval(() => {
 				  this.updateData();
 				}, 5000); 
+		console.log('Hereeeeee');
+		this.activeSec="auction";
+		console.log(this.activeSec);		
   }
   refreshOolagas(refresh){
     this.refreasherEnabled=true;

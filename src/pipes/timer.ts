@@ -64,7 +64,7 @@ if(numdays>0){
 		if(numminutes > 0){
 			return numminutes + "m";
 		}else{
-			return "Expired"
+			return "Expiré"
 		}
 	}
 }

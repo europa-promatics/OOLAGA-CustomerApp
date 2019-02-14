@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams,ModalController } from 'ionic-angular';
+import { NavController, NavParams,ModalController, AlertController } from 'ionic-angular';
 import {ENV} from '../../app/env';
 import { TestPage} from '../test/test';
 import { Http } from '@angular/http';
 import { FeedbackPage } from '../feedback/feedback';
+import { MyoolagaPage } from '../myoolaga/myoolaga';
 //import { CustomerThankYouPage } from '../customer-thank-you/customer-thank-you'
 @Component({
   selector: 'page-past-oolaga-details',
@@ -17,7 +18,7 @@ export class PastOolagaDetailsPage {
 	selected_item=0;
 	my
 	rating
-  constructor(public modalCtrl:ModalController,http:Http, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public modalCtrl:ModalController,http:Http, public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController) {
 	      this.http = http;
   	this.locations=[]
   	this.my=ENV.api
@@ -121,4 +122,28 @@ export class PastOolagaDetailsPage {
 		 return time.replace(":", "h");
 	 }
 }
+
+		relist(oolaga_id){
+			console.log(oolaga_id);
+			 var data=JSON.stringify({
+              oolaga_id:oolaga_id
+            });
+	        this.http.post(ENV.api+'/oolagaReOpen',data).subscribe(data => {
+                console.log(data.json());
+                if(data.json().response){
+					let alert = this.alertCtrl.create({
+                                subTitle: 'Votre projet a été remis en ligne avec succès!',
+                                buttons: ['OK']
+                            });
+                            alert.present(); 
+							this.navCtrl.push(MyoolagaPage,{
+								activeSec:'auction'
+							  })
+                }else{
+                  
+                }
+              },err=>{
+               
+              })
+		}
 }

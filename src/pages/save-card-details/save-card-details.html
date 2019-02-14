@@ -70,85 +70,34 @@
         </div>
 </ion-content> -->
 
-<ion-content padding style="background-color:#fff; text-align: center;">
-  <div padding style="width: 100%;">
-    <!-- <ion-row>
-      <ion-col style="margin: 2vh auto;">
-        <img src="assets/img/oolaga.png" width="50%" />
-      </ion-col>
-    </ion-row> -->
-      <ion-row>
-        <ion-col>
-          <ion-list inset style="margin-bottom: 0px;">
-            <form  #paymentForm="ngForm">
-              
-              <!--ion-item ion-item>
-                <ion-label floating>Name on card</ion-label>
-                <ion-input class="signup-input" type="text" id="nameOnCard" name="nameOnCard" [(ngModel)]='PaymentDetails.nameOnCard' (keyup)=onNameChange(PaymentDetails.nameOnCard) #nameOnCard="ngModel"></ion-input>
-              </ion-item-->
 
-              <ion-item ion-item>
-                <ion-label floating>Numéro de carte</ion-label>
-                <ion-input id="cardNumber" class="signup-input" name="cardNumber" type="number" minlength="15" maxlength="16"  [(ngModel)]='PaymentDetails.number' #cardNumber="ngModel" required (keyup)="cardCheck(PaymentDetails.number)" ></ion-input>
-              </ion-item>
-              <!-- <div *ngIf="cardNumber.invalid && (cardNumber.dirty || cardNumber.touched)" style="color:red">
-                <div *ngIf="cardNumber.errors.required">
-                  cardNumber is required.
-                </div>
-                <div *ngIf="cardNumber.errors.minlength">
-                  cardNumber must be at least 15 characters long.
-                </div>
-                <div *ngIf="cardNumber.errors.maxlength">
-                  cardNumber cannot be more than 16 characters .
-                </div>
-              </div> -->
+<ion-content style="background-color:#F9F9F9;text-align: center; ">
 
-              <div class="three-flex">
-                <div class="three-column">
-                  <ion-item ion-item class="input-has-focus">
-                    <ion-label floating>Date d’expiration (MM/AA)</ion-label>
-                    <ion-input id="expireDate" name="expireDate" type="text" minlength="5" maxlength="5"  [(ngModel)]='PaymentDetails.expireDate' #expireDate="ngModel" required (keyup)="dateCheck(PaymentDetails.expireDate)"></ion-input>
-                  </ion-item>
-                </div>
-
-                  <!-- <div *ngIf="expireDate.invalid && (expireDate.dirty || expireDate.touched)" style="color:red">
-                    <div *ngIf="expireDate.errors.required">
-                      Expire Date is required.
-                    </div>
-                  </div>
-                  <div *ngIf="dateError">
-                    invalid date
-                  </div> -->
-                <div class="three-column">
-                  <ion-item ion-item class="input-has-focus">
-                    <ion-label floating>Cryptogramme (CVC)</ion-label>
-                    <ion-input id="CVC" name="CVC" type="number" maxlength="4" minlength="3" [(ngModel)]='PaymentDetails.cvc' #CVC="ngModel" required ></ion-input>
-                  </ion-item>
-                </div>
-
-                <!--div class="three-column">
-                  <ion-item ion-item class="input-has-focus">
-                    <ion-label floating>Zip Code</ion-label>
-                    <ion-input class="signup-input" type="text" type="number" id="zipCode" name="zipCode" [(ngModel)]='PaymentDetails.zipcode' #zipCode="ngModel" maxlength="8"></ion-input>
-                  </ion-item>
-                </div-->
-              </div>
-
-              <!-- <div *ngIf="CVC.invalid && (CVC.dirty || CVC.touched)" style="color:red">
-                <div *ngIf="CVC.errors.required">
-                  CVC is required.
-                </div>
-                <div *ngIf="CVC.errors.minlength">
-                  CVC must be at least 3 characters long.
-                </div>
-              </div> -->
-
-            </form>
-          </ion-list>
-        </ion-col>
-      </ion-row>
-
-        <div class="select-term">
+  	    
+  <div padding style="text-align: left;">
+      <h2 style="color:#AFAFAF;margin-top:0px;font-size:1.3rem">Numéro de carte</h2>
+      <div style="background-color: #ffffff;height: 44px;position:relative">
+        <ion-input class="card-number" [(ngModel)]='PaymentDetails.number' (keyup)="cardCheck(PaymentDetails.number)"  style="padding-left:15px;color:#1B4079;" maxlength="16" placeholder="XXXXXXXXXXXX XXXX"> </ion-input>
+		<ion-icon name="card" style="position:absolute;left:0;top:10px;font-size:20px;color:#1B4079;"></ion-icon>
+      </div>
+     <ion-row>
+      <ion-col size="6">
+	  <h2 style="color:#AFAFAF;margin-top:0px;font-size:1.3rem; width:50%;display:inline">Date d’expiration</h2>
+      <div style="background-color: #ffffff;height: 44px;width:50%; display:inline;position:relative;">
+        <ion-input class="profile" [(ngModel)]='PaymentDetails.expireDate' (keyup)="dateCheck(PaymentDetails.expireDate)" placeholder="MM/AA" style="width:50%;color:#1B4079;padding-right10px; color:#1B4079"> </ion-input>
+		<!--ion-icon name="information-circle" style="position:absolute;right:0;top:28px;color:#1B4079"></ion-icon-->
+      </div>
+	  </ion-col>
+      <ion-col size="6">
+	 <h2 style="color:#AFAFAF;margin-top:0px;font-size:1.3rem; width:50%; display:inline">Cryptogramme (CVC)</h2>
+      <div style="background-color: #ffffff;height: 44px;width:50%; display:inline;position:relative">
+        <ion-input class="profile" [(ngModel)]='PaymentDetails.cvc' style="width:50%;color:#1B4079;padding-right:10px;color:#1B4079" placeholder="123"> </ion-input>
+		<ion-icon name="information-circle" style="position:absolute;right:0;top:28px;color:#1B4079" (click)="showAlert()"></ion-icon>
+      </div>
+	  </ion-col>
+	 </ion-row>
+  </div>
+   <div class="select-term">
             <ion-item>
                 <ion-label>Enregistrer cette carte par défaut</ion-label>
                 <ion-checkbox color="dark" checked="true" class="select-box-color" [(ngModel)]='PaymentDetails.status' ></ion-checkbox>
@@ -160,5 +109,5 @@
           <button ion-button style="height:4rem;margin-bottom: 5px; border-radius: 30px; padding-left: 10px;background-color:#1B4079;width: 90%;height: 42px;margin-top: 1px;box-shadow: none;" (click)="onSaveCard()" >ENREGISTRER MA CARTE</button>
         </ion-col>
       </ion-row>
-  </div>
+
 </ion-content>

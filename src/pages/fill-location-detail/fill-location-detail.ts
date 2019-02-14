@@ -55,9 +55,9 @@ export class FillLocationDetailPage {
   }
   checkUnit_nu(){
     console.log(isNaN(this.unit_nu[this.unit_nu.length-1]));
-    if(isNaN(this.unit_nu[this.unit_nu.length-1])){
+    /* if(isNaN(this.unit_nu[this.unit_nu.length-1])){
       this.unit_nu= this.unit_nu.slice(0, -1);
-    }else{}
+    }else{} */
   }
   check(value){
       if(value==1 && this.inhome==true){
@@ -151,7 +151,7 @@ export class FillLocationDetailPage {
     }
     else{
       let a=this.alertCtrl.create({
-        title:'Please select Curbside or Inside',
+        title:'Veuillez sélectionner “Pas-de-porte” ou “À l\'intérieur',
         buttons:['Ok']
       })
       a.present();

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild} from '@angular/core';
 import { NavController, NavParams,LoadingController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { Http } from '@angular/http';
@@ -15,7 +15,10 @@ import {AppProvider} from '../../providers/app-provider';
   selector: 'page-item-detail',
   templateUrl: 'item-detail.html'
 })
+
+
 export class ItemDetailPage {
+
   public pic:string;
   public pic1;
   image_number:number=0;
@@ -54,7 +57,7 @@ export class ItemDetailPage {
   src_item_loc;
   suggestions;
   itemlist;
-
+@ViewChild('input') myInput ;
   constructor(private appProvider:AppProvider,private imagePicker: ImagePicker,public loadingCtrl:LoadingController,public alertCtrl:AlertController,http:Http,public navCtrl: NavController, public navParams: NavParams) {
     this.pic = "img/man.png"
     this.pic_exist=false;
@@ -138,6 +141,7 @@ export class ItemDetailPage {
   chooseItem(value){
     this.item_name = value;
     this.itemlist = [];
+	this.myInput.setFocus();
   }
 
   remove_pic(value){
@@ -190,23 +194,32 @@ export class ItemDetailPage {
   { 
     if(this.item_name==null || this.item_name=='' ||this.item_name==' '){
       let alert = this.alertCtrl.create({
-        title: 'Oops...',
-        subTitle: 'Please enter item details...',
+        title: 'Oups',
+        subTitle: 'Veuillez saisir un objet à transporter',
         buttons: ['OK']
       });
       alert.present();
     }else if(this.item_name.toLowerCase()=="gun safes" || this.item_name.toLowerCase()=="jukeboxes" ||this.item_name.toLowerCase()=="jukebox" || this.item_name.toLowerCase()=="motorcycles" ||this.item_name.toLowerCase()=="motorcycle" || this.item_name.toLowerCase()=="organs" || this.item_name.toLowerCase()=="pianos" ||this.item_name.toLowerCase()=="piano"  || this.item_name.toLowerCase()=="large safes" || this.item_name.toLowerCase()=="u-box" || this.item_name.toLowerCase()=="containers" || this.item_name.toLowerCase()=='kegs & other alcohol' || this.item_name.toLowerCase()=='kegs and other alcohol' || this.item_name.toLowerCase()=='alcohol' || this.item_name.toLowerCase()=='pool tables'){
 		 let alert = this.alertCtrl.create({
-        title: 'Oops...',
-        subTitle: 'Sorry, OOLAGA is not meant for such items.',
+        title: 'Objet interdit !',
+        subTitle: 'Nos Helpers ne sont pas habilités à transporter ce type d\'objet.',
         buttons: ['OK']
       });
       alert.present();
 		
 	}
     else{
+		 if(!this.src_item_loc){
+	  let alert = this.alertCtrl.create({
+        title: 'Oups!',
+        subTitle: 'Veuillez sélectionner une adresse de collection pour votre objet.',
+        buttons: ['OK']
+      });
+      alert.present();
+	  }else{
       let loader = this.loadingCtrl.create();
       loader.present();
+	 
       let data=JSON.stringify({
                                       item_name:this.item_name,
                                       quantity:this.item_quantity,
@@ -254,6 +267,7 @@ export class ItemDetailPage {
                 alt.present();
               }else{alert('error')}
       });
+	}
 
     }
   }

@@ -48,7 +48,7 @@
             </div>
           </div>
           <div style="background: #f7f7f7;width: 82%;height: 100%;float: right;padding: 13px 18px;">
-            <ion-label style="font-weight: 600;width: 100%;color:#000000;margin:0;">
+            <ion-label style="font-weight: 600;width: 100%;color:#000000;margin:0;font-size:1.2rem">
               <span>
                 {{getServiceName(appProvider.current.service_name)}}
               </span>
@@ -176,7 +176,7 @@
             </div>
           </div>
           <div style="background: #f7f7f7;width: 82%;height: 100%;float: right;padding: 13px 18px;">
-            <ion-label style="font-weight: 600;width: 100%;color:#000000;margin:0;">
+            <ion-label style="font-weight: 600;width: 100%;color:#000000;margin:0; font-size:1.2rem">
               <span *ngFor="let item of appProvider.current.items;let a = last ;let i = index ">
                 {{item.quantity}} {{item.item_name}}<span *ngIf="i+1!=value.oolaga_item.length">, </span>
               </span>

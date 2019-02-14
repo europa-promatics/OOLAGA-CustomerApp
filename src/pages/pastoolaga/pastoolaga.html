@@ -18,7 +18,7 @@
 
             <div>
               <div>
-                <ion-label  style="float:left;margin: 5px 0 0 0;width: 70%;font-size: 14px;color: #1B4079;">
+                <ion-label  style="float:left;margin: 5px 0 0 0;width: 70%;font-size: 1.2rem;color: #1B4079;">
                   <span>
                     {{getServiceName(d.service)}}
                   </span>
@@ -46,8 +46,9 @@
                   <span style="width:20%;font-size: 0.8em;float: left;">{{formatTime(d.first_time)}}<!-- {{d.time.substring(0,8) | timemomentformat}}-{{d.time.substring(9,18) | timemomentformat}} --></span>
                   <span  style="float: right;font-size: 0.6em;overflow-wrap: break-word;white-space: normal;width: 25%;">
                     <span *ngIf="d.payment_status==0" style="color: rgb(255, 0, 0);">EN ATTENTE</span>
-                    <span *ngIf="d.rating==0" style="color:red">LAISSER UN AVIS </span>
-                    <span *ngIf="d.rating==1" style="color:green"> TERMINÉ</span>
+                    <span *ngIf="d.rating==0 && d.cancel_status!='cancel_by_helper'" style="color:red">LAISSER UN AVIS </span>
+                    <span *ngIf="d.rating==1 && d.cancel_status!='cancel_by_helper'" style="color:green"> TERMINÉ</span>
+                    <span *ngIf="d.cancel_status=='cancel_by_helper'" style="color:red"> ANNULÉ</span>
                   </span>
                 </ion-label>
               </div>     

@@ -63,7 +63,7 @@ export class MyApp {
       { title: 'Mes Projets', component:MyoolagaPage , logo: 'assets/icon/Post-Ico.png', color:'red_color',notificationCount:0},
       { title: 'Projets terminés', component:PastoolagaPage , logo: 'assets/icon/Hirstory-Ico.png', color:'gray_color',notificationCount:0},
       { title: 'Notifications', component:NotificationPage , logo: 'assets/icon/bell.png', color:'gray_color',notificationCount:this.notificationcount},
-      { title: 'Paiement', component:PaymentAfterLoginPage , logo: 'assets/icon/Payment-Ico.png', color:'gray_color',notificationCount:0},
+     /*  { title: 'Paiement', component:PaymentAfterLoginPage , logo: 'assets/icon/Payment-Ico.png', color:'gray_color',notificationCount:0}, */
       { title: 'Cartes enregistrées', component:CustomeCardListPage , logo: 'assets/icon/Payment-Ico.png', color:'gray_color',notificationCount:0},
       { title: 'Invitez des amis', component:InvitePage , logo: 'assets/icon/Share-Ico.png', color:'green_color',notificationCount:0},
       { title: 'Code promo', component:CreditPage , logo: 'assets/icon/Credit-Ico.png', color:'gray_color',notificationCount:0},

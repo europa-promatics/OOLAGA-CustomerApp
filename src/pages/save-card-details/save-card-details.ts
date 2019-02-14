@@ -169,15 +169,8 @@ dateCheck(a){
   }
 
   	onSaveCard(){
-      if (!this.PaymentDetails.nameOnCard) {
-        // alert('name missing')
-        let alert = this.alertController.create({
-                 title: 'Oopss....!',
-                 subTitle: 'Please enter name on card',
-                 buttons: ['OK']
-                 });
-                 alert.present();
-      }else if(!this.PaymentDetails.number){
+		
+     if(!this.PaymentDetails.number){
         let alert = this.alertController.create({
                  title: 'Oopss....!',
                  subTitle: 'Please enter card number',
@@ -199,24 +192,15 @@ dateCheck(a){
                  buttons: ['OK']
                  });
                  alert.present();
-      }else if(!this.PaymentDetails.zipcode){
-        let alert = this.alertController.create({
-                 title: 'Oopss....!',
-                 subTitle: 'Please enter zipcode',
-                 buttons: ['OK']
-                 });
-                 alert.present();
       }else{
     		let dateToSend=this.PaymentDetails.expireDate.split("/")
-    		dateToSend=dateToSend[0]+dateToSend[1]
+			console.log(dateToSend);
+    	//	dateToSend=dateToSend[0]+dateToSend[1]
   	  	let cardData={
   	  		user_id:this.user_id,
-  	  		mangoUserId:this.mangoUserId,
-  	  		card_type:this.cardType,
   	  		card_number:this.PaymentDetails.number,
-          nameOnCard:this.PaymentDetails.nameOnCard,
-          zipCode:this.PaymentDetails.zipcode,
-  	  		expiry_date:dateToSend,
+  	  		expiry_year:"20"+dateToSend[1],
+			expiry_month:dateToSend[0],
   	  		cvv:this.PaymentDetails.cvc,
 			card_status: this.PaymentDetails.status
   	  	}
@@ -256,7 +240,15 @@ dateCheck(a){
   	    })
       }
   	}
-
+showAlert(){
+	      let alert = this.alertController.create({
+                 title: 'Information',
+                 subTitle: 'Le code de vérification de la carte, ou CVC*, est un code supplémentaire qui figure sur votre carte de crédit ou de débit. Pour la plupart des cartes (notamment Visa, MasterCard, cartes bancaires), ce sont les trois derniers chiffres du numéro imprimé sur la bande de signature au dos de la carte. Pour les cartes American Express (AMEX), ce sont généralement les quatre chiffres situés au recto de la carte',
+                 buttons: ['OK']
+                 });
+                 alert.present();
+	
+}
     onNameChange(a){
       console.log(a)
     }
