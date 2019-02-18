@@ -73,7 +73,7 @@
 <ion-content  style="background-color:#fff;">
 <ion-list *ngFor="let card of CardData">
 	<ion-item>
-    <ion-label *ngIf="card.card_number && card.card_number!=null">{{card.card_number}} 	<ion-badge *ngIf="card.card_status" color="primary">Carte par défaut</ion-badge> <ion-icon name="more" *ngIf="!card.card_status" (click)="presentPopover($event, card)" style="float:right"></ion-icon></ion-label>
+    <ion-label *ngIf="card.card_number && card.card_number!=null"><ion-icon name="card" style="font-size:20px;color:#1B4079;"></ion-icon> {{formatCard(card.card_number)}} 	<ion-icon style="color:#8DA600; margin-left:80px; font-size:2.5rem" *ngIf="card.card_status" name="checkmark-circle"></ion-icon> <ion-icon name="more" *ngIf="!card.card_status" (click)="presentPopover($event, card)" style="float:right"></ion-icon></ion-label>
 	</ion-item>  
   
 </ion-list>

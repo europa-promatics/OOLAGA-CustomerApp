@@ -11,8 +11,8 @@ import { AppProvider } from '../../providers/app-provider'
 import { Device } from '@ionic-native/device';
 import { Events } from 'ionic-angular';
 import { Validators, FormBuilder} from '@angular/forms';
-//const FileTransfer = new Transfer(); //---------mobile code
-declare var FileTransfer //-------browser code
+const FileTransfer = new Transfer(); //---------mobile code
+//declare var FileTransfer //-------browser code
 
 @Component({
   selector: 'page-profile', 
@@ -49,7 +49,7 @@ export class ProfilePage {
    this.http=http;
   }
    picOption(value){
- FileTransfer = new Transfer();
+// FileTransfer = new Transfer();
 	//------------browser code
     let data={
       id:this.id,

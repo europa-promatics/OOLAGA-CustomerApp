@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar color="maincolor">
-    <ion-title style="text-align: center;">Modifier</ion-title>
+    <ion-title style="margin-left:75px;">Modifier</ion-title>
       	<!--ion-buttons end style="margin: 0 6px;min-width: 44px;padding: 0 5px;">
 	      <button ion-button clear (click)="help();">
 	      	Aide
@@ -26,8 +26,8 @@
 		</div>
 		
 		<div style="position:relative;float:left;margin-bottom: 10px;background: #efefef;border: 1px solid rgba(0,0,0,0.1);height: 35px;width: 100%;">
-			<button (click)="upload_pic(0)" [disabled]="pic1.length==4" ion-button clear icon-only  style="float: left;height: 100%;margin: 0;"><ion-icon><img src="assets/icon/outline-camra.png" style="width: 20px;"></ion-icon></button>
-			<button (click)="upload_pic(1)" [disabled]="pic1.length==4" ion-button clear icon-only  style="float: left;height: 100%;margin: 0;"><ion-icon><img src="assets/icon/download.png" style="width: 20px;"></ion-icon></button>
+			<button (click)="upload_pic(0)"  ion-button clear icon-only  style="float: left;height: 100%;margin: 0;"><ion-icon><img src="assets/icon/outline-camra.png" style="width: 20px;"></ion-icon></button>
+			<button (click)="upload_pic(1)"  ion-button clear icon-only  style="float: left;height: 100%;margin: 0;"><ion-icon><img src="assets/icon/download.png" style="width: 20px;"></ion-icon></button>
 			<span *ngIf="pic1.length!=0" style="position: absolute;top: 10px;right: 10px;color: #000;">{{pic1.length}}</span>
 		</div>
 		<div style="float: left;background: transparent;width: 100%;">

@@ -217,8 +217,7 @@ dateCheck(a){
 				   }
 				  console.log(JSON.parse(data._body).details.CardId);
                   let alert = this.alertController.create({
-                   title: 'Success',
-                   subTitle: 'Card successfully added',
+                   subTitle: 'Votre carte de crédit a été ajoutée avec succès!',
                    buttons:[ 
                     { 
                        text:'ok',

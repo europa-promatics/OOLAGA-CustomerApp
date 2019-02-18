@@ -30,8 +30,11 @@ CardData
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CustomeCardListPage');
-	this.getCardList();
+	//this.getCardList();
   }
+  ionViewDidEnter() {
+ this.getCardList();
+}
   
   getCardList(){
 	  let cardData={
@@ -66,11 +69,10 @@ CardData
 			
               if(JSON.parse(data._body).response==true){
                   let alert = this.alertController.create({
-                   title: 'Success',
-                   subTitle: 'Card Status Changed Successfully!',
+                   subTitle: 'Votre carte de paiement par défaut a été enregistrée!',
                    buttons:[ 
                     { 
-                       text:'ok',
+                       text:'OK',
                        handler:()=>
                        {
 						   localStorage['card_id']=JSON.parse(data._body).data.card_id;
@@ -103,6 +105,11 @@ CardData
 	popover.onDidDismiss(() => {
 	this.getCardList();
 });
+  }
+  formatCard(card){
+	  if(card){
+		  return "••••"+card.slice(-4);
+	  }
   }
   }
 

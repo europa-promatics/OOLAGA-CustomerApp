@@ -74,7 +74,7 @@ export class ItemDetailPage {
     console.log('item list')
     if(this.items[0] == null){
         let alert = this.alertCtrl.create({
-                  title: 'Add Item!',
+                  title: 'Objet ajouté',
                   buttons: ['OK']
                 });
             alert.present();
@@ -350,7 +350,7 @@ export class ItemDetailPage {
       // console.log(this.appProvider.current.items)
       if(this.items[0] == null){
         let alert = this.alertCtrl.create({
-                  title: 'Add Item!',
+                  title: 'Objet ajouté',
                   buttons: ['OK']
                 });
             alert.present();

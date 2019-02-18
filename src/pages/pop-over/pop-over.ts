@@ -59,11 +59,11 @@ setCardStatus(){
 			
               if(JSON.parse(data._body).response==true){
                   let alert = this.alertCtrl.create({
-                   title: 'Success',
-                   subTitle: 'Card Status Changed Successfully!',
+                  
+                   subTitle: 'Votre carte de paiement par défaut a été enregistrée',
                    buttons:[ 
                     { 
-                       text:'ok',
+                       text:'OK',
                        handler:()=>
                        {
 						   
